@@ -29,6 +29,7 @@
             android:theme="@style/zxing_CaptureTheme"
             android:windowSoftInputMode="stateAlwaysHidden"
             />
+        <activity android:name=".ItemActivity"/>
         <activity android:name=".YourBasketActivity"/>
     </application>
 
