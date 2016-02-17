@@ -50,15 +50,23 @@ public class ScannerActivity extends Activity implements View.OnClickListener {
             //TODO: do stuff with result later!
             String scanContent = scanResult.getContents();
             String scanFormat = scanResult.getFormatName();
-
             //Test case from tutorial
             //formatTxt.setText("FORMAT: " + scanFormat);
             //contentTxt.setText("CONTENT: " + scanContent);
 
-            Intent intent2 = new Intent(getApplicationContext(), YourBasketActivity.class);
-            intent.putExtra("content", scanContent);
-            intent.putExtra("format", scanFormat);
-            startActivity(intent2);
+            Intent intentItem = new Intent(getApplicationContext(), ItemActivity.class);
+            if (scanContent != null && scanFormat != null) {
+                intent.putExtra("content", scanContent);
+                intent.putExtra("format", scanFormat);
+                startActivity(intentItem);
+            }
+            else {
+                //TODO Need to make a better error message later
+                //Display some popup dialog and go back to camera/yourbasket
+                Toast toast = Toast.makeText(getApplicationContext(), "No data recieved", Toast.LENGTH_SHORT);
+            }
+
+
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), "No scan data recieved", Toast.LENGTH_SHORT);
             toast.show();
