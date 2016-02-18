@@ -59,6 +59,8 @@
             />
         <activity android:name=".ItemActivity"/>
         <activity android:name=".YourBasketActivity"/>
+        <activity android:name=".AddCardActivity"/>
+        <activity android:name=".PaymentActivity"/>
     </application>
 
 </manifest>

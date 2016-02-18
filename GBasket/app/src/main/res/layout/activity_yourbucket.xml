@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pay Now"
-            android:id="@+id/button2"
+            android:id="@+id/buttonPay"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
@@ -42,14 +42,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add Item"
-            android:id="@+id/button3"
+            android:id="@+id/buttonAdd"
             android:layout_gravity="center_horizontal" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Remove"
-            android:id="@+id/button4"
+            android:id="@+id/buttonRemove"
             android:layout_gravity="right"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
