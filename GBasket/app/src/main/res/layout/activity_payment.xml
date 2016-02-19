@@ -33,16 +33,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add New Card"
-            android:id="@+id/button2"
+            android:id="@+id/ButtonAddcard"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/button3"
-            android:layout_toEndOf="@+id/button3" />
+            android:layout_toRightOf="@+id/ButtonPaywcard"
+            android:layout_toEndOf="@+id/ButtonPaywcard" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pay With This Card"
-            android:id="@+id/button3"
+            android:id="@+id/ButtonPaywcard"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
