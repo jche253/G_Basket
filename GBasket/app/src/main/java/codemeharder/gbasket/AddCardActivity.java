@@ -1,7 +1,9 @@
 package codemeharder.gbasket;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import com.paypal.android.sdk.payments.PayPalConfiguration;
@@ -18,7 +20,7 @@ public class AddCardActivity extends Activity {
     // when testing in sandbox, this is likely the -facilitator email address.
     private static final String CONFIG_RECEIVER_EMAIL = "jche253-facilitator@emory.edu";
 
-    Button submit, cancel;
+    Button pay, cancel;
 
 
     //TODO Process credit card + add it to saved list of cards for the user
@@ -27,7 +29,24 @@ public class AddCardActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcard);
 
-        submit = (Button) findViewById(R.id.btnSubmit);
+        pay = (Button) findViewById(R.id.btnSubmit);
         cancel = (Button) findViewById(R.id.btnCancel);
+
+        pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ReceiptActivity.class);
+                //TODO process payment
+                startActivity(intent);
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent backIntent = new Intent(getApplicationContext(),PaymentActivity.class);
+                startActivity(backIntent);
+            }
+        });
     }
 }

@@ -61,6 +61,8 @@
         <activity android:name=".YourBasketActivity"/>
         <activity android:name=".AddCardActivity"/>
         <activity android:name=".PaymentActivity"/>
+        <activity android:name=".ReceiptActivity"/>
+        <activity android:name=".HistoryActivity"/>
     </application>
 
 </manifest>

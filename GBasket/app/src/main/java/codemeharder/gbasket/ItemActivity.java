@@ -15,6 +15,7 @@ public class ItemActivity extends Activity {
     Button backBtn, addBtn;
     TextView name, price;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);

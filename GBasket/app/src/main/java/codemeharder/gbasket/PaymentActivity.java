@@ -1,7 +1,9 @@
 package codemeharder.gbasket;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import com.paypal.android.sdk.payments.PayPalConfiguration;
@@ -23,10 +25,29 @@ public class PaymentActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_addcard);
+        setContentView(R.layout.activity_payment);
 
         Paywcard = (Button) findViewById(R.id.ButtonPaywcard);
         Addcard = (Button) findViewById(R.id.ButtonAddcard);
+
+        Paywcard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
+                //TODO add payment
+                startActivity(receiptIntent);
+            }
+        });
+
+        Addcard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addIntent = new Intent(getApplicationContext(), AddCardActivity.class);
+                //TODO need to add return to add to listView
+                startActivity(addIntent);
+            }
+        });
+
 
 
     }
