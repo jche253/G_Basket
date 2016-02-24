@@ -54,7 +54,7 @@
         android:layout_marginLeft="27dp"
         android:layout_marginStart="27dp"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/user_pw"
+        android:layout_below="@+id/User_Pass"
         android:layout_alignLeft="@+id/pw"
         android:layout_alignStart="@+id/pw" />
 
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:id="@+id/user_email"
+        android:id="@+id/User_ID"
         android:layout_marginTop="34dp"
         android:layout_below="@+id/imageView"
         android:layout_toRightOf="@+id/pw"
@@ -87,10 +87,10 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/user_pw"
-        android:layout_below="@+id/user_email"
-        android:layout_alignRight="@+id/user_email"
-        android:layout_alignEnd="@+id/user_email"
+        android:id="@+id/User_Pass"
+        android:layout_below="@+id/User_ID"
+        android:layout_alignRight="@+id/User_ID"
+        android:layout_alignEnd="@+id/User_ID"
         android:layout_alignLeft="@+id/imageView"
         android:layout_alignStart="@+id/imageView" />
 
@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/email"
         android:text="email"
-        android:layout_above="@+id/user_pw"
+        android:layout_above="@+id/User_Pass"
         android:layout_alignRight="@+id/pw"
         android:layout_alignEnd="@+id/pw"
         android:layout_alignLeft="@+id/pw"
@@ -110,7 +110,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/pw"
         android:text="password"
-        android:layout_alignTop="@+id/user_pw"
+        android:layout_alignTop="@+id/User_Pass"
         android:layout_toLeftOf="@+id/imageView"
         android:layout_toStartOf="@+id/imageView" />
 

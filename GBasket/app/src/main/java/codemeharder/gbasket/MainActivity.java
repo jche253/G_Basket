@@ -11,7 +11,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Button login,sign_up;
-    DatabaseHelper myDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        myDb = new DatabaseHelper(this);
     }
 
 
