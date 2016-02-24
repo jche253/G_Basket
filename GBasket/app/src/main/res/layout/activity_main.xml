@@ -10,7 +10,8 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/view">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -28,9 +29,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_centerVertical="true"
+        android:src="@mipmap/ic_basket"
+        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:src="@mipmap/ic_basket"/>
+        android:layout_marginTop="44dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,26 +42,76 @@
 
         android:text="Grocery Basket"
         android:id="@+id/textView"
-        android:layout_above="@+id/imageView"
+        android:layout_below="@+id/view"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="63dp" />
+        android:layout_marginTop="54dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Some login"
-        android:id="@+id/button"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="41dp" />
+        android:text="Login"
+        android:id="@+id/login"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/user_pw"
+        android:layout_alignLeft="@+id/pw"
+        android:layout_alignStart="@+id/pw" />
 
-    <TextView
+    <Button
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Some sort of store login to go here"
-        android:id="@+id/textView2"
+        android:text="Sign Up"
+        android:id="@+id/sign_up"
+        android:layout_alignTop="@+id/login"
+        android:layout_toRightOf="@+id/login"
+        android:layout_toEndOf="@+id/login"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/user_email"
+        android:layout_marginTop="34dp"
         android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="33dp" />
+        android:layout_toRightOf="@+id/pw"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/user_pw"
+        android:layout_below="@+id/user_email"
+        android:layout_alignRight="@+id/user_email"
+        android:layout_alignEnd="@+id/user_email"
+        android:layout_alignLeft="@+id/imageView"
+        android:layout_alignStart="@+id/imageView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:text="email"
+        android:layout_above="@+id/user_pw"
+        android:layout_alignRight="@+id/pw"
+        android:layout_alignEnd="@+id/pw"
+        android:layout_alignLeft="@+id/pw"
+        android:layout_alignStart="@+id/pw" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pw"
+        android:text="password"
+        android:layout_alignTop="@+id/user_pw"
+        android:layout_toLeftOf="@+id/imageView"
+        android:layout_toStartOf="@+id/imageView" />
 
 </RelativeLayout>

@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-    Button login;
+    Button login,signup;
     DatabaseHelper myDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        login = (Button) findViewById(R.id.button);
+        login = (Button) findViewById(R.id.login);
+        signup = (Button) findViewById(R.id.sign_up);
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,6 +29,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signintent = new Intent(getApplicationContext(), SignUpActivity.class);
+                startActivity(signintent);
+            }
+        });
+
         myDb = new DatabaseHelper(this);
     }
 
