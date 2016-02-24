@@ -27,7 +27,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="d"
+        android:text=""
         android:id="@+id/formatTxt"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="d"
+        android:text=""
         android:id="@+id/contentTxt"
         android:layout_below="@+id/formatTxt"
         android:layout_centerHorizontal="true" />

@@ -8,19 +8,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Your Basket"
+        android:text="Choose A Card"
         android:textSize="42dp"
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal" />
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="351dp"
+        android:layout_height="227dp"
         android:id="@+id/listView"
         android:layout_gravity="center_horizontal"
         android:divider="#000000"
         android:dividerHeight="1px"
-        android:layout_weight="0.82" />
+        android:layout_weight="0.22" />
 
     <RelativeLayout
         android:orientation="horizontal"
@@ -32,27 +32,24 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pay Now"
-            android:id="@+id/buttonPay"
+            android:text="Add New Card"
+            android:id="@+id/ButtonAddcard"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_toRightOf="@+id/ButtonPaywcard"
+            android:layout_toEndOf="@+id/ButtonPaywcard" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Item"
-            android:id="@+id/buttonAdd"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Remove"
-            android:id="@+id/buttonRemove"
-            android:layout_gravity="right"
+            android:text="Pay With This Card"
+            android:id="@+id/ButtonPaywcard"
+            android:layout_gravity="center_horizontal"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="42dp"
+            android:layout_marginStart="42dp" />
+
 
     </RelativeLayout>
 
