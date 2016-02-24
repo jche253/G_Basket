@@ -1,7 +1,6 @@
 package codemeharder.gbasket;
 
 import android.app.Activity;
-import android.app.Instrumentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
