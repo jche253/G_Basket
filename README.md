@@ -8,6 +8,7 @@ Contributors:Jimmy Chen, Hansi Chen, Janay DeVillasee, Seoyoung Kyung, Alfred Wo
 
 # Special thanks to:
   -Zxing-android-embedded (https://github.com/journeyapps/zxing-android-embedded)
+  -Paypal Developer (https://developer.paypal.com/webapps/developer/docs/integration/mobile/android-integration-guide/)
 
 # License
 Apache License 2.0
