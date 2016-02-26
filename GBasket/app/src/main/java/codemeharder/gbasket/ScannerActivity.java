@@ -2,6 +2,7 @@ package codemeharder.gbasket;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -35,10 +36,22 @@ public class ScannerActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.button_scan) {
-            IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-            scanIntegrator.setCaptureActivity(CaptureActivityAnyOrientation.class);
-            scanIntegrator.setOrientationLocked(false);
-            scanIntegrator.initiateScan();
+            /*
+             * If you want to test the application features without adding items/scanning stuff
+             * then comment out (1) and leave in (2)
+             * If you want to use the application with barcode scanner, please comment out (2)
+             * and keep (1) uncommented.
+             */
+
+            //TODO (1) Use for actual barcode
+            //IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+            //scanIntegrator.setCaptureActivity(CaptureActivityAnyOrientation.class);
+            //scanIntegrator.setOrientationLocked(false);
+            //scanIntegrator.initiateScan();
+
+            //TODO (2) to sandbox the application without the scanner
+            Intent intent = new Intent(getApplicationContext(), ItemActivity.class);
+            startActivity(intent);
         }
     }
 

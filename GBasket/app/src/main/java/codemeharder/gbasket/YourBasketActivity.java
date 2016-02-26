@@ -55,6 +55,8 @@ public class YourBasketActivity extends Activity {
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODO: Sum up the prices from the receipt
+
                 Intent payIntent = new Intent(getApplicationContext(), PaymentActivity.class);
                 startActivity(payIntent);
             }
