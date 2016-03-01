@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import com.facebook.FacebookSdk;
+
 
 /**
  * Created by seoyoung kyung on 2/24/16.
@@ -12,12 +14,14 @@ import android.widget.Button;
 
 public class SignUpActivity extends Activity {
 
+
     Button Done;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
         Done = (Button) findViewById(R.id.done);
 

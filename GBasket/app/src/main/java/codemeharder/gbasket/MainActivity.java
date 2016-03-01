@@ -8,10 +8,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import com.facebook.FacebookSdk;
 
 public class MainActivity extends AppCompatActivity {
-    Button login,sign_up;
+    Button login, sign_up;
     DatabaseHelper myDb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,5 +64,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+
+
     }
 }
+
+
