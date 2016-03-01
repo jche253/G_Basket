@@ -11,9 +11,13 @@ import android.widget.Button;
 import com.facebook.FacebookSdk;
 
 public class MainActivity extends AppCompatActivity {
+<<<<<<< HEAD
     Button login, sign_up;
     DatabaseHelper myDb;
 
+=======
+    Button login,sign_up;
+>>>>>>> master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        myDb = new DatabaseHelper(this);
     }
 
 

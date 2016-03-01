@@ -3,84 +3,97 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign up for an account"
+        android:textSize="32dp"
+        android:id="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/email"
+        android:textSize="22dp"
         android:text="Email"
         android:layout_below="@+id/lname"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/usr_lname"
-        android:layout_toStartOf="@+id/usr_lname" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/user_email"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignTop="@+id/email"
-        android:layout_toEndOf="@+id/email"
-        android:layout_toRightOf="@+id/email" />
+        android:layout_marginTop="32dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/User_ID"
+        android:layout_alignBottom="@+id/email"
+        android:layout_toRightOf="@+id/email"
+        android:layout_alignRight="@+id/user_cpw"
+        android:layout_alignEnd="@+id/user_cpw" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/pw"
         android:text="Password"
-        android:layout_below="@+id/email"
+        android:textSize="22dp"
+        android:layout_alignBottom="@+id/User_Pass"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/user_email"
-        android:layout_toStartOf="@+id/user_email" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/user_pw"
-        android:layout_alignTop="@+id/pw"
-        android:layout_toRightOf="@+id/pw"
-        android:layout_toEndOf="@+id/pw" />
+        android:id="@+id/User_Pass"
+        android:layout_below="@+id/User_ID"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/pw"
+        android:layout_toRightOf="@+id/pw" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fname"
-        android:layout_alignParentTop="true"
+        android:text="First Name"
+        android:textSize="22dp"
+        android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:text="First Name"
-        android:layout_toStartOf="@+id/done"
-        android:layout_toLeftOf="@+id/done" />
+        android:layout_marginTop="28dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/user_fname"
+        android:id="@+id/User_FName"
         android:layout_alignBottom="@+id/fname"
         android:layout_toRightOf="@+id/fname"
-        android:layout_toEndOf="@+id/fname" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Done"
-        android:id="@+id/done"
+        android:id="@+id/Done"
         android:layout_below="@+id/cpw"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="77dp" />
+        android:layout_marginTop="47dp" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cpw"
+        android:textSize="22dp"
         android:text="Confirm Password"
+        android:layout_marginTop="33dp"
         android:layout_below="@+id/pw"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -92,28 +105,28 @@
         android:ems="10"
         android:id="@+id/user_cpw"
         android:layout_alignBottom="@+id/cpw"
-        android:layout_toRightOf="@+id/cpw"
-        android:layout_toEndOf="@+id/cpw" />
+        android:layout_toEndOf="@+id/cpw"
+        android:layout_toRightOf="@+id/cpw" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lname"
-        android:layout_below="@+id/fname"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:text="Last Name"
-        android:layout_toLeftOf="@+id/user_fname"
-        android:layout_toStartOf="@+id/user_fname" />
+        android:textSize="22dp"
+        android:layout_alignBottom="@+id/User_LName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/usr_lname"
-        android:layout_below="@+id/user_fname"
+        android:id="@+id/User_LName"
+        android:layout_below="@+id/User_FName"
         android:layout_toRightOf="@+id/lname"
-        android:layout_toEndOf="@+id/lname" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

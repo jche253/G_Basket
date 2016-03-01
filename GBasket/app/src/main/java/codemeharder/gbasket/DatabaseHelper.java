@@ -1,5 +1,6 @@
 package codemeharder.gbasket;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -8,19 +9,20 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Alfred Wong on 2/23/2016.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "Product.db";
-    public static final String TABLE_NAME = "Product_Table";
-    public static final String ID = "Product_ID";
-    public static final String NAME = "Product_Name";
-    public static final String Price = "Product_Price";
+    public static final String DATABASE_NAME = "AccInfo.db";
+    public static final String TABLE_NAME = "AccInfo_Table";
+    public static final String ID = "User_ID";
+    public static final String FNAME = "User_FName";
+    public static final String LNAME = "User_LName";
+    public static final String PASSWORD = "User_Pass";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
-        SQLiteDatabase db = this.getWritableDatabase();
+
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME +" (Product_ID INTEGER PRIMARY KEY AUTOINCREMENT, Product_Name TEXT, Product_Price INTEGER)");
+        db.execSQL("create table " + TABLE_NAME + " (USER_ID TEXT PRIMARY KEY, USER_FName TEXT, USER_LName TEXT, User_Pass TEXT)");
     }
 
     @Override
@@ -28,4 +30,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME);
         onCreate(db);
     }
+
+    public boolean insertData(String email, String fname, String lname, String pass){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ID, email);
+        contentValues.put(FNAME, fname);
+        contentValues.put(LNAME, lname);
+        contentValues.put(PASSWORD, pass);
+        long result = db.insert(TABLE_NAME, null, contentValues);
+        if(result == -1)
+            return false;
+        else return true;
+    }
+
+
+
+
 }

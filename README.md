@@ -8,6 +8,8 @@ Contributors:Jimmy Chen, Hansi Chen, Janay DeVillasee, Seoyoung Kyung, Alfred Wo
 
 # Special thanks to:
   -Zxing-android-embedded (https://github.com/journeyapps/zxing-android-embedded)
+  
+  -Stripe payment
 
 # License
 Apache License 2.0
