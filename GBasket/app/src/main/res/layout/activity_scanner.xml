@@ -6,7 +6,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Camera"
+        android:text="Scan"
         android:id="@+id/button_scan"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
@@ -38,5 +38,13 @@
         android:text=""
         android:id="@+id/contentTxt"
         android:layout_below="@+id/formatTxt"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Grocery List"
+        android:id="@+id/grocery_button"
+        android:layout_above="@+id/button_scan"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
