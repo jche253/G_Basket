@@ -30,7 +30,7 @@ public class ToBuyCustomAdapter extends ArrayAdapter<ToBuyItem> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View row = convertView;
         UserHolder holder = null;
 
@@ -44,21 +44,12 @@ public class ToBuyCustomAdapter extends ArrayAdapter<ToBuyItem> {
         } else {
             holder = (UserHolder) row.getTag();
         }
-        ToBuyItem nextItem = data.get(position);
+        final ToBuyItem nextItem = data.get(position);
         holder.textName.setText(nextItem.getName());
 
         //TODO this code needs to be in the activity, not when you populate listview
         //TODO also need to add functionality
-        /*holder.btnEdit.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-
-                Log.i("Edit Button Clicked", "**********");
-                Toast.makeText(context, "Edit button Clicked",
-                        Toast.LENGTH_LONG).show();
-            }
-        });*/
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -67,8 +58,13 @@ public class ToBuyCustomAdapter extends ArrayAdapter<ToBuyItem> {
                 Log.i("Delete Button Clicked", "**********");
                 Toast.makeText(context, "Delete button Clicked",
                         Toast.LENGTH_LONG).show();
+                data.remove(position);
+                notifyDataSetChanged();
             }
         });
+
+
+
 
         return row;
 
@@ -76,9 +72,6 @@ public class ToBuyCustomAdapter extends ArrayAdapter<ToBuyItem> {
 
     static class UserHolder {
         TextView textName;
-        TextView textAddress;
-        TextView textLocation;
-        Button btnEdit;
         Button btnDelete;
     }
 }

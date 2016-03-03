@@ -77,5 +77,19 @@ import android.widget.Button;
 
             });
 
+
+            Button delete = (Button) findViewById(R.id.delete);
+
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    
+                    // add new item to arraylist
+                    // notify listview of data changed
+                    ToBuyAdapter.notifyDataSetChanged();
+                }
+
+            });
+
         }
     }
