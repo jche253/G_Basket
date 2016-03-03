@@ -17,4 +17,14 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="gbasket" parent="AppTheme" >
+        <item name="colorPrimary">@color/red</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorAccent">@color/yellow</item>
+        <item name="android:textColorSecondary">@color/brown</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorPrimaryInverse">@color/yellow</item>
+        <item name="android:colorForeground">@android:color/red</item>
+    </style>
+
 </resources>

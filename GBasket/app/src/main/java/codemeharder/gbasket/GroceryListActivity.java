@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.Button;
+import android.view.MenuInflater;
+import android.view.Menu;
 
     public class GroceryListActivity extends Activity {
         ListView ToBuyList;
@@ -91,5 +93,13 @@ import android.widget.Button;
 
             });
 
+        }
+
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            // Inflate the menu items for use in the action bar
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menuall, menu);
+            return super.onCreateOptionsMenu(menu);
         }
     }
