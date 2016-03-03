@@ -73,9 +73,11 @@ import android.widget.Button;
                     GroceryListActivity.this.ToBuyArray.add(new ToBuyItem(newItem));
                     // notify listview of data changed
                     ToBuyAdapter.notifyDataSetChanged();
+                    editText.setText("");
                 }
 
             });
+
 
         }
     }

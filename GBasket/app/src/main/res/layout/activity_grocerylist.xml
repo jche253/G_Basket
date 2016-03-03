@@ -38,7 +38,9 @@
         android:layout_marginTop="29dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/btAdd"
+        android:layout_toStartOf="@+id/btAdd" />
 
     <ListView
         android:id="@+id/listView"
@@ -50,4 +52,3 @@
         android:layout_below="@+id/btAdd" />
 
 </RelativeLayout>
-
