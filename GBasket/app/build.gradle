@@ -30,10 +30,10 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
     compile 'com.google.zxing:core:3.2.0'
-<<<<<<< HEAD
+
     compile 'com.paypal.sdk:paypal-android-sdk:2.13.1'
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
-=======
+
     compile 'com.stripe:stripe-android:+'
->>>>>>> master
+
 }
