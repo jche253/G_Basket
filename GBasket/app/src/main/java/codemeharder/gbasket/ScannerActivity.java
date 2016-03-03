@@ -17,7 +17,7 @@ import com.google.zxing.integration.android.IntentResult;
  * Created by Jimmy Chen on 2/13/2016.
  */
 public class ScannerActivity extends Activity implements View.OnClickListener {
-    Button button2;
+    Button button2, groceryListButton;
     TextView formatTxt, contentTxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +25,19 @@ public class ScannerActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_scanner);
 
         button2 = (Button) findViewById(R.id.button_scan);
+        groceryListButton = (Button) findViewById(R.id.grocery_button);
 
         //TODO Temporary text
         formatTxt = (TextView) findViewById(R.id.formatTxt);
         contentTxt = (TextView) findViewById(R.id.contentTxt);
+
+        groceryListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GroceryListActivity.class);
+                startActivity(intent);
+            }
+        });
 
         button2.setOnClickListener(this);
     }

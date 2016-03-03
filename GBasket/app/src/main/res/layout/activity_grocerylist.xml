@@ -18,7 +18,12 @@
         android:id="@+id/btAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:text=""
+=======
+        android:text="Add item"
+        android:textColor="#FFFFFF"
+>>>>>>> master
         android:icon="@android:drawable/ic_menu_add"
         android:textSize="40px"
         android:textAlignment="center"
@@ -37,7 +42,13 @@
         android:layout_marginTop="29dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
+<<<<<<< HEAD
         android:layout_alignParentStart="true" />
+=======
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/btAdd"
+        android:layout_toStartOf="@+id/btAdd" />
+>>>>>>> master
 
     <ListView
         android:id="@+id/listView"
