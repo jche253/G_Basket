@@ -52,9 +52,10 @@ public class PaymentActivity extends Activity {
                 //TODO select card as item and initialize variables
 
                 //TODO add payment
+                //TODO commented this out for now so I could test receipt
                 //Parameters: string credit card number, int exp month, int exp year, string cvc
                 Card card = new Card(CreditCardNum, expMonth, expYear, CVC);
-                if (!card.validateCard()) {
+                /*if (!card.validateCard()) {
                     //Errors
                     new AlertDialog.Builder(PaymentActivity.this)
                             .setTitle("Invalid Card")
@@ -67,8 +68,8 @@ public class PaymentActivity extends Activity {
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
 
-                }
-                else {
+                }*/
+                /*else {
                     Stripe stripe = null;
                     try {
                         stripe = new Stripe("pk_test_2dYE7FzwvBwbxWNCdWtetXTp");
@@ -91,8 +92,10 @@ public class PaymentActivity extends Activity {
                             });
                     Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
                     startActivity(receiptIntent);
-                }
-
+                }*/
+                //TODO Temporary
+                Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
+                startActivity(receiptIntent);
             }
         });
 

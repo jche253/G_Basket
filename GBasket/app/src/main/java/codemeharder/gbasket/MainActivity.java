@@ -8,18 +8,18 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    Button login,sign_up;
+    Button login;
+    TextView sign_up;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        login = (Button) findViewById(R.id.login);
-        sign_up = (Button) findViewById(R.id.sign_up);
+        login = (Button) findViewById(R.id.email_sign_in_button);
+        sign_up = (TextView) findViewById(R.id.signUpTextView);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
