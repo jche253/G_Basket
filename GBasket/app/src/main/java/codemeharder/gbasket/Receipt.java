@@ -1,5 +1,8 @@
 package codemeharder.gbasket;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.stripe.android.model.Card;
 
 import java.text.SimpleDateFormat;
@@ -9,29 +12,28 @@ import java.util.Date;
 /**
  * Created by Jimmy Chen on 3/1/2016.
  */
-public class Receipt {
+public class Receipt implements Parcelable {
     String date;
-    int Serial;
+    String Serial;
     String accType;
-    int transactionID;
-    ArrayList<String> item = new ArrayList<String>();
-    ArrayList<Double> price = new ArrayList<Double>();
+    ArrayList<EachItem> itemPrice = new ArrayList<EachItem>();
     ArrayList<Double> DiscountOrigPrice = new ArrayList<Double>();
     ArrayList<Double> PriceOff = new ArrayList<Double>();
     double payment_amount = 0;
-    double tax;
+    double tax = 0;
     double total;
 
-    Receipt(Date CurDate, Card card, ArrayList<String> items, ArrayList<Double> prices) {
-        SimpleDateFormat ft =
-                new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
-        this.date = ft.format(CurDate);
+    Receipt(String CurDate, Card card, ArrayList<EachItem> yourItems, ArrayList<Double> DisOrigPrice,
+                   ArrayList<Double> discounts, String serial) {
+        this.date = CurDate;
         //TODO make an algorithm for generating serial numbers and transaction ID
-        String accType = card.getType();
-        this.price = prices;
-        this.item = items;
-        for (int i = 0; i < this.price.size(); i++)
-            this.payment_amount += this.price.get(i);
+        this.accType = card.getType();
+        this.Serial = serial;
+        this.itemPrice = yourItems;
+        for (int i = 0; i < this.itemPrice.size(); i++)
+            this.payment_amount += this.itemPrice.get(i).getPrice();
+
+        this.total = this.payment_amount + (this.payment_amount * tax);
         //TODO find ways to get tax location
         //ToDO calculate total
 
@@ -39,21 +41,15 @@ public class Receipt {
 
     //TODO set getters/setters
 
-    public void setDate(Date date) {
-        SimpleDateFormat ft =
-                new SimpleDateFormat("E yyyy.MM.dd 'at' hh:mm:ss a zzz");
-        this.date = ft.format(date);
-    }
-
     public String getDate() {
         return date;
     }
 
-    public void setSerial(int newSerial) {
+    public void setSerial(String newSerial) {
         this.Serial = newSerial;
     }
 
-    public int getSerial() {
+    public String getSerial() {
         return this.Serial;
     }
 
@@ -65,20 +61,12 @@ public class Receipt {
         return this.accType;
     }
 
-    public void setItem(ArrayList<String> newItems) {
-        this.item = newItems;
+    public void addItem(EachItem newItem) {
+        this.itemPrice.add(newItem);
     }
 
-    public ArrayList<String> getItem() {
-        return this.item;
-    }
-
-    public void setPrice (ArrayList<Double> newPrices) {
-        this.price = newPrices;
-    }
-
-    public ArrayList<Double> getPrice() {
-        return this.price;
+    public ArrayList<EachItem> getItem() {
+        return this.itemPrice;
     }
 
     public void setOrigPrice (ArrayList<Double> newDiscount) {
@@ -109,11 +97,45 @@ public class Receipt {
         return this.tax;
     }
 
-
-    //TODO fill this later once the template is made
-    public String fillReceiptTemplate() {
-        return null;
+    // Parcelling part
+    public Receipt(Parcel in){
+        this.date = in.readString();
+        this.Serial = in.readString();
+        this.accType = in.readString();
+        this.itemPrice = (ArrayList<EachItem>) in.readSerializable();
+        this.DiscountOrigPrice = (ArrayList<Double>) in.readSerializable();
+        this.PriceOff = (ArrayList<Double>) in.readSerializable();
+        this.payment_amount = in.readDouble();
+        this.tax = in.readDouble();
+        this.total = in.readDouble();
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.date);
+        dest.writeString(this.Serial);
+        dest.writeString(this.accType);
+        dest.writeSerializable(this.itemPrice);
+        dest.writeSerializable(this.DiscountOrigPrice);
+        dest.writeSerializable(this.PriceOff);
+        dest.writeDouble(this.payment_amount);
+        dest.writeDouble(this.tax);
+        dest.writeDouble(this.total);
+    }
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Receipt createFromParcel(Parcel in) {
+            return new Receipt(in);
+        }
+
+        public Receipt[] newArray(int size) {
+            return new Receipt[size];
+        }
+    };
 }
+
+

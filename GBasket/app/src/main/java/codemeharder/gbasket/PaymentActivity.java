@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +25,10 @@ import com.paypal.android.sdk.payments.PaymentConfirmation;
 import org.json.JSONException;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 /*
  * Created by Jimmy Chen on 2/18/2016.
@@ -42,19 +48,42 @@ public class PaymentActivity extends Activity {
         Paywcard = (Button) findViewById(R.id.ButtonPaywcard);
         Addcard = (Button) findViewById(R.id.ButtonAddcard);
 
+
+
         Paywcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String CreditCardNum = null;
-                int expMonth = 0;
-                int expYear = 0;
-                String CVC = null;
                 //TODO select card as item and initialize variables
+                String CreditCardNum = "4242424242424242";
+                int expMonth = 7;
+                int expYear = 2017;
+                String CVC = "123";
+                //Parameters: string credit card number, int exp month, int exp year, string cvc
+                Card card = new Card(CreditCardNum, expMonth, expYear, CVC);
+                //TODO Test receipt case
+                // Receipt(Date CurDate, Card card, ArrayList<EachItem> yourItems, ArrayList<Double> DisOrigPrice,
+                //ArrayList<Double> discounts, String serial)
+                Date date = new Date();
+                ArrayList<EachItem> items =  new ArrayList<EachItem>();
+                ArrayList<Double> orig = new ArrayList<Double>();
+                ArrayList<Double> discount = new ArrayList<Double>();
+                //Test cases
+                items.add(new EachItem("pizza", 3.44));
+                items.add(new EachItem("burger", 2.00));
+                items.add(new EachItem("olives", 1.00));
+                items.add(new EachItem("steak", 12.90));
+                items.add(new EachItem("fish", 8.76));
+
+
+                //Simple serial for now
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                Date now = new Date();
+                String toBarcode = sdf.format(now);
+
+                Receipt todayReceipt = new Receipt(toBarcode, card, items, orig, discount, toBarcode);
 
                 //TODO add payment
                 //TODO commented this out for now so I could test receipt
-                //Parameters: string credit card number, int exp month, int exp year, string cvc
-                Card card = new Card(CreditCardNum, expMonth, expYear, CVC);
                 /*if (!card.validateCard()) {
                     //Errors
                     new AlertDialog.Builder(PaymentActivity.this)
@@ -93,8 +122,9 @@ public class PaymentActivity extends Activity {
                     Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
                     startActivity(receiptIntent);
                 }*/
-                //TODO Temporary
+
                 Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
+                receiptIntent.putExtra("Receipt", (Parcelable) todayReceipt);
                 startActivity(receiptIntent);
             }
         });
@@ -108,5 +138,4 @@ public class PaymentActivity extends Activity {
             }
         });
     }
-
 }

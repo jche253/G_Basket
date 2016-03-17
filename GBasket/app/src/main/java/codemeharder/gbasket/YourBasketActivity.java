@@ -58,6 +58,7 @@ public class YourBasketActivity extends Activity {
                 //TODO: Sum up the prices from the receipt
 
                 Intent payIntent = new Intent(getApplicationContext(), PaymentActivity.class);
+                //payIntent.putExtra("items")
                 startActivity(payIntent);
             }
         });

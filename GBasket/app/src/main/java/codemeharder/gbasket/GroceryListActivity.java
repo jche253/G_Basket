@@ -32,13 +32,13 @@ import android.widget.Button;
             /**
              * add item in arraylist
              */
-            ToBuyArray.add(new ToBuyItem("Bananas"));
+            /*ToBuyArray.add(new ToBuyItem("Bananas"));
             ToBuyArray.add(new ToBuyItem("Dish detergent"));
             ToBuyArray.add(new ToBuyItem("Shrimp"));
             ToBuyArray.add(new ToBuyItem("Cheese"));
             ToBuyArray.add(new ToBuyItem("Pasta"));
             ToBuyArray.add(new ToBuyItem("Macaroni"));
-            ToBuyArray.add(new ToBuyItem("Vegetables"));
+            ToBuyArray.add(new ToBuyItem("Vegetables"));*/
             /**
              * set item into adapter
              */

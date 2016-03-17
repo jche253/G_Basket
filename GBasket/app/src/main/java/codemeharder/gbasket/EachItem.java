@@ -1,9 +1,11 @@
 package codemeharder.gbasket;
 
+import java.io.Serializable;
+
 /**
  * Created by Jimmy Chen on 2/16/2016.
  */
-public class EachItem {
+public class EachItem implements Serializable {
     //Each item on the ListView for YourBucket
     String name;
     double price;
@@ -19,5 +21,4 @@ public class EachItem {
     public double getPrice(){
         return this.price;
     }
-
 }

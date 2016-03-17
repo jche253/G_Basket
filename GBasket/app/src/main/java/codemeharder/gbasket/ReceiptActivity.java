@@ -1,6 +1,8 @@
 package codemeharder.gbasket;
 
+import android.accounts.Account;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
@@ -15,6 +18,8 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,7 +33,8 @@ public class ReceiptActivity extends Activity {
     ImageView genBarcode;
     Bitmap bitmap;
     Button save, history;
-
+    ListView itemList;
+    TextView DateTime, SerialNum, AccountType;
     private static final int WHITE = 0xFFFFFFFF;
     private static final int BLACK = 0xFF000000;
 
@@ -36,16 +42,22 @@ public class ReceiptActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipt);
+        Intent i = getIntent();
+        Receipt receipt = (Receipt) i.getParcelableExtra("Receipt");
 
         save = (Button) findViewById(R.id.save);
         history = (Button) findViewById(R.id.history);
         genBarcode = (ImageView) findViewById(R.id.barcode);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-        Date now = new Date();
-        String toBarcode = sdf.format(now);
+        DateTime = (TextView) findViewById(R.id.dateTimeInput);
+        SerialNum = (TextView) findViewById(R.id.serialInput);
+        AccountType = (TextView) findViewById(R.id.accountName);
+
+        DateTime.setText(receipt.getDate());
+        SerialNum.setText(receipt.getSerial());
+        AccountType.setText(receipt.accType);
 
         try {
-            bitmap = encodeAsBitmap(toBarcode, BarcodeFormat.CODE_128, 600, 300);
+            bitmap = encodeAsBitmap(receipt.getSerial(), BarcodeFormat.CODE_128, 600, 300);
             genBarcode.setImageBitmap(bitmap);
 
         } catch (WriterException e) {

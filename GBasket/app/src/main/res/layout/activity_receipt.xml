@@ -40,7 +40,10 @@
         android:layout_alignRight="@+id/history"
         android:layout_alignEnd="@+id/history"
         android:layout_marginTop="35dp"
-        android:layout_above="@+id/save">
+        android:fadeScrollbars="false"
+        android:scrollbarFadeDuration="0"
+        android:layout_above="@+id/save"
+        android:scrollIndicators="right">
 
         <LinearLayout
             android:orientation="vertical"
@@ -146,6 +149,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:background="#000" />
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="563dp"
+                android:id="@+id/listView3" />
         </LinearLayout>
     </ScrollView>
 
