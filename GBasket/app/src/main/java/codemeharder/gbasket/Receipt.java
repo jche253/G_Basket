@@ -30,6 +30,8 @@ public class Receipt implements Parcelable {
         this.accType = card.getType();
         this.Serial = serial;
         this.itemPrice = yourItems;
+        this.DiscountOrigPrice = DisOrigPrice;
+        this.PriceOff = discounts;
         for (int i = 0; i < this.itemPrice.size(); i++)
             this.payment_amount += this.itemPrice.get(i).getPrice();
 
@@ -61,11 +63,11 @@ public class Receipt implements Parcelable {
         return this.accType;
     }
 
-    public void addItem(EachItem newItem) {
+    public void addItemPrice(EachItem newItem) {
         this.itemPrice.add(newItem);
     }
 
-    public ArrayList<EachItem> getItem() {
+    public ArrayList<EachItem> getItemPrice() {
         return this.itemPrice;
     }
 

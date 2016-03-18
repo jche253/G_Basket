@@ -23,18 +23,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "-Original Price: $0.00"
+        android:text = ""
         android:id="@+id/OrigPrice"
         android:layout_below="@+id/Item"
-        android:layout_toRightOf="@+id/Item"
-        android:layout_toEndOf="@+id/Item"
         android:layout_marginLeft="32dp"
         android:layout_marginStart="32dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "-Discount: $0.00"
+        android:text = ""
         android:id="@+id/DiscountPrice"
         android:layout_below="@+id/OrigPrice"
         android:layout_alignLeft="@+id/OrigPrice"

@@ -21,4 +21,5 @@ public class EachItem implements Serializable {
     public double getPrice(){
         return this.price;
     }
+
 }

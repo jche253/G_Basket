@@ -3,6 +3,7 @@ package codemeharder.gbasket;
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.google.zxing.common.BitMatrix;
 import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.EnumMap;
 import java.util.Map;
@@ -34,6 +36,7 @@ public class ReceiptActivity extends Activity {
     Bitmap bitmap;
     Button save, history;
     ListView itemList;
+    ArrayList<ReceiptItem> items = new ArrayList<ReceiptItem>();
     TextView DateTime, SerialNum, AccountType;
     private static final int WHITE = 0xFFFFFFFF;
     private static final int BLACK = 0xFF000000;
@@ -42,10 +45,9 @@ public class ReceiptActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipt);
-        Intent i = getIntent();
-        Receipt receipt = (Receipt) i.getParcelableExtra("Receipt");
-
-        save = (Button) findViewById(R.id.save);
+        Intent intent = getIntent();
+        Receipt receipt = (Receipt) intent.getParcelableExtra("Receipt");
+        save =  (Button) findViewById(R.id.save);
         history = (Button) findViewById(R.id.history);
         genBarcode = (ImageView) findViewById(R.id.barcode);
         DateTime = (TextView) findViewById(R.id.dateTimeInput);
@@ -55,6 +57,20 @@ public class ReceiptActivity extends Activity {
         DateTime.setText(receipt.getDate());
         SerialNum.setText(receipt.getSerial());
         AccountType.setText(receipt.accType);
+
+        itemList = (ListView) findViewById(R.id.listView3);
+        itemList.setFocusable(false);
+
+        //Convert receipt into receipt item
+        for (int i = 0; i < receipt.getItemPrice().size(); i++) {
+            EachItem temp = receipt.getItemPrice().get(i);
+            ReceiptItem test = new ReceiptItem(temp.getName(), temp.getPrice(), receipt.getOrigPrice().get(i),
+                    receipt.getPriceOff().get(i));
+            items.add(test);
+        }
+
+        ReceiptItemAdapter adapter = new ReceiptItemAdapter(this, items);
+        itemList.setAdapter(adapter);
 
         try {
             bitmap = encodeAsBitmap(receipt.getSerial(), BarcodeFormat.CODE_128, 600, 300);

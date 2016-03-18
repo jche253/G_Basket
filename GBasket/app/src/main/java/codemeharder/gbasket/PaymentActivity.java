@@ -68,12 +68,25 @@ public class PaymentActivity extends Activity {
                 ArrayList<Double> orig = new ArrayList<Double>();
                 ArrayList<Double> discount = new ArrayList<Double>();
                 //Test cases
-                items.add(new EachItem("pizza", 3.44));
-                items.add(new EachItem("burger", 2.00));
-                items.add(new EachItem("olives", 1.00));
-                items.add(new EachItem("steak", 12.90));
-                items.add(new EachItem("fish", 8.76));
+                orig.add(3.44);
+                discount.add(0.00);
+                items.add(new EachItem("pizza", setDiscountPrice(orig.get(0), discount.get(0))));
 
+                orig.add(2.00);
+                discount.add(1.00);
+                items.add(new EachItem("burger", setDiscountPrice(orig.get(1), discount.get(1))));
+
+                orig.add(1.00);
+                discount.add(0.00);
+                items.add(new EachItem("olives", setDiscountPrice(orig.get(2), discount.get(2))));
+
+                orig.add(12.90);
+                discount.add(3.00);
+                items.add(new EachItem("steak", setDiscountPrice(orig.get(3), discount.get(3))));
+
+                orig.add(8.76);
+                discount.add(1.00);
+                items.add(new EachItem("fish",  setDiscountPrice(orig.get(4), discount.get(4))));
 
                 //Simple serial for now
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -137,5 +150,9 @@ public class PaymentActivity extends Activity {
                 startActivity(addIntent);
             }
         });
+    }
+
+    public double setDiscountPrice(Double Orig, Double Disc) {
+        return Orig - Disc;
     }
 }
