@@ -18,18 +18,5 @@
         android:layout_marginTop="44dp"
         android:layout_gravity="center_horizontal" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_gravity="center_horizontal"
-        android:text="G Basket"
-        android:textColor="#38d8be"
-        android:textSize="40px"
-        android:textAlignment="center"
-        android:enabled="true"
-        android:fontFamily="Allegro"
-        style="no" />
-
 
 </LinearLayout>
