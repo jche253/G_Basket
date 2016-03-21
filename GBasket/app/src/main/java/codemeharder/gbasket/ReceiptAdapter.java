@@ -2,17 +2,12 @@ package codemeharder.gbasket;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.text.NumberFormat;
 
@@ -36,27 +31,14 @@ public class ReceiptAdapter extends ArrayAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         convertView = inflater.inflate(R.layout.receipt_row, parent, false);
-        UserHolder holder = null;
-        holder.textDate = (TextView) convertView.findViewById(R.id.Date);
-        holder.textSerial = (TextView) convertView.findViewById(R.id.Serial);
-        holder.btnOpen = (Button) convertView.findViewById(R.id.open);
+        TextView date = (TextView) convertView.findViewById(R.id.Date);
+        TextView serial = (TextView) convertView.findViewById(R.id.Serial);
+        CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkBoxR);
 
         //TODO fill in the adapter to actually add stuff to the layout elements
-        holder.btnOpen.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                // TODO Pull up receipt
-            }
-        });
-
+        cb.setChecked(false);
 
         return convertView;
-    }
-
-    static class UserHolder {
-        TextView textSerial;
-        TextView textDate;
-        Button btnOpen;
     }
 }

@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +48,7 @@ public class ReceiptActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipt);
         Intent intent = getIntent();
-        final Receipt receipt = (Receipt) intent.getParcelableExtra("Receipt");
+        Receipt receipt = (Receipt) intent.getParcelableExtra("Receipt");
 
         history = (Button) findViewById(R.id.history);
         genBarcode = (ImageView) findViewById(R.id.barcode);
@@ -103,7 +102,6 @@ public class ReceiptActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent historyIntent = new Intent(getApplicationContext(), HistoryActivity.class);
-                historyIntent.putExtra("Receipt", (Parcelable) receipt);
                 startActivity(historyIntent);
             }
         });
