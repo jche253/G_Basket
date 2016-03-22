@@ -36,7 +36,10 @@ public class ReceiptAdapter extends ArrayAdapter{
         CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkBoxR);
 
         //TODO fill in the adapter to actually add stuff to the layout elements
-
+        /*name.setText(items[position].getName());
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        String priceStr = formatter.format(items[position].getPrice());
+        price.setText(priceStr);*/
         cb.setChecked(false);
 
         return convertView;

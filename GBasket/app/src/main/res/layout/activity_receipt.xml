@@ -16,7 +16,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save as text"
+        android:text="Save"
         android:id="@+id/save"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -151,22 +151,9 @@
                 android:background="#000" />
 
             <ListView
-                android:layout_height="563dp"
-                android:layout_width="match_parent"
-                android:dividerHeight="0dp"
-                android:divider="@null"
-                android:id="@+id/listView3" />
-
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="1dp"
-                android:background="#000" />
-
-            <ListView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/listView4" />
-
+                android:layout_height="563dp"
+                android:id="@+id/listView3" />
         </LinearLayout>
     </ScrollView>
 

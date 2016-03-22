@@ -9,10 +9,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,7 +35,7 @@ public class ReceiptActivity extends Activity {
     ImageView genBarcode;
     Bitmap bitmap;
     Button save, history;
-    ListView itemList, talist;
+    ListView itemList;
     ArrayList<ReceiptItem> items = new ArrayList<ReceiptItem>();
     TextView DateTime, SerialNum, AccountType;
     private static final int WHITE = 0xFFFFFFFF;
@@ -49,7 +47,7 @@ public class ReceiptActivity extends Activity {
         setContentView(R.layout.activity_receipt);
         Intent intent = getIntent();
         Receipt receipt = (Receipt) intent.getParcelableExtra("Receipt");
-
+        save =  (Button) findViewById(R.id.save);
         history = (Button) findViewById(R.id.history);
         genBarcode = (ImageView) findViewById(R.id.barcode);
         DateTime = (TextView) findViewById(R.id.dateTimeInput);
@@ -63,9 +61,6 @@ public class ReceiptActivity extends Activity {
         itemList = (ListView) findViewById(R.id.listView3);
         itemList.setFocusable(false);
 
-        talist = (ListView) findViewById(R.id.listView4);
-        talist.setFocusable(false);
-
         //Convert receipt into receipt item
         for (int i = 0; i < receipt.getItemPrice().size(); i++) {
             EachItem temp = receipt.getItemPrice().get(i);
@@ -76,19 +71,6 @@ public class ReceiptActivity extends Activity {
 
         ReceiptItemAdapter adapter = new ReceiptItemAdapter(this, items);
         itemList.setAdapter(adapter);
-        setListViewHeightBasedOnItems(itemList);
-
-
-        //Get totals
-        EachItem[] paymentArr = new EachItem[3];
-        paymentArr[0] = new EachItem("Total: ", receipt.getPaymentAmount(), false);
-        paymentArr[1] = new EachItem("Tax: ", receipt.getTax(), false);
-        paymentArr[2] = new EachItem("Balance Due: ", receipt.getTotal(), false);
-
-        CustomAdapter sumAdapter = new CustomAdapter(this, paymentArr);
-        talist.setAdapter(sumAdapter);
-        setListViewHeightBasedOnItems(talist);
-
 
         try {
             bitmap = encodeAsBitmap(receipt.getSerial(), BarcodeFormat.CODE_128, 600, 300);
@@ -97,6 +79,13 @@ public class ReceiptActivity extends Activity {
         } catch (WriterException e) {
             e.printStackTrace();
         }
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO save the receipt as an image
+            }
+        });
 
         history.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,39 +139,6 @@ public class ReceiptActivity extends Activity {
             }
         }
         return null;
-    }
-
-    public static boolean setListViewHeightBasedOnItems(ListView listView) {
-
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter != null) {
-
-            int numberOfItems = listAdapter.getCount();
-
-            // Get total height of all items.
-            int totalItemsHeight = 0;
-            for (int itemPos = 0; itemPos < numberOfItems; itemPos++) {
-                View item = listAdapter.getView(itemPos, null, listView);
-                item.measure(0, 0);
-                totalItemsHeight += item.getMeasuredHeight();
-            }
-
-            // Get total height of all item dividers.
-            int totalDividersHeight = listView.getDividerHeight() *
-                    (numberOfItems - 1);
-
-            // Set list height.
-            ViewGroup.LayoutParams params = listView.getLayoutParams();
-            params.height = totalItemsHeight + totalDividersHeight;
-            listView.setLayoutParams(params);
-            listView.requestLayout();
-
-            return true;
-
-        } else {
-            return false;
-        }
-
     }
 
 }

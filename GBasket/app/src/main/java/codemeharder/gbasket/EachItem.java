@@ -9,12 +9,10 @@ public class EachItem implements Serializable {
     //Each item on the ListView for YourBucket
     String name;
     double price;
-    boolean checkbox;
 
-    EachItem(String name, double price, boolean checkBox) {
+    EachItem(String name, double price) {
         this.name = name;
         this.price = price;
-        this.checkbox = checkBox;
     }
 
     public String getName(){
@@ -23,6 +21,5 @@ public class EachItem implements Serializable {
     public double getPrice(){
         return this.price;
     }
-    public boolean getCheckBox() {return this.checkbox;}
 
 }
