@@ -42,6 +42,12 @@
     <style name="RobotoEditTextStyle" parent="android:Widget.EditText">
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
+
+    <style name="MainTheme" parent="AppTheme" >
+        <item name="colorPrimary">@color/Primary</item>
+        <item name="colorPrimaryDark">@color/Brown</item>
+    </style>
+
     <color name="accent">#000</color>
 
 </resources>

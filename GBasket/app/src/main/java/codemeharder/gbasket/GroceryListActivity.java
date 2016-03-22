@@ -79,7 +79,6 @@ import android.widget.Button;
             });
 
 
-<<<<<<< HEAD
             Button delete = (Button) findViewById(R.id.delete);
 
             delete.setOnClickListener(new View.OnClickListener() {
@@ -92,8 +91,5 @@ import android.widget.Button;
                 }
 
             });
-
-=======
->>>>>>> origin/master
         }
     }
