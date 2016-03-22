@@ -22,7 +22,7 @@ public class ToBuyCustomAdapter extends ArrayAdapter<ToBuyItem> {
     ArrayList<ToBuyItem> data = new ArrayList<ToBuyItem>();
 
     public ToBuyCustomAdapter(Context context, int layoutResourceId,
-                             ArrayList<ToBuyItem> data) {
+                              ArrayList<ToBuyItem> data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -64,8 +64,11 @@ public class ToBuyCustomAdapter extends ArrayAdapter<ToBuyItem> {
         });
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/master
         return row;
 
     }
@@ -75,6 +78,5 @@ public class ToBuyCustomAdapter extends ArrayAdapter<ToBuyItem> {
         Button btnDelete;
     }
 }
-
 
 

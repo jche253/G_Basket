@@ -60,11 +60,11 @@ public class AddCardActivity extends Activity {
 
                 String CVV = CV.getText().toString();
 
-                Card CreditCard = new Card(CreditCardNum, ExpireMonth, ExpireYear, CVV);
-
-               /* if (UserName == null || CreditCardNum == null || !(CreditCardNum.matches("^-?\\d+$"))
+                 /* if (UserName == null || CreditCardNum == null || !(CreditCardNum.matches("^-?\\d+$"))
                         || CVV == null || !(CVV.matches("^-?\\d+$"))
                         || ExpireMonth <= 0 || ExpireYear <= 0)*/
+
+                Card CreditCard = new Card(CreditCardNum, ExpireMonth, ExpireYear, CVV);
 
                 //Check if card is valid
                 if(!CreditCard.validateCard() || !CreditCard.validateCVC() ||

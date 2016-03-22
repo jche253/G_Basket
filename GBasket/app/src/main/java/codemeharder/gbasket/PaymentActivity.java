@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +25,10 @@ import com.paypal.android.sdk.payments.PaymentConfirmation;
 import org.json.JSONException;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 /*
  * Created by Jimmy Chen on 2/18/2016.
@@ -42,18 +48,55 @@ public class PaymentActivity extends Activity {
         Paywcard = (Button) findViewById(R.id.ButtonPaywcard);
         Addcard = (Button) findViewById(R.id.ButtonAddcard);
 
+
+
         Paywcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String CreditCardNum = null;
-                int expMonth = 0;
-                int expYear = 0;
-                String CVC = null;
                 //TODO select card as item and initialize variables
-
-                //TODO add payment
+                String CreditCardNum = "4242424242424242";
+                int expMonth = 7;
+                int expYear = 2017;
+                String CVC = "123";
                 //Parameters: string credit card number, int exp month, int exp year, string cvc
                 Card card = new Card(CreditCardNum, expMonth, expYear, CVC);
+                //TODO Test receipt case
+                // Receipt(Date CurDate, Card card, ArrayList<EachItem> yourItems, ArrayList<Double> DisOrigPrice,
+                //ArrayList<Double> discounts, String serial)
+                Date date = new Date();
+                ArrayList<EachItem> items =  new ArrayList<EachItem>();
+                ArrayList<Double> orig = new ArrayList<Double>();
+                ArrayList<Double> discount = new ArrayList<Double>();
+                //Test cases
+                orig.add(3.44);
+                discount.add(0.00);
+                items.add(new EachItem("pizza", setDiscountPrice(orig.get(0), discount.get(0)), false));
+
+                orig.add(2.00);
+                discount.add(1.00);
+                items.add(new EachItem("burger", setDiscountPrice(orig.get(1), discount.get(1)), false));
+
+                orig.add(1.00);
+                discount.add(0.00);
+                items.add(new EachItem("olives", setDiscountPrice(orig.get(2), discount.get(2)), false));
+
+                orig.add(12.90);
+                discount.add(3.00);
+                items.add(new EachItem("steak", setDiscountPrice(orig.get(3), discount.get(3)), false));
+
+                orig.add(8.76);
+                discount.add(1.00);
+                items.add(new EachItem("fish",  setDiscountPrice(orig.get(4), discount.get(4)), false));
+
+                //Simple serial for now
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                Date now = new Date();
+                String toBarcode = sdf.format(now);
+
+                Receipt todayReceipt = new Receipt(toBarcode, card, items, orig, discount, toBarcode);
+
+                //TODO add payment
+                //TODO commented this out for now so I could test receipt
                 if (!card.validateCard()) {
                     //Errors
                     new AlertDialog.Builder(PaymentActivity.this)
@@ -68,7 +111,7 @@ public class PaymentActivity extends Activity {
                             .show();
 
                 }
-                else {
+                /*else {
                     Stripe stripe = null;
                     try {
                         stripe = new Stripe("pk_test_2dYE7FzwvBwbxWNCdWtetXTp");
@@ -91,8 +134,11 @@ public class PaymentActivity extends Activity {
                             });
                     Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
                     startActivity(receiptIntent);
-                }
+                }*/
 
+                Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
+                receiptIntent.putExtra("Receipt", (Parcelable) todayReceipt);
+                startActivity(receiptIntent);
             }
         });
 
@@ -106,4 +152,7 @@ public class PaymentActivity extends Activity {
         });
     }
 
+    public double setDiscountPrice(Double Orig, Double Disc) {
+        return Orig - Disc;
+    }
 }
