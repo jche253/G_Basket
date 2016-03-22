@@ -1,6 +1,5 @@
 package codemeharder.gbasket;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,9 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.google.appengine.repackaged.com.google.common.base.Pair;
-import com.google.appengine.repackaged.org.codehaus.jackson.map.AnnotationIntrospector;
 
 public class MainActivity extends AppCompatActivity {
     Button login;
@@ -40,9 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        //Server test
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
 
     }
 

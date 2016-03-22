@@ -24,11 +24,11 @@ public class YourBasketActivity extends Activity {
 
         //Sample inflation of items
         items = new EachItem[5];
-        items[0] = new EachItem("pizza", 3.44);
-        items[1] = new EachItem("burger", 2.00);
-        items[2] = new EachItem("olives", 1.00);
-        items[3] = new EachItem("steak", 12.90);
-        items[4] = new EachItem("fish", 8.76);
+        items[0] = new EachItem("pizza", 3.44, true);
+        items[1] = new EachItem("burger", 2.00, true);
+        items[2] = new EachItem("olives", 1.00, true);
+        items[3] = new EachItem("steak", 12.90, true);
+        items[4] = new EachItem("fish", 8.76, true);
 
         CustomAdapter adapter = new CustomAdapter(this, items);
         lv.setAdapter(adapter);
