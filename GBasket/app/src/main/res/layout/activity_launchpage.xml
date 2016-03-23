@@ -21,7 +21,6 @@
                 android:layout_height="fill_parent"
                 android:textColor="@color/red"
                 android:gravity="center"
-                android:background="@color/white"
                 android:height="190dp"
                 android:drawableTop="@drawable/small"
                 android:textAlignment="center"
