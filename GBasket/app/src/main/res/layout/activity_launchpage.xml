@@ -55,7 +55,6 @@
             android:layout_width="wrap_content"
             android:layout_height="220dp"
             android:id="@+id/scannow"
-            android:layout_span=""
             android:background="@drawable/shoppingcart"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -63,7 +62,7 @@
             android:textStyle="bold"
             android:textSize="50dp"
             />
-
+         <!--MOVE BACK INTO TEXTVIEW WHEN FIXED: android:layout_span=""-->
     </TableRow>
 
     <TableRow
@@ -119,7 +118,7 @@
         android:background="@drawable/barcode"
         android:backgroundTint="@color/green"
         android:layout_centerInParent="true"
-        android:style="@style/Widget.AppCompat.Light.ActionButton" />
-
+         />
+    <!--MOVE BACK INTO BUTTON: android:style="@style/Widget.AppCompat.Light.ActionButton"-->
 
 </RelativeLayout>

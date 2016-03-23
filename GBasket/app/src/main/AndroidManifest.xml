@@ -54,6 +54,7 @@
         <activity android:name=".ItemActivity" />
         <activity android:name=".YourBasketActivity" />
         <activity android:name=".AddCardActivity" />
+        <activity android:name=".LaunchPadActivity" />
         <activity android:name=".PaymentActivity" >
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.READ_PHONE_STATE" />
