@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/brown</item>
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
         <item name="android:autoCompleteTextViewStyle">@style/RobotoAutoCompleteTextViewStyle</item>
         <item name="android:editTextStyle">@style/RobotoEditTextStyle</item>
@@ -43,24 +43,5 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
-    <style name="gbasket" parent="AppTheme" >
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">#FF1846</item>
-        <item name="android:colorBackground">#FFFFFF</item>
-        <item name="colorAccent">#CCCCCC</item>
-        <item name="android:textColorSecondary">#FFFF96</item>
-        <item name="android:textColorPrimary">#000000</item>
-        <item name="android:textColorPrimaryInverse">#33cc66</item>
-        <item name="android:colorForeground">#816c61</item>
-    </style>
-
-
-    <style name="MainTheme" parent="AppTheme" >
-        <item name="colorPrimary">@color/Primary</item>
-        <item name="colorPrimaryDark">@color/Brown</item>
-    </style>
-
-    <color name="accent">#000</color>
 
 </resources>
