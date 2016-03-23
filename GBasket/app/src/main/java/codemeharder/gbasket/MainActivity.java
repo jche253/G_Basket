@@ -59,9 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,7 +94,9 @@ class ServletPostAsyncTask extends AsyncTask<Pair<Context, String>, Void, String
 
         try {
             // Set up the request
-            URL url = new URL("http://10.0.2.2:8080/hello");
+            //URL url = new URL("http://10.40.39.83:8888/hello"); pr 10.40.93.55
+            URL url = new URL("http://pioneering-flag-125204.appspot.com/hello");
+            //URL url = new URL("http://127.0.0.1:8080/hello");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setDoInput(true);

@@ -20,16 +20,13 @@ public class SplashScreenActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
 
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Your database code here
+                Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
+                startActivity(i);
             }
-        }, 2*60*500);
-
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        }, 5000);
 
     }
 
