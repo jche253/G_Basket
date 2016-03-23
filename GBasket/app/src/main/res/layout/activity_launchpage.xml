@@ -14,8 +14,8 @@
 
         <LinearLayout>
 
-            <Button
-                android:id="@+id/basket" android:text="My Basket"
+            <ImageButton
+                android:id="@+id/basket"
                 android:layout_weight="1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -23,7 +23,7 @@
                 android:gravity="center"
                 android:background="@color/white"
                 android:height="190dp"
-                android:drawableTop="@drawable/account"
+                android:drawableTop="@drawable/small"
                 android:textAlignment="center"
                 android:padding="50dp"
                 android:clickable="true" />
