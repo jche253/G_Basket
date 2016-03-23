@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+<TableLayout
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+
+        android:foregroundGravity="center_vertical"
+        android:gravity="fill_horizontal|center_horizontal"
+        android:minHeight="190dp">
+
+        <LinearLayout>
+
+            <ImageButton
+                android:id="@+id/basket"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textColor="@color/red"
+                android:gravity="center"
+                android:height="190dp"
+                android:drawableTop="@drawable/small"
+                android:textAlignment="center"
+                android:padding="50dp"
+                android:clickable="true" />
+
+            <Button
+                android:id="@+id/account" android:text="My Account"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textColor="@color/red"
+                android:background="@color/white"
+                android:gravity="center"
+                android:height="190dp"
+                android:drawableTop="@drawable/account"
+                android:textAlignment="center"
+                android:padding="50dp"
+                android:clickable="true" />
+        </LinearLayout>
+    </TableRow>
+
+
+
+    <TableRow
+        android:layout_height="220dp"
+        android:layout_width="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:text="Scan Now"
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:id="@+id/scannow"
+            android:layout_span=""
+            android:background="@drawable/shoppingcart"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:textStyle="bold"
+            android:textSize="50dp"
+            />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_height="145dp"
+        android:layout_width="match_parent"
+
+        android:foregroundGravity="center_vertical"
+        android:gravity="fill_horizontal"
+        android:minHeight="190dp">
+
+        <LinearLayout>
+        <Button
+            android:id="@+id/grocerylist" android:text="Grocery List"
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textColor="@color/red"
+            android:gravity="center"
+            android:background="@color/white"
+            android:height="190dp"
+            android:drawableTop="@drawable/list"
+            android:padding="50dp"
+            android:clickable="true" />
+
+        <Button
+            android:id="@+id/settings" android:text="Settings"
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textColor="@color/red"
+            android:background="@color/white"
+            android:gravity="center"
+            android:height="190dp"
+            android:drawableTop="@drawable/settings"
+            android:padding="50dp"
+            android:singleLine="false"
+            android:clickable="true" />
+        </LinearLayout>
+    </TableRow>
+
+</TableLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/buttonbg"/>
+
+    <Button
+        android:id ="@+id/push_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/barcode"
+        android:backgroundTint="@color/green"
+        android:layout_centerInParent="true"
+        android:style="@style/Widget.AppCompat.Light.ActionButton" />
+
+
+</RelativeLayout>
