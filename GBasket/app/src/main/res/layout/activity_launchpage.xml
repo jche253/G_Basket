@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff"
+    android:foregroundGravity="center_horizontal"
+    android:theme="AppTheme"
+    android:gravity="center_vertical">
+
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="#fffffff"
+        android:foregroundGravity="center_vertical"
+        android:gravity="fill_horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="4dp">
+
+        <TextView
+            android:id="@+id/account" android:text="My Account"
+            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="75dp"
+            android:paddingBottom="70dp"
+            android:background="@drawable/account" />
+
+
+        <TextView
+            android:id="@+id/basket" android:text="G Basket"
+            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="75dp"
+            android:paddingBottom="70dp"
+            />
+
+        <TextView
+            android:id="@+id/TextView04" android:text="Row 3 column 2"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_height="fill_parent"
+            android:paddingTop="75dp"
+            android:paddingBottom="70dp"
+            />
+    </TableRow>
+
+
+    <!-- Row 1 with single column -->
+    <TableRow
+        android:layout_height="250dp"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:id="@+id/imageView3"
+                android:background="@drawable/shoppingcart"
+                android:layout_gravity="center_vertical" />
+
+
+    </TableRow>
+
+    <!-- Row 2 with 3 columns -->
+
+
+
+
+    <!-- Row 3 with 2 columns -->
+    <TableRow
+        android:layout_height="550dp"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal"
+        android:background="#ffffff"
+        android:paddingTop="5dp"
+        android:paddingBottom="4dp">
+
+        <TextView
+            android:id="@+id/shoppinghistory" android:text="Shopping History"
+            android:background=""
+            android:layout_height="fill_parent"
+            android:paddingTop="75dp"
+            android:paddingBottom="70dp"
+            />
+
+        <TextView
+            android:id="@+id/settings" android:text="Settings"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:gravity="center"
+            android:layout_height="fill_parent"
+            android:paddingTop="75dp"
+            android:paddingBottom="70dp"
+            android:layout_column="2" />
+    </TableRow>
+
+</TableLayout>
