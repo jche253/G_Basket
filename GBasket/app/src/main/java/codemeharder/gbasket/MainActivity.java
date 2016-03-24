@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new ServletPostAsyncTask().execute(new Pair<Context, String>(this, "Alfred"));
+        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Alfred"));
 
         login = (Button) findViewById(R.id.email_sign_in_button);
         sign_up = (TextView) findViewById(R.id.signUpTextView);
@@ -82,86 +82,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-}
-
-class ServletPostAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
-    private Context context;
-
-    @Override
-    protected String doInBackground(Pair<Context, String>... params) {
-        context = params[0].first;
-        String name = params[0].second;
-
-        try {
-            // Set up the request
-            //URL url = new URL("http://10.40.39.83:8888/hello"); pr 10.40.93.55
-            URL url = new URL("http://pioneering-flag-125204.appspot.com/gbdb");
-            //URL url = new URL("http://127.0.0.1:8080/hello");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setDoInput(true);
-            connection.setDoOutput(true);
-
-            // Build name data request params
-            Map<String, String> nameValuePairs = new HashMap<>();
-            nameValuePairs.put("name", name);
-            String postParams = buildPostDataString(nameValuePairs);
-
-            // Execute HTTP Post
-            OutputStream outputStream = connection.getOutputStream();
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-            writer.write(postParams);
-            writer.flush();
-            writer.close();
-            outputStream.close();
-            connection.connect();
-
-            // Read response
-            int responseCode = connection.getResponseCode();
-            StringBuilder response = new StringBuilder();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-            }
-            reader.close();
-
-            if (responseCode == HttpsURLConnection.HTTP_OK) {
-                return response.toString();
-            }
-            return "Error: " + responseCode + " " + connection.getResponseMessage();
-
-        } catch (IOException e) {
-            return e.getMessage();
-        }
-    }
-
-    private String buildPostDataString(Map<String, String> params) throws UnsupportedEncodingException {
-        StringBuilder result = new StringBuilder();
-        boolean first = true;
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            if (first) {
-                first = false;
-            } else {
-                result.append("&");
-            }
-
-            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
-            result.append("=");
-            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
-        }
-
-        return result.toString();
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
-        //Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-        new AlertDialog.Builder(context)
-                .setTitle("Test")
-                .setMessage(result)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
     }
 }
