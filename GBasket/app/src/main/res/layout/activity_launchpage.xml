@@ -28,7 +28,8 @@
                 android:clickable="true" />
 
             <Button
-                android:id="@+id/account" android:text="My Account"
+                android:id="@+id/account"
+                android:text="My Account"
                 android:layout_weight="1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -55,13 +56,16 @@
             android:layout_width="wrap_content"
             android:layout_height="220dp"
             android:id="@+id/scannow"
-            android:background="@drawable/shoppingcart"
+            android:background="#ff0000"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
             android:textStyle="bold"
             android:textSize="50dp"
             />
+        <!--The android:background=@drawable/shopingcart" causes runtime error with inflating Textview
+        because the image is probably not the size that was defined -> might have to manually crop it
+        I have used a color as a temporary fix-->
          <!--MOVE BACK INTO TEXTVIEW WHEN FIXED: android:layout_span=""-->
     </TableRow>
 
@@ -75,7 +79,8 @@
 
         <LinearLayout>
         <Button
-            android:id="@+id/grocerylist" android:text="Grocery List"
+            android:id="@+id/grocerylist"
+            android:text="Grocery List"
             android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -88,7 +93,8 @@
             android:clickable="true" />
 
         <Button
-            android:id="@+id/settings" android:text="Settings"
+            android:id="@+id/settings"
+            android:text="Settings"
             android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"

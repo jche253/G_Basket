@@ -88,8 +88,8 @@ public class Receipt implements Parcelable {
         return this.payment_amount;
     }
 
-    public void setTax() {
-        //Set tax
+    public void setTax(double Tax) {
+        this.tax = Tax;
     }
 
     public Double getTax() {

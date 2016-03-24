@@ -26,7 +26,7 @@ public class ItemActivity extends Activity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentScan = new Intent(getApplicationContext(), ScannerActivity.class);
+                Intent intentScan = new Intent(getApplicationContext(), LaunchPadActivity.class);
                 startActivity(intentScan);
             }
         });
