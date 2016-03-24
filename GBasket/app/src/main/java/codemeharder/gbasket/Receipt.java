@@ -24,7 +24,7 @@ public class Receipt implements Parcelable {
     double total = 0;
 
     Receipt(String CurDate, Card card, ArrayList<EachItem> yourItems, ArrayList<Double> DisOrigPrice,
-                   ArrayList<Double> discounts, String serial) {
+                   ArrayList<Double> discounts, double tax, String serial) {
         this.date = CurDate;
         //TODO make an algorithm for generating serial numbers and transaction ID
         this.accType = card.getType();
@@ -35,8 +35,8 @@ public class Receipt implements Parcelable {
         for (int i = 0; i < this.itemPrice.size(); i++)
             this.payment_amount += this.itemPrice.get(i).getPrice();
         //TODO Add tax once you get location
-        this.tax = 0.00;
-        this.total = this.payment_amount + (this.payment_amount * tax);
+        this.tax = tax;
+        this.total = this.payment_amount + (this.payment_amount * this.tax/100);
         //TODO find ways to get tax location
     }
 
@@ -86,11 +86,6 @@ public class Receipt implements Parcelable {
 
     public Double getPaymentAmount() {
         return this.payment_amount;
-    }
-
-    public void setTax(double Tax) {
-        this.tax = Tax;
-        this.total = this.payment_amount + (this.payment_amount * Tax);
     }
 
     public Double getTax() {
