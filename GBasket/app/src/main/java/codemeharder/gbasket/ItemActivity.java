@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by Jimmy Chen on 2/16/2016.
  */
@@ -22,7 +24,18 @@ public class ItemActivity extends Activity {
 
         backBtn = (Button) findViewById(R.id.backBtn);
         addBtn = (Button) findViewById(R.id.addBtn);
+        name = (TextView) findViewById(R.id.itemName_TextView);
+        price = (TextView) findViewById(R.id.price_textView);
 
+        Intent i = getIntent();
+        String format = i.getStringExtra("format");
+        String content = i.getStringExtra("content");
+
+        //TODO Fix with database
+        if (format.equals("CODE_128") && content.equals("pizza")) {
+            name.setText("pizza");
+            price.setText("3.44");
+        }
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

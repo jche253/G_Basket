@@ -94,10 +94,10 @@ public class ReceiptActivity extends Activity  {
 
 
         //Get totals
-        EachItem[] paymentArr = new EachItem[3];
-        paymentArr[0] = new EachItem("Total: ", receipt.getPaymentAmount(), false);
-        paymentArr[1] = new EachItem("Tax: ", receipt.getTax()/100 * receipt.getPaymentAmount(), false);
-        paymentArr[2] = new EachItem("Balance Due: ", receipt.getTotal(), false);
+        ArrayList<EachItem> paymentArr = new ArrayList<EachItem>();
+        paymentArr.add(new EachItem("Total: ", receipt.getPaymentAmount(), false));
+        paymentArr.add(new EachItem("Tax: ", receipt.getTax()/100 * receipt.getPaymentAmount(), false));
+        paymentArr.add(new EachItem("Balance Due: ", receipt.getTotal(), false));
 
         CustomAdapter sumAdapter = new CustomAdapter(this, paymentArr);
         talist.setAdapter(sumAdapter);

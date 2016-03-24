@@ -43,12 +43,20 @@ public class LaunchPadActivity extends Activity implements View.OnClickListener 
 
         pushscan.setOnClickListener(this);
 
+        basket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), YourBasketActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.push_button) {
-            /*
+            /* TODO
              * If you want to test the application features without adding items/scanning stuff
              * then comment out (1) and leave in (2)
              * If you want to use the application with barcode scanner, please comment out (2)
@@ -56,14 +64,14 @@ public class LaunchPadActivity extends Activity implements View.OnClickListener 
              */
 
             //TODO (1) Use for actual barcode
-            //IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-            //scanIntegrator.setCaptureActivity(CaptureActivityAnyOrientation.class);
-            //scanIntegrator.setOrientationLocked(false);
-            //scanIntegrator.initiateScan();
+            IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+            scanIntegrator.setCaptureActivity(CaptureActivityAnyOrientation.class);
+            scanIntegrator.setOrientationLocked(false);
+            scanIntegrator.initiateScan();
 
             //TODO (2) to sandbox the application without the scanner
-            Intent intent = new Intent(getApplicationContext(), ItemActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent(getApplicationContext(), ItemActivity.class);
+            //startActivity(intent);
         }
     }
 
@@ -81,8 +89,8 @@ public class LaunchPadActivity extends Activity implements View.OnClickListener 
 
             Intent intentItem = new Intent(getApplicationContext(), ItemActivity.class);
             if (scanContent != null && scanFormat != null) {
-                intent.putExtra("content", scanContent);
-                intent.putExtra("format", scanFormat);
+                intentItem.putExtra("content", scanContent);
+                intentItem.putExtra("format", scanFormat);
                 startActivity(intentItem);
             }
             else {

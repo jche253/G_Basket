@@ -13,8 +13,16 @@ public class MyServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-        resp.setContentType("text/plain");
-        resp.getWriter().println("Please use the form to POST to this url");
+        //resp.setContentType("text/plain");
+        //resp.getWriter().println("Please use the form to POST to this url");
+        String url = null;
+        try {
+            Class.forName("com.mysql.jdbc.GoogleDriver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        url = "jdbc:google:mysql://your-project-id:your-instance-name/?user=root";
+
     }
 
     @Override
