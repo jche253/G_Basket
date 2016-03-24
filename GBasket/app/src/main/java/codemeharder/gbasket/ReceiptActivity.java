@@ -69,6 +69,7 @@ public class ReceiptActivity extends Activity implements GoogleApiClient.Connect
     private static int UPDATE_INTERVAL = 10000;
     private static int FATEST_INTERVAL = 5000;
     private static int DISPLACEMENT = 10;
+    double loc_Tax = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,16 +99,8 @@ public class ReceiptActivity extends Activity implements GoogleApiClient.Connect
             createLocationRequest();
         }
 
-        if(mGoogleApiClient != null) {
-            mGoogleApiClient.connect();
-            if(checkPlayServices()) {
-                buildGoogleApiClient();
-                createLocationRequest();
-            }
-            togglePeriodLocationUpdates();
-        }
 
-        double loc_Tax = displayLocation();
+        Toast.makeText(getApplicationContext(), "" + loc_Tax, Toast.LENGTH_SHORT).show();
         receipt.setTax(loc_Tax);
 
         //Convert receipt into receipt item
@@ -232,7 +225,9 @@ public class ReceiptActivity extends Activity implements GoogleApiClient.Connect
     @Override
     protected void onStart() {
         super.onStart();
-
+        if(mGoogleApiClient != null) {
+            mGoogleApiClient.connect();
+        }
     }
 
     @Override
@@ -255,11 +250,6 @@ public class ReceiptActivity extends Activity implements GoogleApiClient.Connect
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        stopLocationUpdates();
-    }
 
     private double displayLocation() {
         String state="";
@@ -268,6 +258,9 @@ public class ReceiptActivity extends Activity implements GoogleApiClient.Connect
         if(mLastLocation != null) {
             double latitude = mLastLocation.getLatitude();
             double longitude = mLastLocation.getLongitude();
+            new AlertDialog.Builder(this)
+                    .setTitle("Data")
+                    .setMessage("Latitude: " + latitude + "\nLongitude: " +longitude);
 
             //lblLocation.setText(latitude + ", " + longitude);
             Geocoder geocoder;
@@ -285,104 +278,55 @@ public class ReceiptActivity extends Activity implements GoogleApiClient.Connect
 
             if (!state.isEmpty()) {
                 switch (state) {
-                    case "GA":
-                        tax = 6.96;
-                    case "AL":
-                        tax = 8.91;
-                    case "FL":
-                        tax = 6.65;
-                    case "SC":
-                        tax = 7.18;
-                    case "MA":
-                        tax = 6.25;
-                    case "RI":
-                        tax = 7;
-                    case "CT":
-                        tax = 6.35;
-                    case "NJ":
-                        tax = 6.97;
-                    case "DE":
-                        tax = 0;
-                    case "MD":
-                        tax = 6;
-                    case "DC":
-                        tax = 5.75;
-                    case "VT":
-                        tax = 6.14;
-                    case "NH":
-                        tax = 0;
-                    case "MS":
-                        tax = 7.07;
-                    case "LA":
-                        tax = 8.91;
-                    case "TX":
-                        tax = 8.05;
-                    case "NM":
-                        tax = 7.35;
-                    case "AZ":
-                        tax = 8.17;
-                    case "CA":
-                        tax = 8.44;
-                    case "NV":
-                        tax = 7.94;
-                    case "UT":
-                        tax = 6.68;
-                    case "CO":
-                        tax = 7.44;
-                    case "KS":
-                        tax = 8.2;
-                    case "OK":
-                        tax = 8.77;
-                    case "AR":
-                        tax = 9.26;
-                    case "TN":
-                        tax = 9.45;
-                    case "NC":
-                        tax = 6.9;
-                    case "VA":
-                        tax = 5.63;
-                    case "WV":
-                        tax = 6.07;
-                    case "KY":
-                        tax = 6;
-                    case "MO":
-                        tax = 7.81;
-                    case "NE":
-                        tax = 6.8;
-                    case "WY":
-                        tax = 5.47;
-                    case "ID":
-                        tax = 6.01;
-                    case "OR":
-                        tax = 0;
-                    case "WA":
-                        tax = 8.89;
-                    case "MT":
-                        tax = 0;
-                    case "SD":
-                        tax = 5.83;
-                    case "IA":
-                        tax = 6.78;
-                    case "IL":
-                        tax = 8.19;
-                    case "IN":
-                        tax = 7;
-                    case "OH":
-                        tax = 7.1;
-                    case "PA":
-                        tax = 6.34;
-                    case "NY":
-                        tax = 8.48;
-                    case "ME":
-                        tax = 5.5;
-                    case "MI":
-                        tax = 6;
-                    case "WI":
-                        tax = 5.43;
-                    case "MN":
-                        tax = 7.2;
-                    case "ND":
-                        tax = 6.56;
+                    case "Georgia": tax=6.96;
+                    case "Alabama": tax=8.91;
+                    case "Florida": tax=6.65;
+                    case "South Carolina": tax=7.18;
+                    case "MA": tax=6.25;
+                    case "Rhode Island": tax=7;
+                    case "Connecticut": tax=6.35;
+                    case "New Jersey": tax=6.97;
+                    case "Delaware": tax=0;
+                    case "Maryland": tax=6;
+                    case "District of Columbia": tax=5.75;
+                    case "Vermont": tax=6.14;
+                    case "New Hampshire": tax=0;
+                    case "Mississippi": tax=7.07;
+                    case "Louisiana": tax=8.91;
+                    case "Texas": tax=8.05;
+                    case "New Mexico": tax=7.35;
+                    case "Arizona": tax=8.17;
+                    case "California": tax=8.44;
+                    case "Nevada": tax=7.94;
+                    case "Utah": tax=6.68;
+                    case "Colorado": tax=7.44;
+                    case "Kansas": tax=8.2;
+                    case "Oklahoma": tax=8.77;
+                    case "Arkansas": tax=9.26;
+                    case "Tennessee": tax=9.45;
+                    case "North Carolina": tax=6.9;
+                    case "Virginia": tax=5.63;
+                    case "West Virginia": tax=6.07;
+                    case "Kentucky": tax=6;
+                    case "Missouri": tax=7.81;
+                    case "Nebraska": tax=6.8;
+                    case "Wyoming": tax=5.47;
+                    case "Idaho": tax=6.01;
+                    case "Oregon": tax=0;
+                    case "Washington": tax=8.89;
+                    case "Montana": tax=0;
+                    case "South Dakota": tax=5.83;
+                    case "Iowa": tax=6.78;
+                    case "Illinois": tax=8.19;
+                    case "Indiana": tax=7;
+                    case "Ohio": tax=7.1;
+                    case "Pennsylvania": tax=6.34;
+                    case "New York": tax=8.48;
+                    case "Maine": tax=5.5;
+                    case "Michigan": tax=6;
+                    case "Wisconsin": tax=5.43;
+                    case "Minnesota": tax=7.2;
+                    case "North Dakota": tax=6.56;
                 }
                 return tax;
             }
@@ -390,21 +334,6 @@ public class ReceiptActivity extends Activity implements GoogleApiClient.Connect
         return 0;
     }
 
-    private void togglePeriodLocationUpdates() {
-        if(!mRequestLocationUpdates) {
-            //btnStartLocationUpdates.setText(getString(R.string.btn_stop_location_updates));
-
-            mRequestLocationUpdates = true;
-
-            startLocationUpdates();
-        } else {
-            //btnStartLocationUpdates.setText(getString(R.string.btn_start_location_updates));
-
-            mRequestLocationUpdates = false;
-
-            stopLocationUpdates();
-        }
-    }
 
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -440,17 +369,13 @@ public class ReceiptActivity extends Activity implements GoogleApiClient.Connect
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
 
-    protected void stopLocationUpdates() {
-        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-    }
 
     @Override
     public void onConnected(Bundle bundle) {
-        displayLocation();
+        loc_Tax = displayLocation();
 
-        if(mRequestLocationUpdates) {
-            startLocationUpdates();
-        }
+        startLocationUpdates();
+
     }
 
     @Override
@@ -464,7 +389,7 @@ public class ReceiptActivity extends Activity implements GoogleApiClient.Connect
 
         Toast.makeText(getApplicationContext(), "Location changed!", Toast.LENGTH_SHORT).show();
 
-        displayLocation();
+        loc_Tax = displayLocation();
     }
 
     @Override
