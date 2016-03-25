@@ -8,8 +8,6 @@ import android.widget.Toast;
 import com.example.jimmychen.myapplication.endpoint.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
-import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 
 import java.io.IOException;
 
@@ -24,7 +22,7 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
     protected String doInBackground(Pair<Context, String>... params) {
         if(myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                    .setRootUrl("https://pioneering-flag-125204.appspot.com/_ah/api/");
+                    .setRootUrl("https://testing-1261.appspot.com/_ah/api/");
             // end options for devappserver
 
             myApiService = builder.build();
