@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/Q73019-111RQsCRkcFdhfr3QaFk\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/tl1yQmVB0Eq0VOXEvJE4gPHUW_g\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -13,9 +13,9 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rest",
- "baseUrl": "https://myApplicationId.appspot.com/_ah/api/myApi/v1/",
+ "baseUrl": "https://testing-1261.appspot.com/_ah/api/myApi/v1/",
  "basePath": "/_ah/api/myApi/v1/",
- "rootUrl": "https://myApplicationId.appspot.com/_ah/api/",
+ "rootUrl": "https://testing-1261.appspot.com/_ah/api/",
  "servicePath": "myApi/v1/",
  "batchPath": "batch",
  "parameters": {
@@ -105,8 +105,8 @@
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "tet": {
-   "id": "myApi.tet",
+  "test": {
+   "id": "myApi.test",
    "path": "test/{name}",
    "httpMethod": "POST",
    "parameters": {

@@ -39,7 +39,7 @@ public class MyEndpoint {
         return response;
     }
 
-    @ApiMethod(name = "tet")
+    @ApiMethod(name = "test")
     public MyBean test(@Named("name") String name) {
         MyBean response = new MyBean();
         String url = null;
@@ -51,7 +51,8 @@ public class MyEndpoint {
             try {
                 Class.forName("com.mysql.jdbc.GoogleDriver");
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                response.setData(e.toString());
+                return response;
             }
             url =
                     "jdbc:google:mysql://testing-1261:testdb?user=root";
@@ -60,17 +61,18 @@ public class MyEndpoint {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                response.setData(e.toString());
+                return response;
             }
             url = "jdbc:mysql://173.194.87.130:3306?user=root";
         }
-
 
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
-            e.printStackTrace();
+            response.setData(e.toString());
+            return response;
         }
         try {
             ResultSet rs = conn.createStatement().executeQuery(
@@ -86,10 +88,10 @@ public class MyEndpoint {
             }
             String tosresponse = builder.toString();
             response.setData(tosresponse);
+            return response;
         } catch (SQLException e) {
-            e.printStackTrace();
+            response.setData(e.toString());
         }
-
         return response;
     }
 
