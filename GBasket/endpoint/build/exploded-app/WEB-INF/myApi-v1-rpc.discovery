@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/Nv2r0S_pi3iR4otYgrR3HbEJZuA\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/Q73019-111RQsCRkcFdhfr3QaFk\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -84,6 +84,24 @@
  "methods": {
   "myApi.sayHi": {
    "id": "myApi.sayHi",
+   "parameters": {
+    "name": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "name"
+   ],
+   "returns": {
+    "$ref": "MyBean"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "myApi.tet": {
+   "id": "myApi.tet",
    "parameters": {
     "name": {
      "type": "string",
