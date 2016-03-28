@@ -74,7 +74,18 @@ public class MyEndpoint {
         }
         try {
             ResultSet rs = conn.createStatement().executeQuery(
-                    "SELECT * from userProfile");
+                    "SELECT * FROM userProfile");
+            StringBuilder builder = new StringBuilder();
+            int columnCount = rs.getMetaData().getColumnCount();
+            while (rs.next()) {
+                for (int i = 0; i < columnCount;) {
+                    builder.append(rs.getString(i + 1));
+                    if (++i < columnCount) builder.append(",");
+                }
+                builder.append("\r\n");
+            }
+            String tosresponse = builder.toString();
+            response.setData(tosresponse);
         } catch (SQLException e) {
             e.printStackTrace();
         }
