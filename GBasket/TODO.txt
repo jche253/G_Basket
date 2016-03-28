@@ -1,0 +1,26 @@
+What to do:
+
+Hard
+-Connect to our Google Cloud database
+-Query for data 
+-Implement query data functionality
+	-Login, Signup, Account
+	-Camera -> Each Item
+	
+-SQLite save data
+	-Grocery List
+	-Add item -> Your Basket
+	-Receipt history
+-Process card payment
+	-Stripe API
+	-Or??
+-Save receipt as an image
+
+Moderate:
+-Make pages look good (UI)
+-Remove button for YourBasketActivity
+
+Easy:
+-Fix login 
+-Unit Calculator
+-Account page 

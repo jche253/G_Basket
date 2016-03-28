@@ -64,14 +64,14 @@ public class LaunchPadActivity extends Activity implements View.OnClickListener 
              */
 
             //TODO (1) Use for actual barcode
-            IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-            scanIntegrator.setCaptureActivity(CaptureActivityAnyOrientation.class);
-            scanIntegrator.setOrientationLocked(false);
-            scanIntegrator.initiateScan();
+            //IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+            //scanIntegrator.setCaptureActivity(CaptureActivityAnyOrientation.class);
+            //scanIntegrator.setOrientationLocked(false);
+            //scanIntegrator.initiateScan();
 
             //TODO (2) to sandbox the application without the scanner
-            //Intent intent = new Intent(getApplicationContext(), ItemActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), ItemActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -96,12 +96,12 @@ public class LaunchPadActivity extends Activity implements View.OnClickListener 
             else {
                 //TODO Need to make a better error message later
                 //Display some popup dialog and go back to camera/yourbasket
-                Toast toast = Toast.makeText(getApplicationContext(), "No data recieved", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getApplicationContext(), "No data received", Toast.LENGTH_SHORT);
             }
 
 
         } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "No scan data recieved", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(), "No scan data received", Toast.LENGTH_SHORT);
             toast.show();
 
         }

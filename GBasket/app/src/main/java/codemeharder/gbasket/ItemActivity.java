@@ -32,9 +32,11 @@ public class ItemActivity extends Activity {
         String content = i.getStringExtra("content");
 
         //TODO Fix with database
-        if (format.equals("CODE_128") && content.equals("pizza")) {
-            name.setText("pizza");
-            price.setText("3.44");
+        if (format != null && content != null) {
+            if (format.equals("CODE_128") && content.equals("pizza")) {
+                name.setText("pizza");
+                price.setText("3.44");
+            }
         }
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +49,6 @@ public class ItemActivity extends Activity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO This is causing errors right now
                 String format = getIntent().getStringExtra("format");
                 String content = getIntent().getStringExtra("content");
 

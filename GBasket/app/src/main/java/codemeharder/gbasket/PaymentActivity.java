@@ -23,7 +23,12 @@ import com.google.android.gms.location.LocationServices;
 import com.stripe.android.*;
 import com.stripe.android.model.Card;
 import com.stripe.android.model.Token;
+import com.stripe.exception.APIConnectionException;
+import com.stripe.exception.APIException;
 import com.stripe.exception.AuthenticationException;
+import com.stripe.exception.CardException;
+import com.stripe.exception.InvalidRequestException;
+import com.stripe.model.Charge;
 
 import android.widget.Toast;
 /*
@@ -41,6 +46,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /*
  * Created by Jimmy Chen on 2/18/2016.
@@ -123,7 +129,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
                 Date now = new Date();
                 String toBarcode = sdf.format(now);
-                Receipt todayReceipt = new Receipt(toBarcode, card, items, orig, discount, loc_Tax, toBarcode);
+                final Receipt todayReceipt = new Receipt(toBarcode, card, items, orig, discount, loc_Tax, toBarcode);
 
                 //TODO add payment
                 //TODO commented this out for now so I could test receipt
@@ -141,7 +147,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                             .show();
 
                 }
-                /*else {
+                else {
                     Stripe stripe = null;
                     try {
                         stripe = new Stripe("pk_test_2dYE7FzwvBwbxWNCdWtetXTp");
@@ -154,21 +160,78 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                             new TokenCallback() {
                                 public void onSuccess(Token token) {
                                     // Send token to your server
+                                    Toast.makeText(
+                                            getApplicationContext(),
+                                            "Token created: " + token.getId(),
+                                            Toast.LENGTH_LONG).show();
+                                    try {
+
+                                        Map<String, Object> chargeParams = new HashMap<String, Object>();
+                                        chargeParams.put("amount", todayReceipt.getTotal() * 100); // amount in cents, again
+                                        chargeParams.put("currency", "usd");
+                                        chargeParams.put("source", token);
+                                        chargeParams.put("description", "Example charge");
+
+                                        Charge charge = Charge.create(chargeParams);
+                                        new AlertDialog.Builder(PaymentActivity.this)
+                                                .setTitle("Success")
+                                                .setMessage("yay")
+                                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                                .show();
+                                        Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
+                                        receiptIntent.putExtra("Receipt", (Parcelable) todayReceipt);
+                                        startActivity(receiptIntent);
+                                    } catch (CardException e) {
+                                        new AlertDialog.Builder(PaymentActivity.this)
+                                                .setTitle("Declined CardExc")
+                                                .setMessage("Failed stripe processing")
+                                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                                .show();
+                                    } catch (APIException e) {
+                                        e.printStackTrace();
+                                        new AlertDialog.Builder(PaymentActivity.this)
+                                                .setTitle("Declined APIExc")
+                                                .setMessage("Failed stripe processing")
+                                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                                .show();
+                                    } catch (AuthenticationException e) {
+                                        e.printStackTrace();
+                                        new AlertDialog.Builder(PaymentActivity.this)
+                                                .setTitle("Declined AuthExc")
+                                                .setMessage(e.getMessage())
+                                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                                .show();
+                                    } catch (InvalidRequestException e) {
+                                        e.printStackTrace();
+                                        new AlertDialog.Builder(PaymentActivity.this)
+                                                .setTitle("Declined Inval")
+                                                .setMessage("Failed stripe processing")
+                                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                                .show();
+                                    } catch (APIConnectionException e) {
+                                        e.printStackTrace();
+                                        new AlertDialog.Builder(PaymentActivity.this)
+                                                .setTitle("Declined ApiConn")
+                                                .setMessage("Failed stripe processing")
+                                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                                .show();
+                                    }
 
                                 }
 
                                 public void onError(Exception error) {
                                     // Show localized error message
+                                    Toast.makeText(getApplicationContext(),
+                                            error.getLocalizedMessage(),
+                                            Toast.LENGTH_LONG
+                                    ).show();
 
                                 }
                             });
-                    Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
-                    startActivity(receiptIntent);
-                }*/
 
-                Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
-                receiptIntent.putExtra("Receipt", (Parcelable) todayReceipt);
-                startActivity(receiptIntent);
+
+                }
+
             }
         });
 
@@ -176,7 +239,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
             @Override
             public void onClick(View v) {
                 Intent addIntent = new Intent(getApplicationContext(), AddCardActivity.class);
-                //TODO need to add return to add to listView
+                //TODO need to add return to add to listView inSQLite
                 startActivity(addIntent);
             }
         });

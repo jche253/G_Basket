@@ -21,15 +21,6 @@ public class HistoryActivity extends Activity {
         setContentView(R.layout.activity_history);
 
         Button select =  (Button) findViewById(R.id.select);
-        Button back = (Button) findViewById(R.id.back);
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent recIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
-                startActivity(recIntent);
-            }
-        });
 
         select.setOnClickListener(new View.OnClickListener() {
             @Override

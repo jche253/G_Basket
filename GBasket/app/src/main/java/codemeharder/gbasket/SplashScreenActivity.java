@@ -20,14 +20,17 @@ public class SplashScreenActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
 
-        new Handler().postDelayed(new Runnable() {
+        /* New Handler to start the Menu-Activity
+         * and close this Splash-Screen after some seconds.*/
+        new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
-                startActivity(i);
+                /* Create an Intent that will start the Menu-Activity. */
+                Intent mainIntent = new Intent(SplashScreenActivity.this,MainActivity.class);
+                SplashScreenActivity.this.startActivity(mainIntent);
+                SplashScreenActivity.this.finish();
             }
-        }, 5000);
-
+        }, SPLASH_DISPLAY_LENGTH);
     }
 
     @Override

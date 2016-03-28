@@ -1,1 +1,1 @@
-include ':app', ':endpoint', 'api'
+include 'api', ':app', ':endpoint'
