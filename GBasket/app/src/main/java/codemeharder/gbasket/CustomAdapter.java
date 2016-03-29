@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
  */
 public class CustomAdapter extends ArrayAdapter {
     ArrayList<EachItem> items = null;
+    ArrayList<EachItem> ids = null;
     Context context;
 
     public CustomAdapter(Context context, ArrayList<EachItem> resource) {
@@ -29,29 +31,65 @@ public class CustomAdapter extends ArrayAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-        convertView = inflater.inflate(R.layout.row, parent, false);
-        TextView name = (TextView) convertView.findViewById(R.id.ItemName);
-        TextView price = (TextView) convertView.findViewById(R.id.ItemPrice);
-        CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkBox);
-        name.setText(items.get(position).getName());
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        //LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+        View row = convertView;
+        ViewHolder holder = null;
+        if (convertView == null) {
+            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+            row = inflater.inflate(R.layout.row, parent, false);
+            holder = new ViewHolder();
+            holder.name = (TextView) convertView.findViewById(R.id.ItemName);
+            holder.price = (TextView) convertView.findViewById(R.id.ItemPrice);
+            holder.cb = (CheckBox) convertView.findViewById(R.id.checkBox);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        holder.name.setText(items.get(position).getName());
         if (items.get(position).getPrice() == 0) {
-            price.setText("$0.00");
+            holder.price.setText("$0.00");
         }
         else {
             NumberFormat formatter = NumberFormat.getCurrencyInstance();
             String priceStr = formatter.format(items.get(position).getPrice());
-            price.setText(priceStr);
+            holder.price.setText(priceStr);
         }
         if (items.get(position).getCheckBox()) {
-            cb.setChecked(false);
+            holder.cb.setChecked(false);
         }
         else {
-            cb.setVisibility(View.GONE);
+            holder.cb.setVisibility(View.GONE);
         }
 
+        holder.cb.setOnCheckedChangeListener(null);
+        holder.cb.setChecked(ids.contains(position));
+        holder.cb
+                .setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView,
+                                                 boolean isChecked) {
+
+                        if (isChecked) {
+                            ids.add(items.get(position));
+                        } else {
+                            if (ids.contains(items.get(position))) {
+                                //int i = ids.indexOf(position);
+                                ids.remove(items.get(position));
+                            }
+                        }
+
+                    }
+                });
 
         return convertView;
+    }
+
+    public class ViewHolder {
+        CheckBox cb;
+        TextView name;
+        TextView price;
     }
 }
