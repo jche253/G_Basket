@@ -47,14 +47,10 @@ public class ToBuyCustomAdapter extends ArrayAdapter<ToBuyItem> {
         final ToBuyItem nextItem = data.get(position);
         holder.textName.setText(nextItem.getName());
 
-        //TODO this code needs to be in the activity, not when you populate listview
-        //TODO also need to add functionality
-
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                // TODO Need to delete the actual item
                 Log.i("Delete Button Clicked", "**********");
                 Toast.makeText(context, "Delete button Clicked",
                         Toast.LENGTH_LONG).show();

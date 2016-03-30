@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="G Basket Receipt"
+        android:id="@+id/textView10"
+        android:textSize="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save as text"
+        android:id="@+id/save"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View History"
+        android:id="@+id/history"
+        android:layout_alignTop="@+id/save"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_below="@+id/textView10"
+        android:layout_alignRight="@+id/history"
+        android:layout_alignEnd="@+id/history"
+        android:layout_marginTop="35dp"
+        android:fadeScrollbars="false"
+        android:scrollbarFadeDuration="0"
+        android:layout_above="@+id/save"
+        android:scrollIndicators="right">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Store Name"
+                android:textSize="28dp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/storeName" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/logo"
+                android:src = "@mipmap/ic_launcher2"
+                android:layout_below="@+id/scrollView"
+                android:layout_gravity="center_horizontal"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Address"
+                android:id="@+id/address"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/phoneNum" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/barcode" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date/Time: "
+                android:id="@+id/dateTimeTag"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateTimeInput"
+                android:layout_toRightOf="@+id/dateTimeTag"
+                android:layout_toEndOf="@+id/dateTimeTag" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Serial Number"
+                android:id="@+id/serialTag"
+                android:layout_below="@+id/dateTimeTag"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/serialInput"
+                android:layout_alignTop="@+id/serialTag"
+                android:layout_toRightOf="@+id/serialTag"
+                android:layout_toEndOf="@+id/serialTag" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account Type: "
+                android:id="@+id/accountTag"
+                android:layout_below="@+id/serialTag"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/accountName"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/accountTag"
+                android:layout_alignTop="@+id/accountTag"
+                android:layout_toEndOf="@+id/accountTag" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#000" />
+
+            <ListView
+                android:layout_height="563dp"
+                android:layout_width="match_parent"
+                android:dividerHeight="0dp"
+                android:divider="@null"
+                android:id="@+id/listView3" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#000" />
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/listView4" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -18,17 +18,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile files('libs/core-3.2.1.jar')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.0.1'
-    compile 'com.android.support:design:23.0.1'
+    compile project(path: ':endpoint', configuration: 'android-endpoints')
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:design:23.2.1'
     compile 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.stripe:stripe-android:+'
     compile 'com.google.android.gms:play-services-location:7.3.0'
-    compile project(path: ':endpoint', configuration: 'android-endpoints')
+    compile 'com.google.appengine:appengine-api-1.0-sdk:1.9.18'
+    compile 'com.android.support:support-v4:23.2.1'
 }
+

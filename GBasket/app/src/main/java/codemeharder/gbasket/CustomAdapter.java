@@ -21,11 +21,12 @@ import java.util.ArrayList;
  */
 public class CustomAdapter extends ArrayAdapter {
     ArrayList<EachItem> items = null;
-    ArrayList<EachItem> ids = null;
     Context context;
+    int resourceID;
 
-    public CustomAdapter(Context context, ArrayList<EachItem> resource) {
+    public CustomAdapter(Context context,int layoutresourceID, ArrayList<EachItem> resource) {
         super(context, R.layout.row, resource);
+        this.resourceID = layoutresourceID;
         this.context = context;
         this.items = resource;
     }
@@ -37,8 +38,9 @@ public class CustomAdapter extends ArrayAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            row = inflater.inflate(R.layout.row, parent, false);
+
             holder = new ViewHolder();
+            convertView = inflater.inflate(resourceID, null);
             holder.name = (TextView) convertView.findViewById(R.id.ItemName);
             holder.price = (TextView) convertView.findViewById(R.id.ItemPrice);
             holder.cb = (CheckBox) convertView.findViewById(R.id.checkBox);
@@ -63,26 +65,6 @@ public class CustomAdapter extends ArrayAdapter {
             holder.cb.setVisibility(View.GONE);
         }
 
-        holder.cb.setOnCheckedChangeListener(null);
-        holder.cb.setChecked(ids.contains(position));
-        holder.cb
-                .setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView,
-                                                 boolean isChecked) {
-
-                        if (isChecked) {
-                            ids.add(items.get(position));
-                        } else {
-                            if (ids.contains(items.get(position))) {
-                                //int i = ids.indexOf(position);
-                                ids.remove(items.get(position));
-                            }
-                        }
-
-                    }
-                });
 
         return convertView;
     }

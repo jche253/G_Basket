@@ -35,9 +35,6 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".ScannerActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <activity
             android:name=".CaptureActivityAnyOrientation"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
