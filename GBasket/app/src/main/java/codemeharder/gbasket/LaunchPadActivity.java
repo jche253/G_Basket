@@ -51,6 +51,14 @@ public class LaunchPadActivity extends Activity implements View.OnClickListener 
             }
         });
 
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent UPintent = new Intent(getApplicationContext(), UnitPriceCalc.class);
+                startActivity(UPintent);
+            }
+        });
+
     }
 
     @Override
