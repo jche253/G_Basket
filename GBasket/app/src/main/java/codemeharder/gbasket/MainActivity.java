@@ -9,17 +9,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity {
     Button login;
     TextView sign_up;
+    EditText inputEmail;
+    EditText inputPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Alfred"));
+        inputEmail = (EditText) findViewById(R.id.email);
+        inputPassword = (EditText) findViewById(R.id.password);
 
         login = (Button) findViewById(R.id.email_sign_in_button);
         sign_up = (TextView) findViewById(R.id.signUpTextView);
@@ -27,9 +34,23 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //Intent intent = new Intent(getApplicationContext(), ScannerActivity.class);
                 Intent intent = new Intent(getApplicationContext(), LaunchPadActivity.class);
-                startActivity(intent);
+
+                if ((!inputEmail.getText().toString().equals("")) && (!inputPassword.getText().toString().equals(""))) {
+                    startActivity(intent);
+
+                } else if ((!inputEmail.getText().toString().equals(""))) {
+                    Toast.makeText(getApplicationContext(),
+                            "Password field empty", Toast.LENGTH_SHORT).show();
+                } else if ((!inputPassword.getText().toString().equals(""))) {
+                    Toast.makeText(getApplicationContext(),
+                            "Email field empty", Toast.LENGTH_SHORT).show();
+                } else if ((inputEmail.getText().toString().equals("")) && (inputPassword.getText().toString().equals(""))) {
+                    Toast.makeText(getApplicationContext(),
+                            "Email and Password fields are empty", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

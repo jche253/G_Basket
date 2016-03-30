@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/tl1yQmVB0Eq0VOXEvJE4gPHUW_g\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/PaXt9x0rCM90KD6ZidTGqkPEQ5w\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -79,24 +79,39 @@
    "properties": {
     "data": {
      "type": "string"
+    },
+    "email": {
+     "type": "string"
+    },
+    "fname": {
+     "type": "string"
+    },
+    "lname": {
+     "type": "string"
     }
    }
   }
  },
  "methods": {
-  "sayHi": {
-   "id": "myApi.sayHi",
-   "path": "sayHi/{name}",
+  "adduser": {
+   "id": "myApi.adduser",
+   "path": "adduser/{email}/{pw}",
    "httpMethod": "POST",
    "parameters": {
-    "name": {
+    "email": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    },
+    "pw": {
      "type": "string",
      "required": true,
      "location": "path"
     }
    },
    "parameterOrder": [
-    "name"
+    "email",
+    "pw"
    ],
    "response": {
     "$ref": "MyBean"
@@ -105,9 +120,9 @@
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
-  "test": {
-   "id": "myApi.test",
-   "path": "test/{name}",
+  "sayHi": {
+   "id": "myApi.sayHi",
+   "path": "sayHi/{name}",
    "httpMethod": "POST",
    "parameters": {
     "name": {

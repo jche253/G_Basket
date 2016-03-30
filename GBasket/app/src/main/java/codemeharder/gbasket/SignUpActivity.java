@@ -53,7 +53,7 @@ public class SignUpActivity extends Activity {
                             Toast.makeText(SignUpActivity.this, "Account was successfully created.", Toast.LENGTH_LONG).show();
                         else Toast.makeText(SignUpActivity.this, "Account was not successfully created.", Toast.LENGTH_LONG).show();
                         if(isInserted == true){
-                            Intent intent = new Intent(getApplicationContext(), ScannerActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), LaunchPadActivity.class);
                             startActivity(intent);
                         }
                     }

@@ -9,7 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
 /**
  * Created by Jimmy Chen on 3/1/2016.
@@ -18,27 +21,41 @@ import java.text.NumberFormat;
 //This will be the page that populates the Shopping history
 
 public class ReceiptAdapter extends ArrayAdapter{
-    Receipt[] receipts = null;
+    ArrayList<Receipt> receipts = null;
     Context context;
+    int layoutResourceId;
 
-    public ReceiptAdapter(Context context, Receipt[] resource) {
-        super(context, R.layout.receipt_row, resource);
+    public ReceiptAdapter(Context context, int layoutResourceId, ArrayList<Receipt> resource) {
+        super(context, layoutResourceId, resource);
         this.context = context;
+        this.layoutResourceId = layoutResourceId;
         this.receipts = resource;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-        convertView = inflater.inflate(R.layout.receipt_row, parent, false);
-        TextView date = (TextView) convertView.findViewById(R.id.Date);
-        TextView serial = (TextView) convertView.findViewById(R.id.Serial);
-        CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkBoxR);
+        View row = convertView;
+        RViewHolder holder = null;
 
-        //TODO fill in the adapter to actually add stuff to the layout elements
+        if (row == null) {
+            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+            row = inflater.inflate(layoutResourceId, parent, false);
+            holder = new RViewHolder();
+            holder.date = (TextView) row.findViewById(R.id.Date);
+            holder.serial = (TextView) row.findViewById(R.id.Serial);
+            row.setTag(holder);
+        } else {
+            holder = (RViewHolder) row.getTag();
+        }
 
-        cb.setChecked(false);
+        holder.date.setText(receipts.get(position).getDate());
+        holder.serial.setText(receipts.get(position).getSerial());
 
-        return convertView;
+        return row;
+    }
+
+    static class RViewHolder {
+        TextView date;
+        TextView serial;
     }
 }

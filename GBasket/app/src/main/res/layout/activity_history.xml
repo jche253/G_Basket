@@ -18,22 +18,13 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="352dp"
-        android:id="@+id/listView2"
+        android:id="@+id/historyLV"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.30"
         android:layout_below="@+id/historyTV"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Receipt"
-        android:id="@+id/select"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true" />
 
 
 </RelativeLayout>

@@ -133,7 +133,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
 
                 //TODO add payment
                 //TODO commented this out for now so I could test receipt
-                if (!card.validateCard()) {
+                /*if (!card.validateCard()) {
                     //Errors
                     new AlertDialog.Builder(PaymentActivity.this)
                             .setTitle("Invalid Card")
@@ -177,11 +177,11 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                                                 .setTitle("Success")
                                                 .setMessage("yay")
                                                 .setIcon(android.R.drawable.ic_dialog_alert)
-                                                .show();
+                                                .show();*/
                                         Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
                                         receiptIntent.putExtra("Receipt", (Parcelable) todayReceipt);
                                         startActivity(receiptIntent);
-                                    } catch (CardException e) {
+                                    /*} catch (CardException e) {
                                         new AlertDialog.Builder(PaymentActivity.this)
                                                 .setTitle("Declined CardExc")
                                                 .setMessage("Failed stripe processing")
@@ -230,7 +230,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                             });
 
 
-                }
+                }*/
 
             }
         });

@@ -10,6 +10,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
@@ -61,7 +62,7 @@ public class ReceiptActivity extends Activity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipt);
         Intent intent = getIntent();
-        Receipt receipt = (Receipt) intent.getParcelableExtra("Receipt");
+        final Receipt receipt = (Receipt) intent.getParcelableExtra("Receipt");
 
         history = (Button) findViewById(R.id.history);
         genBarcode = (ImageView) findViewById(R.id.barcode);
@@ -99,7 +100,7 @@ public class ReceiptActivity extends Activity  {
         paymentArr.add(new EachItem("Tax: ", receipt.getTax()/100 * receipt.getPaymentAmount(), false));
         paymentArr.add(new EachItem("Balance Due: ", receipt.getTotal(), false));
 
-        CustomAdapter sumAdapter = new CustomAdapter(this, paymentArr);
+        CustomAdapter sumAdapter = new CustomAdapter(this, R.layout.row, paymentArr);
         talist.setAdapter(sumAdapter);
         setListViewHeightBasedOnItems(talist);
 
@@ -116,6 +117,7 @@ public class ReceiptActivity extends Activity  {
             @Override
             public void onClick(View v) {
                 Intent historyIntent = new Intent(getApplicationContext(), HistoryActivity.class);
+                historyIntent.putExtra("Receipt", (Parcelable) receipt);
                 startActivity(historyIntent);
             }
         });

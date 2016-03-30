@@ -6,15 +6,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 /**
@@ -23,8 +30,9 @@ import java.util.ArrayList;
 public class YourBasketActivity extends Activity implements View.OnClickListener {
     ListView lv;
     ArrayList<EachItem> items;
+    ArrayList<EachItem> ids = new ArrayList<EachItem>();
     Button add, pay, remove;
-    CustomAdapter adapter;
+    CustomAdapter1 adapter;
     Context context;
 
     @Override
@@ -43,7 +51,7 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         items.add(new EachItem("steak", 12.90, true));
         items.add(new EachItem("fish", 8.76, true));
 
-        adapter = new CustomAdapter(this, items);
+        adapter = new CustomAdapter1(this, R.layout.row, items);
         lv.setAdapter(adapter);
 
         add = (Button) findViewById(R.id.buttonAdd);
@@ -56,21 +64,12 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
             @Override
             public void onClick(View v)
             {
-
-               /* new AlertDialog.Builder(context)
-                        .setTitle("test")
-                        .setMessage(test)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();*/
-                //int itemCount = lv.getCount();
-
-               /* for(int i=itemCount-1; i >= 0; i--){
-                    if(checkedItemPositions.valueAt(i)){
-                        adapter.remove(items.get(i));
+                if (ids.size() > 0) {
+                    for (int i = 0; i < ids.size(); i++) {
+                        items.remove(ids.get(i));
                     }
+                    adapter.notifyDataSetChanged();
                 }
-                checkedItemPositions.clear();
-                adapter.notifyDataSetChanged();*/
 
             }
         });
@@ -137,4 +136,79 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
 
         }
     }
+
+    public class CustomAdapter1 extends ArrayAdapter {
+        ArrayList<EachItem> items = null;
+        Context context;
+        int resourceID;
+
+        public CustomAdapter1(Context context,int layoutresourceID, ArrayList<EachItem> resource) {
+            super(context, R.layout.row, resource);
+            this.resourceID = layoutresourceID;
+            this.context = context;
+            this.items = resource;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            //LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+            View row = convertView;
+            ViewHolder holder = null;
+            if (convertView == null) {
+                LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+
+                holder = new ViewHolder();
+                convertView = inflater.inflate(resourceID, null);
+                holder.name = (TextView) convertView.findViewById(R.id.ItemName);
+                holder.price = (TextView) convertView.findViewById(R.id.ItemPrice);
+                holder.cb = (CheckBox) convertView.findViewById(R.id.checkBox);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            holder.name.setText(items.get(position).getName());
+            if (items.get(position).getPrice() == 0) {
+                holder.price.setText("$0.00");
+            }
+            else {
+                NumberFormat formatter = NumberFormat.getCurrencyInstance();
+                String priceStr = formatter.format(items.get(position).getPrice());
+                holder.price.setText(priceStr);
+            }
+            if (items.get(position).getCheckBox()) {
+                holder.cb.setChecked(false);
+            }
+            else {
+                holder.cb.setVisibility(View.GONE);
+            }
+
+            holder.cb.setOnCheckedChangeListener(null);
+            //holder.cb.setChecked(ids.contains(items.get(position)));
+            holder.cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView,
+                                             boolean isChecked) {
+                    if (isChecked) {
+                        ids.add(items.get(position));
+                        //Toast.makeText(getApplicationContext(), items.get(position).getName() + " ", Toast.LENGTH_LONG).show();
+                    } else {
+                        if (ids.contains(items.get(position))) {
+                            ids.remove(items.get(position));
+                        }
+                    }
+                }
+            });
+            return convertView;
+        }
+
+        public class ViewHolder {
+            CheckBox cb;
+            TextView name;
+            TextView price;
+        }
+    }
 }
+
+
+
