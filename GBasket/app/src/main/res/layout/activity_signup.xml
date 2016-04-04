@@ -83,9 +83,9 @@
         android:layout_height="wrap_content"
         android:text="Done"
         android:id="@+id/Done"
-        android:layout_below="@+id/cpw"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp" />
+        android:layout_marginTop="51dp"
+        android:layout_below="@+id/textView11"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -128,5 +128,15 @@
         android:layout_toRightOf="@+id/lname"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter a password that is 8 characters or longer, contains at least 1 Upper/Lowercase letter, 1 symbol, and 1 number"
+        android:id="@+id/textView11"
+        android:layout_below="@+id/cpw"
+        android:layout_alignRight="@+id/user_cpw"
+        android:layout_alignEnd="@+id/user_cpw"
+        android:layout_marginTop="46dp" />
 
 </RelativeLayout>

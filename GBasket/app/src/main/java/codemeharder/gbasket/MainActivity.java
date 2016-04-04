@@ -16,9 +16,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button login;
-    TextView sign_up;
+    TextView forgot;
     EditText inputEmail;
     EditText inputPassword;
+    LoginHelper dbHelper = new LoginHelper(this, null, null, 1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,34 +30,29 @@ public class MainActivity extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.password);
 
         login = (Button) findViewById(R.id.email_sign_in_button);
-        sign_up = (TextView) findViewById(R.id.signUpTextView);
+        forgot = (TextView) findViewById(R.id.signUpTextView);
+
+        //TODO If you ever forget your test login/pass, just uncomment this toast
+        Toast.makeText(MainActivity.this, dbHelper.seeUser(), Toast.LENGTH_LONG).show();
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //Intent intent = new Intent(getApplicationContext(), ScannerActivity.class);
-                Intent intent = new Intent(getApplicationContext(), LaunchPadActivity.class);
-
-                //TODO Remove this when login database is added
-                /*if ((!inputEmail.getText().toString().equals("")) && (!inputPassword.getText().toString().equals(""))) {
+                String name = dbHelper.findAcc(inputEmail.getText().toString(), inputPassword.getText().toString());
+                if (name != null) {
+                    Toast.makeText(MainActivity.this, "Welcome " + name, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), LaunchPadActivity.class);
                     startActivity(intent);
-
-                } else if ((!inputEmail.getText().toString().equals(""))) {
-                    Toast.makeText(getApplicationContext(),
-                            "Password field empty", Toast.LENGTH_SHORT).show();
-                } else if ((!inputPassword.getText().toString().equals(""))) {
-                    Toast.makeText(getApplicationContext(),
-                            "Email field empty", Toast.LENGTH_SHORT).show();
-                } else if ((inputEmail.getText().toString().equals("")) && (inputPassword.getText().toString().equals(""))) {
-                    Toast.makeText(getApplicationContext(),
-                            "Email and Password fields are empty", Toast.LENGTH_SHORT).show();
-                }*/
-                startActivity(intent);
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Please enter a valid email and password", Toast.LENGTH_LONG).show();
+                    inputEmail.setText("");
+                    inputPassword.setText("");
+                }
             }
         });
 
-        sign_up.setOnClickListener(new View.OnClickListener() {
+        forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);

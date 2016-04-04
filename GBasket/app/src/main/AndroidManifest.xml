@@ -33,7 +33,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".CaptureActivityAnyOrientation"
             android:screenOrientation="fullSensor"
@@ -83,6 +83,10 @@
         <activity
             android:name=".UnitPriceCalc"
             android:label="@string/title_activity_unit_price_calc"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ForgotActivity"
+            android:label="@string/title_activity_forgot"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

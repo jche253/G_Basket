@@ -9,8 +9,8 @@ import android.os.Handler;
  * Created by jdevillasee on 3/22/16.
  */
 public class SplashScreenActivity extends Activity{
-    private final int SPLASH_DISPLAY_LENGTH = 1500;
-
+    private final int SPLASH_DISPLAY_LENGTH = 2000;
+    LoginHelper dbHelper = new LoginHelper(this, null, null, 1);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
@@ -23,9 +23,17 @@ public class SplashScreenActivity extends Activity{
             @Override
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
-                Intent mainIntent = new Intent(SplashScreenActivity.this,MainActivity.class);
-                SplashScreenActivity.this.startActivity(mainIntent);
-                SplashScreenActivity.this.finish();
+                if (dbHelper.checkAccountCount()) {
+                    Intent mainIntent = new Intent(SplashScreenActivity.this,MainActivity.class);
+                    SplashScreenActivity.this.startActivity(mainIntent);
+                    SplashScreenActivity.this.finish();
+                }
+                else {
+                    Intent signUPIntent = new Intent(SplashScreenActivity.this, SignUpActivity.class);
+                    SplashScreenActivity.this.startActivity(signUPIntent);
+                    SplashScreenActivity.this.finish();
+                }
+
             }
         }, SPLASH_DISPLAY_LENGTH);
     }
