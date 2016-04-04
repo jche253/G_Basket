@@ -25,7 +25,11 @@ public class SignUpActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+<<<<<<< HEAD
         Acc_Info = new LoginHelper(this, null, null, 1);
+=======
+        Acc_Info = new LoginHelper(this);
+>>>>>>> origin/master
 
         editemail = (EditText) findViewById(R.id.User_ID);
         editfname = (EditText) findViewById(R.id.User_FName);
