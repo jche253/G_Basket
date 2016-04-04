@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.stripe.android.model.Card;
-
 /**
  * Created by Jimmy Chen on 2/18/2016.\
  */
@@ -20,14 +18,14 @@ public class AddCardActivity extends Activity {
 
     Button addCard, cancel;
     EditText name, card, eMonth, eYear, CV;
-    CardHelper phdb;
+    CardHelper cardDB;
+    String cc, em, ey, cvv;
 
     //TODO Process credit card + add it to saved list of cards for the user
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcard);
-        phdb = new CardHelper(this);
 
         addCard = (Button) findViewById(R.id.btnSubmit);
         cancel = (Button) findViewById(R.id.btnCancel);
@@ -37,12 +35,17 @@ public class AddCardActivity extends Activity {
         eYear = (EditText) findViewById(R.id.expYear);
         CV = (EditText) findViewById(R.id.CVC);
 
+        cc = card.getText().toString();
+        em = eMonth.getText().toString();
+        ey = eYear.getText().toString();
+        cvv = CV.getText().toString();
+
+        cardDB = new CardHelper(this);
 
         addCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String UserName = name.getText().toString();
-                String CreditCardNum = card.getText().toString();
+
                 int ExpireMonth = 0;
                 try {
                     ExpireMonth = Integer.parseInt(eMonth.getText().toString());
@@ -63,7 +66,7 @@ public class AddCardActivity extends Activity {
                         || CVV == null || !(CVV.matches("^-?\\d+$"))
                         || ExpireMonth <= 0 || ExpireYear <= 0)*/
 
-                Card CreditCard = new Card(CreditCardNum, ExpireMonth, ExpireYear, CVV);
+                com.stripe.android.model.Card CreditCard = new com.stripe.android.model.Card(cc, ExpireMonth, ExpireYear, CVV);
 
                 //Check if card is valid
                 if(!CreditCard.validateCard() || !CreditCard.validateCVC() ||
@@ -87,17 +90,12 @@ public class AddCardActivity extends Activity {
                 }
                 else {
                         //Card is good, card can be added to the database
-                        boolean isInserted = phdb.insertData(
-                                name.getText().toString(),
-                                card.getText().toString(),
-                                eMonth.getText().toString(),
-                                eYear.getText().toString(),
-                                CV.getText().toString());
+                    boolean regCard = cardDB.regCard(cc, em, ey, cvv);
 
-                        if (isInserted) {
+                        if (regCard) {
                             Toast.makeText(AddCardActivity.this, "Card is added", Toast.LENGTH_LONG).show();
                         }
-                        else if (!isInserted) {
+                        else if (!regCard) {
                           Toast.makeText(AddCardActivity.this, "Card is not added", Toast.LENGTH_LONG).show();
                         }
 

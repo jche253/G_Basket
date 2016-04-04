@@ -13,14 +13,14 @@ import android.widget.Toast;
  */
 
 public class SignUpActivity extends Activity {
-    DatabaseHelper Acc_Info;
+    LoginHelper Acc_Info;
     Button Done;
     EditText editemail, editfname, editlname, editpass;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        Acc_Info = new DatabaseHelper(this);
+        Acc_Info = new LoginHelper(this);
 
         editemail = (EditText) findViewById(R.id.User_ID);
         editfname = (EditText) findViewById(R.id.User_FName);
