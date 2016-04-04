@@ -30,6 +30,7 @@ import com.stripe.exception.CardException;
 import com.stripe.exception.InvalidRequestException;
 import com.stripe.model.Charge;
 
+import android.widget.ListView;
 import android.widget.Toast;
 /*
 import com.paypal.android.sdk.payments.PayPalConfiguration;
@@ -57,6 +58,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     Button Paywcard, Addcard;
+    ListView CardList;
     private static final String TAG = ReceiptActivity.class.getSimpleName();
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
 
@@ -78,6 +80,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+        CardList = (ListView) findViewById(R.id.CardListView);
         Paywcard = (Button) findViewById(R.id.ButtonPaywcard);
         Addcard = (Button) findViewById(R.id.ButtonAddcard);
 

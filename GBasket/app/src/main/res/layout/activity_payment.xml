@@ -16,11 +16,11 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="227dp"
-        android:id="@+id/listView"
+        android:id="@+id/CardListView"
         android:layout_gravity="center_horizontal"
         android:divider="#000000"
         android:dividerHeight="1px"
-        android:layout_weight="0.22" />
+        android:layout_weight="1.03" />
 
     <RelativeLayout
         android:orientation="horizontal"

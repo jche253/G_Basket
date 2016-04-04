@@ -7,8 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by Alfred Wong on 2/23/2016.
+ * Edited by Jimmy Chen on 4/4/2016
  */
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class LoginHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "AccInfo.db";
     public static final String TABLE_NAME = "AccInfo_Table";
     public static final String ID = "User_ID";
@@ -16,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String LNAME = "User_LName";
     public static final String PASSWORD = "User_Pass";
 
-    public DatabaseHelper(Context context) {
+    public LoginHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
 
     }
