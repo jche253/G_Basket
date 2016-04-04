@@ -2,7 +2,6 @@ package codemeharder.gbasket;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,24 +10,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.stripe.android.*;
 import com.stripe.android.model.Card;
 
 /**
- * Created by Jimmy Chen on 2/18/2016.
- * Edited by Seoyoung Kyung on 2/19/2016.
+ * Created by Jimmy Chen on 2/18/2016.\
  */
 public class AddCardActivity extends Activity {
 
 
     Button addCard, cancel;
     EditText name, card, eMonth, eYear, CV;
+    CardHelper phdb;
 
     //TODO Process credit card + add it to saved list of cards for the user
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcard);
+        phdb = new CardHelper(this);
 
         addCard = (Button) findViewById(R.id.btnSubmit);
         cancel = (Button) findViewById(R.id.btnCancel);
@@ -87,6 +86,21 @@ public class AddCardActivity extends Activity {
 
                 }
                 else {
+                        //Card is good, card can be added to the database
+                        boolean isInserted = phdb.insertData(
+                                name.getText().toString(),
+                                card.getText().toString(),
+                                eMonth.getText().toString(),
+                                eYear.getText().toString(),
+                                CV.getText().toString());
+
+                        if (isInserted) {
+                            Toast.makeText(AddCardActivity.this, "Card is added", Toast.LENGTH_LONG).show();
+                        }
+                        else if (!isInserted) {
+                          Toast.makeText(AddCardActivity.this, "Card is not added", Toast.LENGTH_LONG).show();
+                        }
+
                         //Card is good, can move on to Payment form
                         Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
 
@@ -105,4 +119,5 @@ public class AddCardActivity extends Activity {
             }
         });
     }
+
 }
