@@ -1,13 +1,10 @@
 package codemeharder.gbasket;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,7 +16,8 @@ import java.util.ArrayList;
 public class HistoryActivity extends Activity {
     ListView historyList;
     ReceiptAdapter adapter;
-    ArrayList<Receipt> ReceiptArray = new ArrayList<Receipt>();
+    ArrayList<ReceiptHistItem> ReceiptArray = new ArrayList<>();
+    ReceiptHandler dbHandler = new ReceiptHandler(this, null, null, 3);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,21 +25,49 @@ public class HistoryActivity extends Activity {
         setContentView(R.layout.activity_history);
 
         Intent intent = getIntent();
-        Receipt receipt = (Receipt) intent.getParcelableExtra("Receipt");
-        //Toast.makeText(this, receipt.getSerial(), Toast.LENGTH_LONG).show();
+        Bundle b = getIntent().getBundleExtra("bundle");
+        final Receipt receipt = b.getParcelable("Receipt");
+        final String toWrite = b.getString("ReceiptTxt");
         historyList = (ListView) findViewById(R.id.historyLV);
+        System.gc();
+
+        //populate adapter with sqlite database elements
+        ReceiptArray = getAllTuples();
+
+        ReceiptHistItem newItem = new ReceiptHistItem();
+        newItem.setDate(receipt.getDate());
+        newItem.setSerial(receipt.getSerial());
+        newItem.setReceiptText(toWrite);
+
+
         adapter = new ReceiptAdapter(this, R.layout.receipt_row,
                 ReceiptArray);
-        ReceiptArray.add(receipt);
         historyList.setAdapter(adapter);
 
         historyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                view.setFocusable(false);
+               // Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_LONG).show();
+                //TODO Fix this to query instead of pulling a default receipt
+                findReceipt(adapter.receipts.get(position).getSerial());
             }
         });
-
-
     }
+
+    public void findReceipt(String Serial) {
+        String result = dbHandler.findReceipt(Serial);
+        if (result != null) {
+            //Open huge alert window temp fix now
+           Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+
+        } else {
+            Toast.makeText(getApplicationContext(), "Cannot find serial", Toast.LENGTH_LONG);
+        }
+    }
+
+    public ArrayList<ReceiptHistItem> getAllTuples() {
+        return dbHandler.getAllValues();
+    }
+
 }

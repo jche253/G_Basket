@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
                 //Intent intent = new Intent(getApplicationContext(), ScannerActivity.class);
                 Intent intent = new Intent(getApplicationContext(), LaunchPadActivity.class);
 
-                if ((!inputEmail.getText().toString().equals("")) && (!inputPassword.getText().toString().equals(""))) {
+                //TODO Remove this when login database is added
+                /*if ((!inputEmail.getText().toString().equals("")) && (!inputPassword.getText().toString().equals(""))) {
                     startActivity(intent);
 
                 } else if ((!inputEmail.getText().toString().equals(""))) {
@@ -50,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 } else if ((inputEmail.getText().toString().equals("")) && (inputPassword.getText().toString().equals(""))) {
                     Toast.makeText(getApplicationContext(),
                             "Email and Password fields are empty", Toast.LENGTH_SHORT).show();
-                }
+                }*/
+                startActivity(intent);
             }
         });
 

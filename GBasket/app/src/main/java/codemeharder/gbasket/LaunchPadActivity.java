@@ -114,4 +114,8 @@ public class LaunchPadActivity extends Activity implements View.OnClickListener 
 
         }
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

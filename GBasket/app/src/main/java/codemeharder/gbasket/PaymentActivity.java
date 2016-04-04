@@ -51,7 +51,6 @@ import java.util.Map;
 /*
  * Created by Jimmy Chen on 2/18/2016.
  * Edited by Seoyoung Kyung on 2/19/2016.
- * Thanks to: https://trinitytuts.com/paypal-integration-in-android/
  */
 
 public class PaymentActivity extends Activity implements GoogleApiClient.ConnectionCallbacks,
@@ -91,6 +90,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
             @Override
             public void onClick(View v) {
                 //TODO select card as item and initialize variables
+               // Toast.makeText(getApplicationContext(), loc_Tax + " ", Toast.LENGTH_LONG).show();
                 String CreditCardNum = "4242424242424242";
                 int expMonth = 7;
                 int expYear = 2017;
@@ -178,9 +178,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                                                 .setMessage("yay")
                                                 .setIcon(android.R.drawable.ic_dialog_alert)
                                                 .show();*/
-                                        Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
-                                        receiptIntent.putExtra("Receipt", (Parcelable) todayReceipt);
-                                        startActivity(receiptIntent);
+
                                     /*} catch (CardException e) {
                                         new AlertDialog.Builder(PaymentActivity.this)
                                                 .setTitle("Declined CardExc")
@@ -231,7 +229,11 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
 
 
                 }*/
-
+                Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
+                Bundle b = new Bundle();
+                b.putParcelable("Receipt", todayReceipt);
+                receiptIntent.putExtra("bundle", b);
+                startActivity(receiptIntent);
             }
         });
 
@@ -410,6 +412,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                 loc_Tax = tax;
             }
         }
+        //Toast.makeText(this, loc_Tax + " ", Toast.LENGTH_LONG).show();
         return loc_Tax;
     }
 

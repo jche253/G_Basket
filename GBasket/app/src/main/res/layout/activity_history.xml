@@ -20,6 +20,7 @@
         android:layout_height="352dp"
         android:id="@+id/historyLV"
         android:layout_gravity="center_horizontal"
+        android:descendantFocusability="blocksDescendants"
         android:layout_weight="0.30"
         android:layout_below="@+id/historyTV"
         android:layout_alignParentLeft="true"

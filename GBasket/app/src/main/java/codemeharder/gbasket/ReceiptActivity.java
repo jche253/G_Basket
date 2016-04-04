@@ -1,18 +1,10 @@
 package codemeharder.gbasket;
 
-import android.accounts.Account;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -28,19 +20,12 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-
-import java.text.SimpleDateFormat;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.EnumMap;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -53,6 +38,7 @@ public class ReceiptActivity extends Activity  {
     ListView itemList, talist;
     ArrayList<ReceiptItem> items = new ArrayList<ReceiptItem>();
     TextView DateTime, SerialNum, AccountType;
+    String toWrite;
     private static final int WHITE = 0xFFFFFFFF;
     private static final int BLACK = 0xFF000000;
 
@@ -62,9 +48,11 @@ public class ReceiptActivity extends Activity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receipt);
         Intent intent = getIntent();
-        final Receipt receipt = (Receipt) intent.getParcelableExtra("Receipt");
+        Bundle bundle = intent.getBundleExtra("bundle");
+        final Receipt receipt = bundle.getParcelable("Receipt");
 
         history = (Button) findViewById(R.id.history);
+        save = (Button) findViewById(R.id.save);
         genBarcode = (ImageView) findViewById(R.id.barcode);
         DateTime = (TextView) findViewById(R.id.dateTimeInput);
         SerialNum = (TextView) findViewById(R.id.serialInput);
@@ -106,6 +94,7 @@ public class ReceiptActivity extends Activity  {
 
 
         try {
+            System.gc();
             bitmap = encodeAsBitmap(receipt.getSerial(), BarcodeFormat.CODE_128, 600, 300);
             genBarcode.setImageBitmap(bitmap);
 
@@ -113,12 +102,58 @@ public class ReceiptActivity extends Activity  {
             e.printStackTrace();
         }
 
+        toWrite = "G BASKET RECEIPT\nStoreName\nAddress\nPhoneNumber\n";
+        toWrite += ("Date/time: " + receipt.getDate() + "\n");
+        toWrite += ("Serial number: " + receipt.getSerial() + "\n");
+        toWrite += ("Account Type: " + receipt.getAccType() + "\n");
+        for (int i = 0; i < receipt.getItemPrice().size(); i++) {
+            EachItem temp = receipt.getItemPrice().get(i);
+            ReceiptItem test = new ReceiptItem(temp.getName(), temp.getPrice(), receipt.getOrigPrice().get(i),
+                    receipt.getPriceOff().get(i));
+            toWrite += (test.getItemName() + "\t\t$" + test.getItemPrice() + "\n");
+            if (test.getDiscount() != 0) {
+                toWrite += ( "\t$" + test.getItemOrigPrice() + "\n");
+                toWrite += ("\t$-" + test.getDiscount() + "\n");
+            }
+        }
+
+        toWrite += ("Total: " + receipt.getPaymentAmount() + "\n");
+        toWrite += ("Tax: " +  receipt.getTax() / 100 * receipt.getPaymentAmount() + "\n");
+        toWrite += ("Balance Due: " + receipt.getTotal());
+
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                addReceipt(receipt, toWrite);
+                Bundle b = new Bundle();
                 Intent historyIntent = new Intent(getApplicationContext(), HistoryActivity.class);
-                historyIntent.putExtra("Receipt", (Parcelable) receipt);
+                b.putString("ReceiptTxt", toWrite);
+                b.putParcelable("Receipt", receipt);
+                historyIntent.putExtra("bundle", b);
                 startActivity(historyIntent);
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    String MY_FILE_NAME = receipt.getSerial() + "_Receipt";
+                    //File file = new File(getApplicationContext().getFilesDir(), MY_FILE_NAME);
+                    FileOutputStream fileos = openFileOutput(MY_FILE_NAME, MODE_PRIVATE);
+                    OutputStreamWriter out = new OutputStreamWriter(getApplicationContext().openFileOutput(MY_FILE_NAME, Context.MODE_PRIVATE));
+
+                    out.write(toWrite);
+                    out.close();
+
+                    //Save super long string to DB
+                    addReceipt(receipt, toWrite);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
     }
@@ -199,5 +234,11 @@ public class ReceiptActivity extends Activity  {
             return false;
         }
 
+    }
+
+    public void addReceipt (Receipt receipt, String toWrite) {
+        ReceiptHandler dbHandler = new ReceiptHandler(this, null, null, 3);
+        dbHandler.addReceipt(receipt, toWrite);
+        Toast.makeText(getApplicationContext(), "Saved to disk!", Toast.LENGTH_LONG).show();
     }
 }

@@ -21,11 +21,11 @@ import java.util.ArrayList;
 //This will be the page that populates the Shopping history
 
 public class ReceiptAdapter extends ArrayAdapter{
-    ArrayList<Receipt> receipts = null;
+    ArrayList<ReceiptHistItem> receipts = null;
     Context context;
     int layoutResourceId;
 
-    public ReceiptAdapter(Context context, int layoutResourceId, ArrayList<Receipt> resource) {
+    public ReceiptAdapter(Context context, int layoutResourceId, ArrayList<ReceiptHistItem> resource) {
         super(context, layoutResourceId, resource);
         this.context = context;
         this.layoutResourceId = layoutResourceId;
@@ -57,5 +57,11 @@ public class ReceiptAdapter extends ArrayAdapter{
     static class RViewHolder {
         TextView date;
         TextView serial;
+    }
+
+    @Override
+    public boolean isEnabled(int position)
+    {
+        return true;
     }
 }

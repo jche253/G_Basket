@@ -5,9 +5,7 @@ import android.os.Parcelable;
 
 import com.stripe.android.model.Card;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Jimmy Chen on 3/1/2016.
@@ -23,10 +21,11 @@ public class Receipt implements Parcelable {
     double tax = 0;
     double total = 0;
 
-    Receipt () {
+    public Receipt () {
 
     }
-    Receipt(String CurDate, Card card, ArrayList<EachItem> yourItems, ArrayList<Double> DisOrigPrice,
+
+    public Receipt(String CurDate, Card card, ArrayList<EachItem> yourItems, ArrayList<Double> DisOrigPrice,
                    ArrayList<Double> discounts, double tax, String serial) {
         this.date = CurDate;
         //TODO make an algorithm for generating serial numbers and transaction ID

@@ -1,18 +1,15 @@
 package codemeharder.gbasket;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by jdevillasee on 3/22/16.
  */
 public class SplashScreenActivity extends Activity{
-    private final int SPLASH_DISPLAY_LENGTH = 1000;
+    private final int SPLASH_DISPLAY_LENGTH = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
