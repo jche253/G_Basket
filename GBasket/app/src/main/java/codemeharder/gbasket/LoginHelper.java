@@ -56,11 +56,8 @@ public class LoginHelper extends SQLiteOpenHelper {
     public String findAcc(String email, String password) {
         String query = "Select * FROM " + TABLE_NAME + " WHERE " + ID + " =  \"" + email +
                 "\" AND " + PASSWORD + " = \"" + password + "\"";
-
         SQLiteDatabase db = this.getWritableDatabase();
-
         Cursor cursor = db.rawQuery(query, null);
-
         String name;
         if (cursor.moveToFirst()) {
             cursor.moveToFirst();
@@ -69,6 +66,29 @@ public class LoginHelper extends SQLiteOpenHelper {
             cursor.close();
             db.close();
             return name;
+        } else {
+            cursor.close();
+            db.close();
+            return null;
+        }
+
+    }
+
+    public String recoverPass(String fname, String lname, String email) {
+        String query = "Select * FROM " + TABLE_NAME + " WHERE " + ID + " =  \"" + email +
+                "\" AND " + FNAME + " = \"" + fname + "\""
+                + " AND " + LNAME + " = \"" + lname + "\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        String password;
+
+        if (cursor.moveToFirst()) {
+            cursor.moveToFirst();
+
+            password = cursor.getString(3);
+            cursor.close();
+            db.close();
+            return password;
         } else {
             cursor.close();
             db.close();
@@ -109,6 +129,20 @@ public class LoginHelper extends SQLiteOpenHelper {
             return false;
     }
 
+    public boolean deleteAcc(String email) {
+        boolean result = false;
+        String query = "Select * FROM " + TABLE_NAME + " WHERE " + ID + " =  \"" + email + "\"";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
 
+        if (cursor.moveToFirst()) {
+            db.delete(TABLE_NAME, ID + " = ?",
+                    new String[] { cursor.getString(0) });
+            cursor.close();
+            result = true;
+        }
+        db.close();
+        return result;
+    }
 
 }

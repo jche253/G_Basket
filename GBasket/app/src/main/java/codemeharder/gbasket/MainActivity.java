@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         inputPassword = (EditText) findViewById(R.id.password);
 
         login = (Button) findViewById(R.id.email_sign_in_button);
-        forgot = (TextView) findViewById(R.id.signUpTextView);
+        forgot = (TextView) findViewById(R.id.forgotTextView);
 
         //TODO If you ever forget your test login/pass, just uncomment this toast
         Toast.makeText(MainActivity.this, dbHelper.seeUser(), Toast.LENGTH_LONG).show();
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ForgotActivity.class);
                 startActivity(intent);
             }
         });
@@ -83,5 +83,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

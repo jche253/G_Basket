@@ -26,7 +26,7 @@ public class SignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         Acc_Info = new LoginHelper(this, null, null, 1);
-        
+
         editemail = (EditText) findViewById(R.id.User_ID);
         editfname = (EditText) findViewById(R.id.User_FName);
         editlname = (EditText) findViewById(R.id.User_LName);

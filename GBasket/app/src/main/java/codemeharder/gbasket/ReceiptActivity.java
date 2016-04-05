@@ -112,8 +112,8 @@ public class ReceiptActivity extends Activity  {
                     receipt.getPriceOff().get(i));
             toWrite += (test.getItemName() + "\t\t$" + test.getItemPrice() + "\n");
             if (test.getDiscount() != 0) {
-                toWrite += ( "\t$" + test.getItemOrigPrice() + "\n");
-                toWrite += ("\t$-" + test.getDiscount() + "\n");
+                toWrite += ("    Original Price: $" + test.getItemOrigPrice() + "\n");
+                toWrite += ("    Discount: $-" + test.getDiscount() + "\n");
             }
         }
 
@@ -145,9 +145,7 @@ public class ReceiptActivity extends Activity  {
 
                     out.write(toWrite);
                     out.close();
-
-                    //Save super long string to DB
-                    addReceipt(receipt, toWrite);
+                    Toast.makeText(getApplicationContext(), "Saved receipt to disk!", Toast.LENGTH_LONG).show();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -239,6 +237,5 @@ public class ReceiptActivity extends Activity  {
     public void addReceipt (Receipt receipt, String toWrite) {
         ReceiptHandler dbHandler = new ReceiptHandler(this, null, null, 3);
         dbHandler.addReceipt(receipt, toWrite);
-        Toast.makeText(getApplicationContext(), "Saved to disk!", Toast.LENGTH_LONG).show();
     }
 }
