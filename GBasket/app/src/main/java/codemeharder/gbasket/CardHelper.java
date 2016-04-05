@@ -38,24 +38,25 @@ public class CardHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean addCard(Card Card) {
-
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_card, Card.getCard());
-        values.put(COLUMN_eMonth, Card.geteMonth());
-        values.put(COLUMN_eYear, Card.geteYear());
-        values.put(COLUMN_cvc, Card.getCVC());
+    public boolean addCard(String crednum, String eMonth, String eYear, String cvv) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_card, crednum);
+        values.put(COLUMN_eMonth, eMonth);
+        values.put(COLUMN_eYear, eYear);
+        values.put(COLUMN_cvc, cvv);
+
         long res = db.insert(TABLE_CARDS, null, values);
         db.close();
-        if (res != -1) return false;
+
+        if (res == -1) return false;
         return true;
     }
 
     public String findCard (String Cardnum) {
-        String query = "Select * FROM " + TABLE_CARDS + "WHERE " + COLUMN_card + " =  \"" + Cardnum + "\" ";
+        String query = "Select * FROM " + TABLE_CARDS + " WHERE " + COLUMN_card + " =  \"" + Cardnum + "\" ";
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -66,8 +67,10 @@ public class CardHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             cursor.moveToFirst();
             result = cursor.getString(cursor.getColumnIndex(COLUMN_card));
+            cursor.close();
         } else {
             result = null;
+            cursor.close();
         }
         db.close();
         return result;
