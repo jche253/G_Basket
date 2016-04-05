@@ -14,25 +14,20 @@ import java.util.ArrayList;
 public class CardHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "cardDB.db";
-    private static final String TABLE_CARDS = "card";
-
+    private static final String TABLE_CARDS = "cdata";
+    public static final int DATABASE_VERSION = 1;
     public static final String COLUMN_card = "card";
-    public static final String COLUMN_eMonth = "expiration date";
-    public static final String COLUMN_eYear = "expiration year";
+    public static final String COLUMN_eMonth = "exp_date";
+    public static final String COLUMN_eYear = "exp_year";
     public static final String COLUMN_cvc = "cvc";
 
-    public CardHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
-
+    public CardHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_PRODUCTS_TABLE = "CREATE TABLE " +
-                TABLE_CARDS + "("
-                + COLUMN_card + " TEXT PRIMARY KEY," + COLUMN_eMonth
-                + " TEXT," + COLUMN_eYear + " TEXT" + COLUMN_cvc + "TEXT" + ")";
-        db.execSQL(CREATE_PRODUCTS_TABLE);
+        db.execSQL("create table " + TABLE_CARDS + " (card TEXT PRIMARY KEY, exp_date TEXT, exp_year TEXT, cvc TEXT)");
     }
 
     @Override
@@ -42,22 +37,8 @@ public class CardHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean regCard(String card, String eMonth, String eYear, String cvc){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_card, card);
-        contentValues.put(COLUMN_eMonth, eMonth);
-        contentValues.put(COLUMN_eYear, eYear);
-        contentValues.put(COLUMN_cvc, cvc);
-        long result = db.insert(TABLE_CARDS, null, contentValues);
-        if(result == -1)
-            return false;
-        else return true;
-    }
 
-
-
-    public void addCard (Card Card) {
+    public boolean addCard(Card Card) {
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_card, Card.getCard());
@@ -67,8 +48,10 @@ public class CardHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.insert(TABLE_CARDS, null, values);
+        long res = db.insert(TABLE_CARDS, null, values);
         db.close();
+        if (res != -1) return false;
+        return true;
     }
 
     public String findCard (String Cardnum) {

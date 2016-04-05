@@ -18,8 +18,8 @@ public class AddCardActivity extends Activity {
 
     Button addCard, cancel;
     EditText name, card, eMonth, eYear, CV;
-    CardHelper cardDB;
     String cc, em, ey, cvv;
+    CardHelper cardDB = new CardHelper(this, null, null, 1);
 
     //TODO Process credit card + add it to saved list of cards for the user
     @Override
@@ -35,17 +35,12 @@ public class AddCardActivity extends Activity {
         eYear = (EditText) findViewById(R.id.expYear);
         CV = (EditText) findViewById(R.id.CVC);
 
-        cc = card.getText().toString();
-        em = eMonth.getText().toString();
-        ey = eYear.getText().toString();
-        cvv = CV.getText().toString();
-
-        cardDB = new CardHelper(this);
+        final Card credcard = new Card(card.getText().toString(), eMonth.getText().toString(), eYear.getText().toString(), CV.getText().toString()) ;
 
         addCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                /*
                 int ExpireMonth = 0;
                 try {
                     ExpireMonth = Integer.parseInt(eMonth.getText().toString());
@@ -66,10 +61,10 @@ public class AddCardActivity extends Activity {
                         || CVV == null || !(CVV.matches("^-?\\d+$"))
                         || ExpireMonth <= 0 || ExpireYear <= 0)*/
 
-                com.stripe.android.model.Card CreditCard = new com.stripe.android.model.Card(cc, ExpireMonth, ExpireYear, CVV);
+                //com.stripe.android.model.Card CreditCard = new com.stripe.android.model.Card(cc, ExpireMonth, ExpireYear, CVV);
 
                 //Check if card is valid
-                if(!CreditCard.validateCard() || !CreditCard.validateCVC() ||
+                /*if(!CreditCard.validateCard() || !CreditCard.validateCVC() ||
                         !CreditCard.validateExpiryDate()){
                     new AlertDialog.Builder(AddCardActivity.this)
                             .setTitle("Invalid Card")
@@ -88,23 +83,21 @@ public class AddCardActivity extends Activity {
                             .show();
 
                 }
-                else {
-                        //Card is good, card can be added to the database
-                    boolean regCard = cardDB.regCard(cc, em, ey, cvv);
+                else {*/
+                //Card is good, card can be added to the database
+                boolean added = cardDB.addCard(credcard);
 
-                        if (regCard) {
-                            Toast.makeText(AddCardActivity.this, "Card is added", Toast.LENGTH_LONG).show();
-                        }
-                        else if (!regCard) {
-                          Toast.makeText(AddCardActivity.this, "Card is not added", Toast.LENGTH_LONG).show();
-                        }
+                if (added) {
+                    Toast.makeText(AddCardActivity.this, "Card has been added", Toast.LENGTH_LONG).show();
+                    //Card is good, can move on to Payment form
+                    Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
 
-                        //Card is good, can move on to Payment form
-                        Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
-
-                        //Todo add credit card to listView
-                        startActivity(intent);
+                    //Todo add credit card to listView
+                    startActivity(intent);
+                } else if (!added) {
+                    Toast.makeText(AddCardActivity.this, "Card has not been added", Toast.LENGTH_LONG).show();
                 }
+
             }
         });
 
