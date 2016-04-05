@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.stripe.android.model.Card;
 
 /**
  * Created by Jimmy Chen on 2/18/2016.\
