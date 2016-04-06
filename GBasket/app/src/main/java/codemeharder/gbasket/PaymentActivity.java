@@ -1,18 +1,17 @@
 package codemeharder.gbasket;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+
+import com.stripe.android.model.Card;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -20,17 +19,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.stripe.android.*;
-import com.stripe.android.model.Card;
-import com.stripe.android.model.Token;
-import com.stripe.exception.APIConnectionException;
-import com.stripe.exception.APIException;
-import com.stripe.exception.AuthenticationException;
-import com.stripe.exception.CardException;
-import com.stripe.exception.InvalidRequestException;
-import com.stripe.model.Charge;
 
-import android.widget.ListView;
 import android.widget.Toast;
 /*
 import com.paypal.android.sdk.payments.PayPalConfiguration;
@@ -38,16 +27,12 @@ import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
 */
-import org.json.JSONException;
 
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 /*
  * Created by Jimmy Chen on 2/18/2016.
@@ -59,6 +44,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
 
     Button Paywcard, Addcard;
     ListView CardList;
+
     private static final String TAG = ReceiptActivity.class.getSimpleName();
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
 
@@ -80,9 +66,23 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+        CardHelper carddb = new CardHelper(this, null, null, 1);
+        ArrayList<CreditCards> items = carddb.getAllcards();
+
         CardList = (ListView) findViewById(R.id.CardListView);
         Paywcard = (Button) findViewById(R.id.ButtonPaywcard);
         Addcard = (Button) findViewById(R.id.ButtonAddcard);
+
+        if(items.size()>0) // check if list contains items.
+        {
+
+            CardAdapter adapter = new CardAdapter(this, R.layout.card_row, items);
+            CardList.setAdapter(adapter);
+        }
+        else
+        {
+            Toast.makeText(this,"No cards to display",Toast.LENGTH_LONG).show();
+        }
 
         if (checkPlayServices()) {
             buildGoogleApiClient();

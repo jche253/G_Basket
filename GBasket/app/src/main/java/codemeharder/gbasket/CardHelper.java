@@ -76,27 +76,23 @@ public class CardHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public ArrayList<Card> getAllValues() {
+    public ArrayList<CreditCards> getAllcards() {
         String query = "Select * FROM " + TABLE_CARDS;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        ArrayList<Card> resList = new ArrayList<>();
+        String result;
 
-        cursor.moveToFirst();
+        ArrayList<CreditCards> resList = new ArrayList<>();
 
-        try {
-            while (cursor.moveToNext()) {
-                Card card = new Card();
-
-                card.setCard(cursor.getString(0));
-                card.seteMonth(cursor.getString(1));
-                card.seteYear(cursor.getString(2));
-                card.setCVC(cursor.getString(3));
-                resList.add(card);
-            }
-        } finally {
-            cursor.close();
+        if (cursor.moveToFirst()) {
+            do {
+                result = cursor.getString(cursor.getColumnIndex(COLUMN_card));
+                CreditCards credcards = new CreditCards();
+                credcards.setCardnum(result);
+                resList.add(credcards);
+            } while (cursor.moveToNext());
         }
+        cursor.close();
         db.close();
         return resList;
     }

@@ -22,7 +22,6 @@ public class MyBean {
         myData = data;
     }
 
-
     public String getEmail() {
         return email;
     }
