@@ -59,9 +59,5 @@ public class ReceiptAdapter extends ArrayAdapter{
         TextView serial;
     }
 
-    @Override
-    public boolean isEnabled(int position)
-    {
-        return true;
-    }
+
 }
