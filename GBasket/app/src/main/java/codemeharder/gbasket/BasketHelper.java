@@ -3,8 +3,11 @@ package codemeharder.gbasket;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 /**
  * Created by Alfred Wong on 3/28/2016.
@@ -20,31 +23,58 @@ public class BasketHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, 1);
 
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (Prod_ID TEXT PRIMARY KEY, Item_Name TEXT, Item_Price TEXT)");
+        db.execSQL("create table " + TABLE_NAME + " (Prod_ID INTEGER PRIMARY KEY, Item_Name TEXT, Item_Price REAL)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
-    public boolean insertData(String productid, String productname, String productprice){
+    public void delete(Context context){
+        context.deleteDatabase(DATABASE_NAME);
+    }
+
+    public boolean insertData(int productid, String productname, double productprice) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(ID, productid);
         contentValues.put(ITEMNAME, productname);
         contentValues.put(ITEMPRICE, productprice);
         long result = db.insert(TABLE_NAME, null, contentValues);
-        if(result == -1)
+        if (result == -1) {
             return false;
+        }
         else return true;
     }
 
+    public ArrayList<EachItem2> queryBasket() {
+        String query = "Select * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        ArrayList<EachItem2> items = new ArrayList<EachItem2>();
+        EachItem2 eachItem2 = new EachItem2();
 
 
+        cursor.moveToFirst();
+        try {
+            while (cursor.moveToNext()) {
+                eachItem2.setID(cursor.getInt(0));
+                eachItem2.setName(cursor.getString(1));
+                eachItem2.setPrice(cursor.getDouble(2));
+                items.add(eachItem2);
+            }
+        } finally {
+            cursor.close();
+        }
+        db.close();
+        return items;
+
+
+    }
 
 }
-
