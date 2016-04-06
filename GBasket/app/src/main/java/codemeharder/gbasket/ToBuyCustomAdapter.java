@@ -20,6 +20,7 @@ public class ToBuyCustomAdapter extends ArrayAdapter<ToBuyItem> {
     Context context;
     int layoutResourceId;
     ArrayList<ToBuyItem> data = new ArrayList<ToBuyItem>();
+    GroceryListHelper glHelper;
 
     public ToBuyCustomAdapter(Context context, int layoutResourceId,
                               ArrayList<ToBuyItem> data) {
@@ -27,6 +28,7 @@ public class ToBuyCustomAdapter extends ArrayAdapter<ToBuyItem> {
         this.layoutResourceId = layoutResourceId;
         this.context = context;
         this.data = data;
+        glHelper = new GroceryListHelper(context, null, null, 1);
     }
 
     @Override
@@ -51,9 +53,9 @@ public class ToBuyCustomAdapter extends ArrayAdapter<ToBuyItem> {
 
             @Override
             public void onClick(View v) {
-                Log.i("Delete Button Clicked", "**********");
-                Toast.makeText(context, "Delete button Clicked",
+                Toast.makeText(context, "Item Deleted",
                         Toast.LENGTH_LONG).show();
+                glHelper.deleteItem(nextItem);
                 data.remove(position);
                 notifyDataSetChanged();
             }

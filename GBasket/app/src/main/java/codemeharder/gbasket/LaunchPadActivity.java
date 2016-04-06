@@ -19,8 +19,7 @@ import com.google.zxing.integration.android.IntentResult;
  * Created by jdevillasee on 3/23/16.
  */
 public class LaunchPadActivity extends Activity implements View.OnClickListener {
-    Button pushscan, account, setting, glist;
-    ImageButton basket;
+    Button pushscan, account, setting, glist, basket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +30,7 @@ public class LaunchPadActivity extends Activity implements View.OnClickListener 
         account = (Button) findViewById(R.id.account);
         setting = (Button) findViewById(R.id.settings);
         glist = (Button) findViewById(R.id.grocerylist);
-        basket = (ImageButton) findViewById(R.id.basket);
+        basket = (Button) findViewById(R.id.myBasket);
 
         glist.setOnClickListener(new View.OnClickListener() {
             @Override

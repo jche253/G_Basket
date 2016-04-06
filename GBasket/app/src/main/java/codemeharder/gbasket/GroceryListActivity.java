@@ -18,56 +18,55 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.Button;
 
-    public class GroceryListActivity extends Activity {
-        ListView ToBuyList;
-        ToBuyCustomAdapter ToBuyAdapter;
-        ArrayList<ToBuyItem> ToBuyArray = new ArrayList<ToBuyItem>();
-        EditText editText;
+public class GroceryListActivity extends Activity {
+    ListView ToBuyList;
+    ToBuyCustomAdapter ToBuyAdapter;
+    ArrayList<ToBuyItem> ToBuyArray = new ArrayList<ToBuyItem>();
+    EditText editText;
+    GroceryListHelper glHelper = new GroceryListHelper(this, null, null, 1);
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_grocerylist);
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_grocerylist);
 
-            /**
-             * set item into adapter
-             */
-            ToBuyAdapter = new ToBuyCustomAdapter(GroceryListActivity.this, R.layout.list_row,
-                    ToBuyArray);
-            ToBuyList = (ListView) findViewById(R.id.listView);
-            ToBuyList.setItemsCanFocus(false);
-            ToBuyList.setAdapter(ToBuyAdapter);
-            /**
-             * get on item click listener
-             */
-            ToBuyList.setOnItemClickListener(new OnItemClickListener() {
+         ToBuyList = (ListView) findViewById(R.id.listView);
+         ToBuyList.setItemsCanFocus(false);
 
-                @Override
-                public void onItemClick(AdapterView<?> parent, View v,
-                                        final int position, long id) {
-                    Log.i("List View Clicked", "**********");
-                    Toast.makeText(GroceryListActivity.this,
+         ToBuyArray = glHelper.getAllValues();
+         ToBuyAdapter = new ToBuyCustomAdapter(GroceryListActivity.this, R.layout.list_row,
+                 ToBuyArray);
+
+         ToBuyList.setAdapter(ToBuyAdapter);
+         /**
+          * get on item click listener
+          *
+          * */
+         /*ToBuyList.setOnItemClickListener(new OnItemClickListener() {
+             @Override
+             public void onItemClick(AdapterView<?> parent, View v,
+                 final int position, long id) {Log.i("List View Clicked", "**********");
+                 Toast.makeText(GroceryListActivity.this,
                             "List View Clicked:" + position, Toast.LENGTH_LONG)
                             .show();
                 }
-            });
+            });*/
 
-            editText = (EditText) findViewById(R.id.txtInput);
-            Button btAdd = (Button) findViewById(R.id.btAdd);
+         editText = (EditText) findViewById(R.id.txtInput);
+         Button btAdd = (Button) findViewById(R.id.btAdd);
 
-            btAdd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String newItem = editText.getText().toString();
-                    // add new item to arraylist
-                    GroceryListActivity.this.ToBuyArray.add(new ToBuyItem(newItem));
-                    // notify listview of data changed
-                    ToBuyAdapter.notifyDataSetChanged();
-                    editText.setText("");
-                }
+         btAdd.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 String newItem = editText.getText().toString();
+                 // add new item to arraylist
+                 GroceryListActivity.this.ToBuyArray.add(new ToBuyItem(newItem));
+                 glHelper.addItem(newItem);
+                 // notify listview of data changed
+                 ToBuyAdapter.notifyDataSetChanged();
+                 editText.setText("");
+             }
 
-            });
-
-
-        }
-    }
+         });
+     }
+}
