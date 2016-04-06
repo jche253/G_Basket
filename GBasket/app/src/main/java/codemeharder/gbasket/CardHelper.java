@@ -80,13 +80,15 @@ public class CardHelper extends SQLiteOpenHelper {
         String query = "Select * FROM " + TABLE_CARDS;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        String result;
+        String result, temp;
 
         ArrayList<CreditCards> resList = new ArrayList<>();
 
         if (cursor.moveToFirst()) {
             do {
                 result = cursor.getString(cursor.getColumnIndex(COLUMN_card));
+                temp = result.substring(result.length() - 4);
+                result = "••••" + temp;
                 CreditCards credcards = new CreditCards();
                 credcards.setCardnum(result);
                 resList.add(credcards);

@@ -78,11 +78,9 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
 
             CardAdapter adapter = new CardAdapter(this, R.layout.card_row, items);
             CardList.setAdapter(adapter);
+
         }
-        else
-        {
-            Toast.makeText(this,"No cards to display",Toast.LENGTH_LONG).show();
-        }
+
 
         if (checkPlayServices()) {
             buildGoogleApiClient();

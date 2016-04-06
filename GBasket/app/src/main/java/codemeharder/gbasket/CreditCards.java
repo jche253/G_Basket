@@ -12,13 +12,15 @@ import java.util.ArrayList;
  */
 public class CreditCards implements Parcelable {
         String cardnum;
+        boolean selected = false;
 
         public CreditCards () {
 
         }
 
-        public CreditCards(String cnum) {
+        public CreditCards(String cnum, boolean selected) {
             this.cardnum = cnum;
+            this.selected = selected;
         }
 
         public String getCardnum() {
@@ -28,6 +30,14 @@ public class CreditCards implements Parcelable {
         public void setCardnum (String cn) {
             this.cardnum = cn;
         }
+
+        public boolean isSelected() {
+        return selected;
+    }
+
+        public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
         // Parcelling part
         public CreditCards(Parcel in){
