@@ -39,7 +39,6 @@ public class HistoryActivity extends Activity {
         newItem.setSerial(receipt.getSerial());
         newItem.setReceiptText(toWrite);
 
-
         adapter = new ReceiptAdapter(this, R.layout.receipt_row,
                 ReceiptArray);
         historyList.setAdapter(adapter);

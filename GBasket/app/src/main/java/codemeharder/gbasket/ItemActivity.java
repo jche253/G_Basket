@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Jimmy Chen on 2/16/2016.
@@ -14,6 +15,10 @@ import android.widget.TextView;
 public class ItemActivity extends Activity {
     Button backBtn, addBtn;
     TextView name, price;
+    BasketHelper basketHelper = new BasketHelper(this);
+
+    //TODO get rid of this when we get cloud database going
+    int prodID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +39,15 @@ public class ItemActivity extends Activity {
             if (format.equals("CODE_128") && content.equals("pizza")) {
                 name.setText("pizza");
                 price.setText("3.44");
+                prodID = 555555;
+
             }
+        } else {
+            name.setText("pizza");
+            price.setText("3.44");
+            prodID = 555555;
         }
+
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,13 +64,30 @@ public class ItemActivity extends Activity {
 
                 //Translate the format/content through database query for the item
 
-                Intent intentBucket = new Intent(getApplicationContext(), YourBasketActivity.class);
-                intentBucket.putExtra("format", format);
-                intentBucket.putExtra("content", content);
-                startActivity(intentBucket);
+                AddData();
+
 
             }
         });
 
     }
+
+    public void AddData() {
+        String price2 = price.getText().toString();
+        double price3 = Double.parseDouble(price2);
+
+
+        boolean isInserted = basketHelper.insertData(prodID, name.getText().toString(), price3);
+        if (isInserted == true) {
+            Toast.makeText(ItemActivity.this, "Item was successfully added.", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), YourBasketActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(ItemActivity.this, "Item was not successfully added.", Toast.LENGTH_LONG).show();
+        }
+
+
+    }
+
+
 }

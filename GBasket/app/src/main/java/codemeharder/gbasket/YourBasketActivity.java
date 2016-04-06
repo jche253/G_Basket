@@ -1,13 +1,10 @@
 package codemeharder.gbasket;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -29,11 +26,17 @@ import java.util.ArrayList;
  */
 public class YourBasketActivity extends Activity implements View.OnClickListener {
     ListView lv;
-    ArrayList<EachItem> items;
-    ArrayList<EachItem> ids = new ArrayList<EachItem>();
+    //ArrayList<EachItem> items;
+    ArrayList<EachItem2> items2;
+    ArrayList<EachItem2> ids = new ArrayList<EachItem2>();
     Button add, pay, remove;
     CustomAdapter1 adapter;
     Context context;
+    BasketHelper basketHelper = new BasketHelper(this);
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +47,17 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         lv = (ListView) findViewById(R.id.listView);
 
         //Sample inflation of items
-        items = new ArrayList<EachItem>();
+        items2 = new ArrayList<EachItem2>();
+        items2 = basketHelper.queryBasket();
+        /*
         items.add(new EachItem("pizza", 3.44, true));
         items.add(new EachItem("burger", 2.00, true));
         items.add(new EachItem("olives", 1.00, true));
         items.add(new EachItem("steak", 12.90, true));
         items.add(new EachItem("fish", 8.76, true));
+        */
 
-        adapter = new CustomAdapter1(this, R.layout.row, items);
+        adapter = new CustomAdapter1(this, R.layout.row, items2);
         lv.setAdapter(adapter);
 
         add = (Button) findViewById(R.id.buttonAdd);
@@ -62,11 +68,10 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
 
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 if (ids.size() > 0) {
                     for (int i = 0; i < ids.size(); i++) {
-                        items.remove(ids.get(i));
+                        items2.remove(ids.get(i));
                     }
                     adapter.notifyDataSetChanged();
                 }
@@ -78,12 +83,15 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 //TODO: Sum up the prices from the receipt
-
+                Context context = getApplicationContext();
+                basketHelper.delete(context);
                 Intent payIntent = new Intent(getApplicationContext(), PaymentActivity.class);
                 //payIntent.putExtra("items")
                 startActivity(payIntent);
             }
         });
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
     }
 
     @Override
@@ -122,8 +130,7 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
                 intentItem.putExtra("content", scanContent);
                 intentItem.putExtra("format", scanFormat);
                 startActivity(intentItem);
-            }
-            else {
+            } else {
                 //TODO Need to make a better error message later
                 //Display some popup dialog and go back to camera/yourbasket
                 Toast toast = Toast.makeText(getApplicationContext(), "No data received", Toast.LENGTH_SHORT);
@@ -137,12 +144,15 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         }
     }
 
+
+
+
     public class CustomAdapter1 extends ArrayAdapter {
-        ArrayList<EachItem> items = null;
+        ArrayList<EachItem2> items = null;
         Context context;
         int resourceID;
 
-        public CustomAdapter1(Context context,int layoutresourceID, ArrayList<EachItem> resource) {
+        public CustomAdapter1(Context context, int layoutresourceID, ArrayList<EachItem2> resource) {
             super(context, R.layout.row, resource);
             this.resourceID = layoutresourceID;
             this.context = context;
@@ -170,16 +180,14 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
             holder.name.setText(items.get(position).getName());
             if (items.get(position).getPrice() == 0) {
                 holder.price.setText("$0.00");
-            }
-            else {
+            } else {
                 NumberFormat formatter = NumberFormat.getCurrencyInstance();
                 String priceStr = formatter.format(items.get(position).getPrice());
                 holder.price.setText(priceStr);
             }
             if (items.get(position).getCheckBox()) {
                 holder.cb.setChecked(false);
-            }
-            else {
+            } else {
                 holder.cb.setVisibility(View.GONE);
             }
 

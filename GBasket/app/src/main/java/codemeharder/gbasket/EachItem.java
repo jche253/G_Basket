@@ -25,4 +25,5 @@ public class EachItem implements Serializable {
     }
     public boolean getCheckBox() {return this.checkbox;}
 
+
 }
