@@ -45,7 +45,6 @@ public class ItemActivity extends Activity {
                 name.setText("pizza");
                 price.setText("3.44");
                 prodID = n;
-
             }
         } else {
             name.setText("pizza");

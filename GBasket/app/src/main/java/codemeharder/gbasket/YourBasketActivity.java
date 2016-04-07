@@ -44,6 +44,9 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         setContentView(R.layout.activity_yourbucket);
         context = this;
 
+        CardHelper carddb = new CardHelper(this, null, null, 1);
+        final ArrayList<CreditCards> checking = carddb.getAllcards();
+
         lv = (ListView) findViewById(R.id.listView);
 
         //Sample inflation of items
@@ -85,9 +88,16 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
                 //TODO: Sum up the prices from the receipt
                 Context context = getApplicationContext();
                 basketHelper.delete(context);
-                Intent payIntent = new Intent(getApplicationContext(), PaymentActivity.class);
-                //payIntent.putExtra("items")
-                startActivity(payIntent);
+                if (checking.size() == 0) {
+                    Intent cardIntent = new Intent(getApplicationContext(), AddCardActivity.class);
+                    startActivity(cardIntent);
+                }
+                else {
+                    Intent payIntent = new Intent(getApplicationContext(), PaymentActivity.class);
+                    //payIntent.putExtra("items")
+                    startActivity(payIntent);
+                }
+
             }
         });
         // ATTENTION: This was auto-generated to implement the App Indexing API.

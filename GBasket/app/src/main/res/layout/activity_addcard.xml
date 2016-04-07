@@ -26,6 +26,8 @@
         android:ems="10"
         android:id="@+id/name"
         android:contextClickable="false"
+        android:imeOptions="actionUnspecified"
+        android:maxLines="1" android:singleLine="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -38,12 +40,11 @@
         android:ems="10"
         android:id="@+id/card"
         android:text="Card Number"
+        android:imeOptions="actionUnspecified"
+        android:maxLines="1" android:singleLine="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/name"
         android:layout_alignParentLeft="true" />
-
-
-
 
     <EditText
         android:layout_width="100dp"
@@ -52,6 +53,8 @@
         android:ems="10"
         android:id="@+id/eMonth"
         android:text="Month(MM)"
+        android:imeOptions="actionUnspecified"
+        android:maxLines="1" android:singleLine="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/card"
         android:layout_alignParentLeft="true" />
@@ -63,6 +66,8 @@
         android:ems="10"
         android:id="@+id/eYear"
         android:text="Year(YYYY)"
+        android:imeOptions="actionUnspecified"
+        android:maxLines="1" android:singleLine="true"
         android:layout_alignTop="@+id/eMonth"
         android:layout_toRightOf="@+id/eMonth"
         android:layout_toEndOf="@+id/eMonth" />
@@ -74,6 +79,8 @@
         android:ems="10"
         android:id="@+id/CV"
         android:text="CCV"
+        android:imeOptions="actionUnspecified"
+        android:maxLines="1" android:singleLine="true"
         android:layout_alignTop="@+id/card"
         android:layout_toRightOf="@+id/card"
         android:layout_toEndOf="@+id/card" />
