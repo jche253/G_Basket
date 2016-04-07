@@ -65,8 +65,9 @@ public class AddCardActivity extends Activity {
                 com.stripe.android.model.Card CreditCard = new com.stripe.android.model.Card(cc, ExpireMonth, ExpireYear, CVV);
 
                 //Check if card is valid
-                if(!CreditCard.validateCard() || !CreditCard.validateCVC() ||
-                        !CreditCard.validateExpiryDate()){
+                if(!CreditCard.validateCard()
+                        /*|| !CreditCard.validateCVC() ||
+                        !CreditCard.validateExpiryDate()*/){
                     new AlertDialog.Builder(AddCardActivity.this)
                             .setTitle("Invalid Card")
                             .setMessage("Please enter a valid card")
