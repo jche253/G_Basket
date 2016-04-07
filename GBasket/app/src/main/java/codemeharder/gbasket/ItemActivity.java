@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 /**
  * Created by Jimmy Chen on 2/16/2016.
  */
@@ -28,24 +30,27 @@ public class ItemActivity extends Activity {
         backBtn = (Button) findViewById(R.id.backBtn);
         addBtn = (Button) findViewById(R.id.addBtn);
         name = (TextView) findViewById(R.id.itemName_TextView);
-        price = (TextView) findViewById(R.id.price_textView);
+        price = (TextView) findViewById(R.id.price_TextView);
 
         Intent i = getIntent();
         String format = i.getStringExtra("format");
         String content = i.getStringExtra("content");
 
+        //TODO just a random ID
+        Random rnd = new Random();
+        int n = 1000000 + rnd.nextInt(9000000);
         //TODO Fix with database
         if (format != null && content != null) {
             if (format.equals("CODE_128") && content.equals("pizza")) {
                 name.setText("pizza");
                 price.setText("3.44");
-                prodID = 555555;
+                prodID = n;
 
             }
         } else {
             name.setText("pizza");
             price.setText("3.44");
-            prodID = 555555;
+            prodID = n;
         }
 
         backBtn.setOnClickListener(new View.OnClickListener() {

@@ -26,13 +26,13 @@ public class AddCardActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcard);
 
-        addCard = (Button) findViewById(R.id.btnSubmit);
-        cancel = (Button) findViewById(R.id.btnCancel);
+        addCard = (Button) findViewById(R.id.addCard);
+        cancel = (Button) findViewById(R.id.cancel);
         name = (EditText) findViewById(R.id.name);
-        card = (EditText) findViewById(R.id.ccNum);
-        eMonth = (EditText) findViewById(R.id.expMonth);
-        eYear = (EditText) findViewById(R.id.expYear);
-        CV = (EditText) findViewById(R.id.CVC);
+        card = (EditText) findViewById(R.id.card);
+        eMonth = (EditText) findViewById(R.id.eMonth);
+        eYear = (EditText) findViewById(R.id.eYear);
+        CV = (EditText) findViewById(R.id.CV);
 
         addCard.setOnClickListener(new View.OnClickListener() {
             @Override
