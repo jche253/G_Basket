@@ -37,15 +37,15 @@ public class ItemActivity extends Activity {
         //TODO Fix with database
         if (format != null && content != null) {
             if (format.equals("CODE_128") && content.equals("pizza")) {
-                name.setText("pizza");
+                name.setText("chicken");
                 price.setText("3.44");
-                prodID = 555555;
+                prodID = 12345;
 
             }
         } else {
-            name.setText("pizza");
+            name.setText("chicken");
             price.setText("3.44");
-            prodID = 555555;
+            prodID = 12345;
         }
 
         backBtn.setOnClickListener(new View.OnClickListener() {

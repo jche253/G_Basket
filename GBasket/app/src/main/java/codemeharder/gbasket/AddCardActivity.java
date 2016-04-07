@@ -44,25 +44,29 @@ public class AddCardActivity extends Activity {
                 int ExpireMonth = 0;
                 try {
                     ExpireMonth = Integer.parseInt(eMonth.getText().toString());
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException e){
                     ExpireMonth = 0;
                 }
 
                 int ExpireYear = 0;
                 try {
                     ExpireYear = Integer.parseInt(eYear.getText().toString());
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException e){
                     ExpireYear = 0;
                 }
 
+                String cc = card.getText().toString();
                 String CVV = CV.getText().toString();
-                String UserName = name.getText().toString();
-                String CreditCardNum = card.getText().toString();
 
-                if (UserName == null || CreditCardNum == null || !(CreditCardNum.matches("^-?\\d+$"))
-                        || CreditCardNum.length() < 15 || CVV == null || !(CVV.matches("^-?\\d+$"))
-                        || ExpireMonth <= 0 || ExpireYear <= 0) {
+                 /* if (UserName == null || CreditCardNum == null || !(CreditCardNum.matches("^-?\\d+$"))
+                        || CVV == null || !(CVV.matches("^-?\\d+$"))
+                        || ExpireMonth <= 0 || ExpireYear <= 0)*/
 
+                com.stripe.android.model.Card CreditCard = new com.stripe.android.model.Card(cc, ExpireMonth, ExpireYear, CVV);
+
+                //Check if card is valid
+                if(!CreditCard.validateCard() || !CreditCard.validateCVC() ||
+                        !CreditCard.validateExpiryDate()){
                     new AlertDialog.Builder(AddCardActivity.this)
                             .setTitle("Invalid Card")
                             .setMessage("Please enter a valid card")
