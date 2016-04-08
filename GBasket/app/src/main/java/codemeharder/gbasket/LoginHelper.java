@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 /**
  * Created by Alfred Wong on 2/23/2016.
  * Edited by Jimmy Chen on 4/4/2016
@@ -97,6 +99,30 @@ public class LoginHelper extends SQLiteOpenHelper {
 
     }
 
+    public ArrayList<String> getAllData () {
+        String query = "Select * FROM " + TABLE_NAME;
+        ArrayList<String> userData = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            cursor.moveToFirst();
+            userData.add(cursor.getString(0));
+            userData.add(cursor.getString(1));
+            userData.add(cursor.getString(2));
+            userData.add(cursor.getString(3));
+
+            cursor.close();
+            db.close();
+            return userData;
+        } else {
+            cursor.close();
+            db.close();
+            return null;
+        }
+    }
+
     public String seeUser() {
         String query = "Select * FROM " + TABLE_NAME;
 
@@ -116,6 +142,14 @@ public class LoginHelper extends SQLiteOpenHelper {
             return null;
         }
 
+    }
+
+    public void updatePassword(String id, String oldPass, String newPass) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(PASSWORD, newPass);
+        db.update(TABLE_NAME, cv, ID + "= \'" + id + "\'", null);
+        db.close();
     }
 
     public boolean checkAccountCount() {

@@ -58,6 +58,13 @@ public class LaunchPadActivity extends Activity implements View.OnClickListener 
             }
         });
 
+        account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent accIntent = new Intent(getApplicationContext(), AccountActivity.class);
+                startActivity(accIntent);
+            }
+        });
     }
 
     @Override
