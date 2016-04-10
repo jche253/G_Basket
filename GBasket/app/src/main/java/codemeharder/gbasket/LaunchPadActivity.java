@@ -58,6 +58,13 @@ public class LaunchPadActivity extends Activity implements View.OnClickListener 
             }
         });
 
+        account.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent accIntent = new Intent(getApplicationContext(), AccountActivity.class);
+                startActivity(accIntent);
+            }
+        });
     }
 
     @Override
@@ -71,14 +78,14 @@ public class LaunchPadActivity extends Activity implements View.OnClickListener 
              */
 
             //TODO (1) Use for actual barcode
-            //IntentIntegrator scanIntegrator = new IntentIntegrator(this);
-            //scanIntegrator.setCaptureActivity(CaptureActivityAnyOrientation.class);
-            //scanIntegrator.setOrientationLocked(false);
-            //scanIntegrator.initiateScan();
+            IntentIntegrator scanIntegrator = new IntentIntegrator(this);
+            scanIntegrator.setCaptureActivity(CaptureActivityAnyOrientation.class);
+            scanIntegrator.setOrientationLocked(false);
+            scanIntegrator.initiateScan();
 
             //TODO (2) to sandbox the application without the scanner
-            Intent intent = new Intent(getApplicationContext(), ItemActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent(getApplicationContext(), ItemActivity.class);
+            //startActivity(intent);
         }
     }
 

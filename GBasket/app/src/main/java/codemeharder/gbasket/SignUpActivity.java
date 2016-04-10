@@ -45,7 +45,7 @@ public class SignUpActivity extends Activity {
                 if (email.matches("") || fname.matches("") || lname.matches("")) {
                     Toast.makeText(SignUpActivity.this, "Please fill in your first and last name and email", Toast.LENGTH_LONG).show();
                 }
-                else if (pass1.length() < 6 || !isAcceptablePassword(pass1)) {
+                else if (pass1.length() < 8 || !isAcceptablePassword(pass1)) {
                     Toast.makeText(SignUpActivity.this, "Please type a password that is at least 8 characters" +
                             " long and contains at least 1 Upper/Lowercase letter, a symbol, and a number",
                             Toast.LENGTH_LONG).show();

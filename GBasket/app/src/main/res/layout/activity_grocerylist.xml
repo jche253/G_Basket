@@ -23,7 +23,7 @@
         android:icon="@android:drawable/ic_menu_add"
         android:textSize="40px"
         android:textAlignment="center"
-        android:background="@color/abc_search_url_text_normal"
+        android:background="@color/red"
         android:elegantTextHeight="false"
         android:layout_alignBottom="@+id/txtInput"
         android:layout_alignTop="@+id/txtInput"

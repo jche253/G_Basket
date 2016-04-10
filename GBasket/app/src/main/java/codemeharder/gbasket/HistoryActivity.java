@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ public class HistoryActivity extends Activity {
     ReceiptAdapter adapter;
     ArrayList<ReceiptHistItem> ReceiptArray = new ArrayList<>();
     ReceiptHandler dbHandler = new ReceiptHandler(this, null, null, 3);
+    Button exit, back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public class HistoryActivity extends Activity {
         historyList = (ListView) findViewById(R.id.historyLV);
         System.gc();
 
+        exit = (Button) findViewById(R.id.exit);
+        back = (Button) findViewById(R.id.back);
         //populate adapter with sqlite database elements
         ReceiptArray = getAllTuples();
 
@@ -47,9 +52,25 @@ public class HistoryActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view.setFocusable(false);
-               // Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_LONG).show();
+                // Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_LONG).show();
                 //TODO Fix this to query instead of pulling a default receipt
                 findReceipt(adapter.receipts.get(position).getSerial());
+            }
+        });
+
+        exit.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
+
+        back.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LaunchPadActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -69,4 +90,7 @@ public class HistoryActivity extends Activity {
         return dbHandler.getAllValues();
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 }

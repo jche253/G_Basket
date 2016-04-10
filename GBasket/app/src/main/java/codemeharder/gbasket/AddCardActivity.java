@@ -29,13 +29,13 @@ public class AddCardActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addcard);
 
-        addCard = (Button) findViewById(R.id.btnSubmit);
-        cancel = (Button) findViewById(R.id.btnCancel);
+        addCard = (Button) findViewById(R.id.addCard);
+        cancel = (Button) findViewById(R.id.cancel);
         name = (EditText) findViewById(R.id.name);
-        card = (EditText) findViewById(R.id.ccNum);
-        eMonth = (EditText) findViewById(R.id.expMonth);
-        eYear = (EditText) findViewById(R.id.expYear);
-        CV = (EditText) findViewById(R.id.CVC);
+        card = (EditText) findViewById(R.id.card);
+        eMonth = (EditText) findViewById(R.id.eMonth);
+        eYear = (EditText) findViewById(R.id.eYear);
+        CV = (EditText) findViewById(R.id.CV);
 
         addCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,25 +44,30 @@ public class AddCardActivity extends Activity {
                 int ExpireMonth = 0;
                 try {
                     ExpireMonth = Integer.parseInt(eMonth.getText().toString());
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException e){
                     ExpireMonth = 0;
                 }
 
                 int ExpireYear = 0;
                 try {
                     ExpireYear = Integer.parseInt(eYear.getText().toString());
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException e){
                     ExpireYear = 0;
                 }
 
+                String cc = card.getText().toString();
                 String CVV = CV.getText().toString();
-                String UserName = name.getText().toString();
-                String CreditCardNum = card.getText().toString();
 
-                if (UserName == null || CreditCardNum == null || !(CreditCardNum.matches("^-?\\d+$"))
-                        || CreditCardNum.length() < 15 || CVV == null || !(CVV.matches("^-?\\d+$"))
-                        || ExpireMonth <= 0 || ExpireYear <= 0) {
+                 /* if (UserName == null || CreditCardNum == null || !(CreditCardNum.matches("^-?\\d+$"))
+                        || CVV == null || !(CVV.matches("^-?\\d+$"))
+                        || ExpireMonth <= 0 || ExpireYear <= 0)*/
 
+                com.stripe.android.model.Card CreditCard = new com.stripe.android.model.Card(cc, ExpireMonth, ExpireYear, CVV);
+
+                //Check if card is valid
+                if(!CreditCard.validateCard()
+                        /*|| !CreditCard.validateCVC() ||
+                        !CreditCard.validateExpiryDate()*/){
                     new AlertDialog.Builder(AddCardActivity.this)
                             .setTitle("Invalid Card")
                             .setMessage("Please enter a valid card")

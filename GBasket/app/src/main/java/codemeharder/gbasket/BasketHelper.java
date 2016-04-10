@@ -102,4 +102,9 @@ public class BasketHelper extends SQLiteOpenHelper {
         items.add(eachItem2);
     }
 
+    public void deleteRow(int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, ID+"="+id, null);
+    }
+
 }

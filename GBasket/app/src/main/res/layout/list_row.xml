@@ -26,6 +26,6 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:text="Delete"
-        android:textColor="#0099CC" />
+        android:textColor="@color/red" />
 
 </RelativeLayout>
