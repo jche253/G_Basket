@@ -19,9 +19,7 @@ import java.io.Serializable;
             this.price = price;
             this.checkbox = checkBox;
         }
-        public EachItem2(){
 
-        }
         public String getName(){
             return this.name;
         }

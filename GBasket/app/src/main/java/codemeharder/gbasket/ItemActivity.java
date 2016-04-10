@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static java.lang.Math.random;
+
 /**
  * Created by Jimmy Chen on 2/16/2016.
  */
@@ -39,13 +41,14 @@ public class ItemActivity extends Activity {
             if (format.equals("CODE_128") && content.equals("pizza")) {
                 name.setText("pizza");
                 price.setText("3.44");
-                prodID = 555555;
+                prodID = (int) (1000 * (random()));
+                ;
 
             }
         } else {
             name.setText("pizza");
             price.setText("3.44");
-            prodID = 555555;
+            prodID = (int) (1000 * (random()));
         }
 
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +81,7 @@ public class ItemActivity extends Activity {
 
 
         boolean isInserted = basketHelper.insertData(prodID, name.getText().toString(), price3);
-        if (isInserted == true) {
+        if (isInserted) {
             Toast.makeText(ItemActivity.this, "Item was successfully added.", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), YourBasketActivity.class);
             startActivity(intent);

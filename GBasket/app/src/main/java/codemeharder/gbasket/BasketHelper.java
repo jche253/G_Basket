@@ -19,6 +19,15 @@ public class BasketHelper extends SQLiteOpenHelper {
     public static final String ITEMNAME = "Item_Name";
     public static final String ITEMPRICE = "Item_Price";
 
+    ArrayList<EachItem2> items = new ArrayList<EachItem2>();
+    public int currentID;
+    public String currentName;
+    public double currentPrice;
+    EachItem2 eachItem2 = new EachItem2(1, "Nothing", 0.00, true);
+
+
+
+
     public BasketHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
 
@@ -46,18 +55,25 @@ public class BasketHelper extends SQLiteOpenHelper {
         contentValues.put(ITEMNAME, productname);
         contentValues.put(ITEMPRICE, productprice);
         long result = db.insert(TABLE_NAME, null, contentValues);
+        currentID = productid;
+        currentName = productname;
+        currentPrice = productprice;
+        eachItem2 = addcurrent();
+
         if (result == -1) {
             return false;
         }
-        else return true;
+        else {
+            return true;
+        }
     }
 
     public ArrayList<EachItem2> queryBasket() {
         String query = "Select * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        ArrayList<EachItem2> items = new ArrayList<EachItem2>();
-        EachItem2 eachItem2 = new EachItem2();
+        setCurrent();
+
 
 
         cursor.moveToFirst();
@@ -66,6 +82,7 @@ public class BasketHelper extends SQLiteOpenHelper {
                 eachItem2.setID(cursor.getInt(0));
                 eachItem2.setName(cursor.getString(1));
                 eachItem2.setPrice(cursor.getDouble(2));
+
                 items.add(eachItem2);
             }
         } finally {
@@ -75,6 +92,14 @@ public class BasketHelper extends SQLiteOpenHelper {
         return items;
 
 
+    }
+
+    public EachItem2 addcurrent(){
+        EachItem2 currentItem = new EachItem2(currentID, currentName, currentPrice, true);
+        return currentItem;
+    }
+    public void setCurrent(){
+        items.add(eachItem2);
     }
 
 }
