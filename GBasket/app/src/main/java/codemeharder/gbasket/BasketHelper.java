@@ -74,8 +74,6 @@ public class BasketHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         setCurrent();
 
-
-
         cursor.moveToFirst();
         try {
             while (cursor.moveToNext()) {
