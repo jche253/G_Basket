@@ -2,15 +2,9 @@ package codemeharder.gbasket;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.Toast;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -20,6 +14,8 @@ import com.google.zxing.integration.android.IntentResult;
  */
 public class LaunchPadActivity extends Activity implements View.OnClickListener {
     Button pushscan, account, setting, glist, basket;
+    String Pname, priceStr;
+    Double Pprice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

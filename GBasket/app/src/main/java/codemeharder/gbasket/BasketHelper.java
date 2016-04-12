@@ -25,7 +25,7 @@ public class BasketHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (Item_Name TEXT PRIMARY KEY, Item_Price REAL)");
+        db.execSQL("create table " + TABLE_NAME + " (Item_Name TEXT, Item_Price REAL)");
     }
 
     @Override
@@ -34,8 +34,9 @@ public class BasketHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void delete(Context context){
-        context.deleteDatabase(DATABASE_NAME);
+    public void deletedb(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, null, null);
     }
 
     public boolean insertData(String productname, double productprice) {
@@ -65,6 +66,7 @@ public class BasketHelper extends SQLiteOpenHelper {
                 EachItem eachItem2 = new EachItem();
                 eachItem2.setName(cursor.getString(0));
                 eachItem2.setPrice(cursor.getDouble(1));
+                eachItem2.setCheckBOx(true);
                 list.add(eachItem2);
             }
         } finally {

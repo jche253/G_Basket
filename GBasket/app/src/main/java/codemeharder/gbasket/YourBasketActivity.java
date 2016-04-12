@@ -43,6 +43,9 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yourbucket);
         context = this;
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        Double price = intent.getDoubleExtra("price", 0);
 
         CardHelper carddb = new CardHelper(this, null, null, 1);
         final ArrayList<CreditCards> checking = carddb.getAllcards();
@@ -52,6 +55,8 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         //Sample inflation of items
         items2 = new ArrayList<EachItem>();
         items2 = basketHelper.queryBasket();
+        EachItem newItem = new EachItem(name, price, true);
+        items2.add(newItem);
 
         adapter = new CustomAdapter1(this, R.layout.row, items2);
         lv.setAdapter(adapter);
@@ -67,6 +72,7 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
             public void onClick(View v) {
                 if (ids.size() > 0) {
                     for (int i = 0; i < ids.size(); i++) {
+                        basketHelper.deleteRow(ids.get(i).getName());
                         items2.remove(ids.get(i));
                     }
                     adapter.notifyDataSetChanged();
@@ -79,8 +85,7 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 //TODO: Sum up the prices from the receipt
-                Context context = getApplicationContext();
-                basketHelper.delete(context);
+                basketHelper.deletedb();
                 if (checking.size() == 0) {
                     Intent cardIntent = new Intent(getApplicationContext(), AddCardActivity.class);
                     startActivity(cardIntent);
@@ -93,6 +98,12 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
 
     @Override

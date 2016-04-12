@@ -20,6 +20,7 @@ public class HistoryActivity extends Activity {
     ReceiptAdapter adapter;
     ArrayList<ReceiptHistItem> ReceiptArray = new ArrayList<>();
     ReceiptHandler dbHandler = new ReceiptHandler(this, null, null, 3);
+    BasketHelper basketHelper = new BasketHelper(this);
     Button exit, back;
 
     @Override
@@ -61,6 +62,7 @@ public class HistoryActivity extends Activity {
         exit.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                basketHelper.deletedb();
                 finish();
                 System.exit(0);
             }

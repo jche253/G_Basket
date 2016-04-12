@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import android.util.Pair;
 import android.widget.Toast;
 
-import com.example.jimmychen.myapplication.endpoint.myApi.MyApi;
+import com.example.jimmychen.myapplication.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
@@ -14,12 +14,12 @@ import java.io.IOException;
 /**
  * Created by Jimmy Chen on 3/24/2016.
  */
-public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
+public class EndpointsAsyncTask extends AsyncTask<Triplet, Void, String> {
     private static MyApi myApiService = null;
     private Context context;
 
     @Override
-    protected String doInBackground(Pair<Context, String>... params) {
+    protected String doInBackground(Triplet... params) {
         if (myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
                     .setRootUrl("https://testing-1261.appspot.com/_ah/api");
@@ -28,13 +28,13 @@ public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, S
             myApiService = builder.build();
         }
 
-
-        context = params[0].first;
-        String name = params[0].second;
+        context = params[0].getContext();
+        String format = params[0].getformat();
+        String content = params[0].getcontent();
 
 
         try {
-            return myApiService.sayHi(name).execute().getData();
+            return myApiService.productQuery(format, content).execute().getDataPQuery();
         } catch (IOException e) {
             return e.getMessage();
         }
