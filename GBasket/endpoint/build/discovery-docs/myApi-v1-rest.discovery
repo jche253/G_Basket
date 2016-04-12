@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/cynWIQLXkz2uhjlJXtZneQaPaR0\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/2GTGOwUpOduugX_hdl-9HJ1kvds\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -77,6 +77,9 @@
    "id": "MyBean",
    "type": "object",
    "properties": {
+    "content": {
+     "type": "string"
+    },
     "data": {
      "type": "string"
     },
@@ -86,26 +89,69 @@
     "fname": {
      "type": "string"
     },
+    "format": {
+     "type": "string"
+    },
     "lname": {
      "type": "string"
+    },
+    "pname": {
+     "type": "string"
+    },
+    "price": {
+     "type": "number",
+     "format": "double"
     }
    }
   }
  },
  "methods": {
-  "query": {
-   "id": "myApi.query",
-   "path": "test/{name}",
+  "loginquery": {
+   "id": "myApi.loginquery",
+   "path": "test/{email}/{pw}",
    "httpMethod": "POST",
    "parameters": {
-    "name": {
+    "email": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    },
+    "pw": {
      "type": "string",
      "required": true,
      "location": "path"
     }
    },
    "parameterOrder": [
-    "name"
+    "email",
+    "pw"
+   ],
+   "response": {
+    "$ref": "MyBean"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "product_query": {
+   "id": "myApi.product_query",
+   "path": "pquery/{format}/{content}",
+   "httpMethod": "POST",
+   "parameters": {
+    "content": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    },
+    "format": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "format",
+    "content"
    ],
    "response": {
     "$ref": "MyBean"

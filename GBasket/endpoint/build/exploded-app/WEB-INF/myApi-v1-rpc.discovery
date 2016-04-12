@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/cynWIQLXkz2uhjlJXtZneQaPaR0\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/2GTGOwUpOduugX_hdl-9HJ1kvds\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -75,6 +75,9 @@
    "id": "MyBean",
    "type": "object",
    "properties": {
+    "content": {
+     "type": "string"
+    },
     "data": {
      "type": "string"
     },
@@ -84,23 +87,61 @@
     "fname": {
      "type": "string"
     },
+    "format": {
+     "type": "string"
+    },
     "lname": {
      "type": "string"
+    },
+    "pname": {
+     "type": "string"
+    },
+    "price": {
+     "type": "number",
+     "format": "double"
     }
    }
   }
  },
  "methods": {
-  "myApi.query": {
-   "id": "myApi.query",
+  "myApi.loginquery": {
+   "id": "myApi.loginquery",
    "parameters": {
-    "name": {
+    "email": {
+     "type": "string",
+     "required": true
+    },
+    "pw": {
      "type": "string",
      "required": true
     }
    },
    "parameterOrder": [
-    "name"
+    "email",
+    "pw"
+   ],
+   "returns": {
+    "$ref": "MyBean"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "myApi.product_query": {
+   "id": "myApi.product_query",
+   "parameters": {
+    "content": {
+     "type": "string",
+     "required": true
+    },
+    "format": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "format",
+    "content"
    ],
    "returns": {
     "$ref": "MyBean"

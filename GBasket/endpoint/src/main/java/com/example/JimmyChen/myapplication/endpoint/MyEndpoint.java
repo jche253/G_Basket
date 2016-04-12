@@ -43,10 +43,9 @@ public class MyEndpoint {
         return response;
     }
 
-    @ApiMethod(name = "query")
-    public MyBean test(@Named("name") String name) {
+    @ApiMethod(name = "loginquery")
+    public MyBean test(@Named("email") String email, @Named("pw") String pw) {
         MyBean response = new MyBean();
-
         String url = null;
         if (SystemProperty.environment.value() ==
                 SystemProperty.Environment.Value.Production) {
@@ -73,7 +72,6 @@ public class MyEndpoint {
 
         java.sql.Connection conn = null;
         java.sql.ResultSet rs;
-        ArrayList<String> arr = new ArrayList<>();
         try {
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
@@ -82,12 +80,14 @@ public class MyEndpoint {
         try {
             Statement stmt = conn.createStatement();
             try {
-                rs = stmt.executeQuery("SELECT * FROM product");
-                while (rs.next()) {
-                    String em = rs.getString(1);
-                    arr.add(em);
+                rs = stmt.executeQuery
+                        ("SELECT fname, lname FROM product WHERE email = '"+email+ "' AND pw = '" + pw +"'");
+                if (rs.next()) {
+                    String fn = rs.getString(1);
+                    String ln = rs.getString(2);
+                    response.setFname(fn);
+                    response.setLname(ln);
                 }
-                response.setData(arr.get(0));
                 return response;
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -100,5 +100,63 @@ public class MyEndpoint {
             return response;
         }
 
+    }
+
+    @ApiMethod(name = "product_query")
+    public MyBean pquery(@Named("format") String format, @Named("content") String content) {
+        String url = null;
+        if (SystemProperty.environment.value() ==
+                SystemProperty.Environment.Value.Production) {
+            // Connecting from App Engine.
+            // Load the class that provides the "jdbc:google:mysql://"
+            // prefix.
+            try {
+                Class.forName("com.mysql.jdbc.GoogleDriver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            url =
+                    "jdbc:google:mysql://testing-1261:testdb/testdb?user=root";
+        } else {
+            // Connecting from an external network.
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            url = "jdbc:mysql://173.194.87.130:3306?user=root";
+        }
+        MyBean response = new MyBean();
+        java.sql.Connection conn = null;
+        java.sql.ResultSet rs;
+        ArrayList<String> arr = new ArrayList<>();
+        try {
+            conn = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            Statement stmt = conn.createStatement();
+            try {
+                rs = stmt.executeQuery
+                        ("SELECT pname, price FROM product WHERE format = '" +format+ "' AND content = '" + content + "'");
+                if (rs.next()) {
+                    String pn = rs.getString(1);
+                    double pr = rs.getDouble(2);
+                    response.setPname(pn);
+                    response.setPrice(pr);
+
+                }
+                return response;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                response.setData(e + " ");
+                return response;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.setData(e + " ");
+            return response;
+        }
     }
 }

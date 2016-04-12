@@ -7,6 +7,11 @@ public class MyBean {
     String pw;
     String fname;
     String lname;
+    String content;
+    String format;
+    String pname;
+    Double price;
+
 
     public MyBean() {
 
@@ -44,6 +49,34 @@ public class MyBean {
 
     public void setLname(String lname) {
         this.lname = lname;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String data) {
+        this.content = content;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setFormat(String data) {
+        this.format = format;
     }
 
     public MyBean(String email) {
