@@ -27,8 +27,8 @@ import java.util.ArrayList;
 public class YourBasketActivity extends Activity implements View.OnClickListener {
     ListView lv;
     //ArrayList<EachItem> items;
-    ArrayList<EachItem2> items2;
-    ArrayList<EachItem2> ids = new ArrayList<EachItem2>();
+    ArrayList<EachItem> items2;
+    ArrayList<EachItem> ids = new ArrayList<EachItem>();
     Button add, pay, remove;
     CustomAdapter1 adapter;
     Context context;
@@ -50,15 +50,8 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         lv = (ListView) findViewById(R.id.listView);
 
         //Sample inflation of items
-        items2 = new ArrayList<EachItem2>();
+        items2 = new ArrayList<EachItem>();
         items2 = basketHelper.queryBasket();
-        /*
-        items.add(new EachItem("pizza", 3.44, true));
-        items.add(new EachItem("burger", 2.00, true));
-        items.add(new EachItem("olives", 1.00, true));
-        items.add(new EachItem("steak", 12.90, true));
-        items.add(new EachItem("fish", 8.76, true));
-        */
 
         adapter = new CustomAdapter1(this, R.layout.row, items2);
         lv.setAdapter(adapter);
@@ -100,8 +93,6 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
 
             }
         });
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
     }
 
     @Override
@@ -154,15 +145,12 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         }
     }
 
-
-
-
     public class CustomAdapter1 extends ArrayAdapter {
-        ArrayList<EachItem2> items = null;
+        ArrayList<EachItem> items = null;
         Context context;
         int resourceID;
 
-        public CustomAdapter1(Context context, int layoutresourceID, ArrayList<EachItem2> resource) {
+        public CustomAdapter1(Context context, int layoutresourceID, ArrayList<EachItem> resource) {
             super(context, R.layout.row, resource);
             this.resourceID = layoutresourceID;
             this.context = context;

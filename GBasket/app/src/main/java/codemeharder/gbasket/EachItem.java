@@ -11,6 +11,10 @@ public class EachItem implements Serializable {
     double price;
     boolean checkbox;
 
+    EachItem() {
+
+    }
+
     EachItem(String name, double price, boolean checkBox) {
         this.name = name;
         this.price = price;
@@ -24,6 +28,10 @@ public class EachItem implements Serializable {
         return this.price;
     }
     public boolean getCheckBox() {return this.checkbox;}
+
+    public void setName(String nname) {this.name = nname;}
+    public void setPrice(Double pprice) {this.price = pprice;}
+    public void setCheckBOx(boolean tf) {this.checkbox = tf;}
 
 
 }

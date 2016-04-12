@@ -44,19 +44,10 @@ public class ItemActivity extends Activity {
             if (format.equals("CODE_128") && content.equals("pizza")) {
                 name.setText("pizza");
                 price.setText("3.44");
-
-                prodID = (int) (1000 * (random()));
-
-
-
             }
         } else {
             name.setText("pizza");
             price.setText("3.44");
-
-            prodID = (int) (1000 * (random()));
-
-
         }
 
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -74,31 +65,20 @@ public class ItemActivity extends Activity {
                 String content = getIntent().getStringExtra("content");
 
                 //Translate the format/content through database query for the item
+                String price2 = price.getText().toString();
+                double price3 = Double.parseDouble(price2);
 
-                AddData();
 
-
+                boolean isInserted = basketHelper.insertData(name.getText().toString(), price3);
+                if (isInserted) {
+                    Toast.makeText(ItemActivity.this, "Item was successfully added.", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), YourBasketActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(ItemActivity.this, "Item was not successfully added.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
     }
-
-    public void AddData() {
-        String price2 = price.getText().toString();
-        double price3 = Double.parseDouble(price2);
-
-
-        boolean isInserted = basketHelper.insertData(prodID, name.getText().toString(), price3);
-        if (isInserted) {
-            Toast.makeText(ItemActivity.this, "Item was successfully added.", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(getApplicationContext(), YourBasketActivity.class);
-            startActivity(intent);
-        } else {
-            Toast.makeText(ItemActivity.this, "Item was not successfully added.", Toast.LENGTH_LONG).show();
-        }
-
-
-    }
-
-
 }
