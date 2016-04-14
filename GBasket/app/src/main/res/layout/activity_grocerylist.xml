@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Grocery List"
         android:textSize="32dp"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="37dp"
         android:textColor="@color/red"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -42,11 +42,11 @@
         android:layout_height="wrap_content"
         android:hint="New item"
         android:layout_below="@+id/textView"
-        android:layout_toLeftOf="@+id/btAdd"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView"
         android:layout_alignLeft="@+id/listView"
-        android:layout_alignStart="@+id/listView" />
+        android:layout_alignStart="@+id/listView"
+        android:layout_marginTop="36dp"
+        android:layout_toLeftOf="@+id/btAdd"
+        android:layout_toStartOf="@+id/btAdd" />
 
     <ListView
         android:id="@+id/listView"
