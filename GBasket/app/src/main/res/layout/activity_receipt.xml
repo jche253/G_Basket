@@ -39,7 +39,7 @@
             android:text="Save"
             android:id="@+id/save"
             android:drawableTop="@drawable/save"
-            android:textColor="@color/silver"
+            android:textColor="@color/white"
             android:drawableTint="@color/white"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
