@@ -7,76 +7,82 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.hanzgg.myapplication.MainActivity"
+    tools:context="codemeharder.gbasket.AddCardActivity"
     android:background="@drawable/aaaa">
 
-    <EditText
-        android:layout_width="280dp"
-        android:layout_height="40dp"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:hint="Name"
-        android:id="@+id/name"
-        android:layout_marginTop="101dp"
-        android:background="#b4ffffff"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="32dp"
         android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
-
-    <EditText
-        android:layout_width="280dp"
-        android:layout_height="40dp"
-        android:inputType="number"
-        android:ems="10"
-        android:hint="Credit Card Number"
-        android:id="@+id/ccNum"
-        android:background="#b4ffffff"
-
-        android:layout_below="@+id/name"
-        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="20dp"
-        android:layout_alignEnd="@+id/name"
-        android:layout_alignRight="@+id/name"/>
-
-    <EditText
-        android:layout_width="45dp"
-        android:layout_height="40dp"
-        android:inputType="number"
-        android:ems="10"
-        android:hint="CV"
-        android:id="@+id/CVC"
-        android:background="#b4ffffff"
-        android:layout_alignTop="@+id/ccNum"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_alignRight="@+id/textView"
-        android:layout_marginEnd="-39dp"
-        android:layout_marginRight="-39dp"/>
-
-    <EditText
-        android:layout_width="131dp"
-        android:layout_height="40dp"
-        android:inputType="number"
-        android:ems="10"
-        android:hint="Month"
-        android:id="@+id/expMonth"
-        android:layout_marginTop="20dp"
-        android:background="#b4ffffff"
-        android:layout_below="@+id/ccNum"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
+        android:background="#30816c61"
+        android:layout_above="@+id/btnSubmit">
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:hint="Name"
+            android:id="@+id/name"
+            android:background="#b4ffffff"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <EditText
-        android:layout_width="131dp"
-        android:layout_height="40dp"
-        android:inputType="number"
-        android:ems="10"
-        android:hint="Year"
-        android:id="@+id/expYear"
-        android:background="#b4ffffff"
-        android:layout_alignTop="@+id/expMonth"
-        android:layout_alignEnd="@+id/ccNum"
-        android:layout_alignRight="@+id/ccNum"/>
+        <EditText
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:ems="10"
+            android:hint="Credit Card Number"
+            android:id="@+id/ccNum"
+            android:background="#b4ffffff"
+
+            android:layout_below="@+id/name"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="28dp" />
+
+        <EditText
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:ems="10"
+            android:hint="CV"
+            android:id="@+id/CVC"
+            android:background="#b4ffffff"
+            android:layout_above="@+id/expYear"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="131dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:ems="10"
+            android:hint="Month"
+            android:id="@+id/expMonth"
+            android:layout_marginTop="54dp"
+            android:layout_below="@+id/ccNum"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:backgroundTint="@color/tan" />
+
+        <EditText
+            android:layout_width="131dp"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:ems="10"
+            android:hint="Year"
+            android:id="@+id/expYear"
+            android:layout_alignTop="@+id/expMonth"
+            android:layout_alignEnd="@+id/ccNum"
+            android:layout_alignRight="@+id/ccNum"
+            android:backgroundTint="@color/tan"
+            android:background="@color/tan" />
+        </RelativeLayout>
 
     <Button
         android:layout_width="90dp"
@@ -110,6 +116,7 @@
         android:id="@+id/textView"
         android:textColor="#e12f53"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp" />
 
 </RelativeLayout>
