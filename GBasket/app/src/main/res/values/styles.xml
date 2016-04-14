@@ -12,6 +12,10 @@
     </style>
 
 
+    <style name="AppTheme.ActionBar" parent="AppTheme">
+        <item name="android:actionBarItemBackground">@color/red</item>
+    </style>
+
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
