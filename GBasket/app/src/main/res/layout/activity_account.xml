@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/accSetting"
         android:background="#30816c61"
         android:baselineAligned="true"
@@ -76,7 +76,8 @@
                 android:id="@+id/oldPassEntry"
                 android:layout_alignBottom="@+id/oldpassTV"
                 android:layout_toEndOf="@+id/confirmPass"
-                android:layout_toRightOf="@+id/confirmPass" />
+                android:layout_toRightOf="@+id/confirmPass"
+                android:backgroundTint="@color/tan" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -98,7 +99,8 @@
                 android:layout_alignRight="@+id/oldPassEntry"
                 android:layout_alignEnd="@+id/oldPassEntry"
                 android:layout_toRightOf="@+id/confirmPass"
-                android:layout_toEndOf="@+id/confirmPass" />
+                android:layout_toEndOf="@+id/confirmPass"
+                android:backgroundTint="@color/tan" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -119,7 +121,8 @@
                 android:layout_alignBottom="@+id/confirmPass"
                 android:layout_toRightOf="@+id/confirmPass"
                 android:layout_alignRight="@+id/oldPassEntry"
-                android:layout_alignEnd="@+id/oldPassEntry" />
+                android:layout_alignEnd="@+id/oldPassEntry"
+                android:backgroundTint="@color/tan" />
         </RelativeLayout>
 
     </LinearLayout>
@@ -127,7 +130,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Account Settings"
+        android:text="Password Settings"
         android:drawableBottom="@drawable/logo_mall"
         android:textSize="32dp"
         android:id="@+id/accSetting"
