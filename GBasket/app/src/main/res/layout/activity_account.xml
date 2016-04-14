@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/aaaaa"
+    android:background="@drawable/aaaa"
     tools:context="codemeharder.gbasket.ForgotActivity">
 
     <LinearLayout
@@ -13,9 +13,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="25dp"
         android:layout_below="@+id/accSetting"
-        android:layout_centerHorizontal="true">
+        android:background="#30816c61"
+        android:baselineAligned="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp">
 
 
         <TextView
@@ -23,31 +28,35 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Name"
-            android:id="@+id/FName" />
+            android:id="@+id/FName"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Last Name"
-            android:id="@+id/LName" />
+            android:id="@+id/LName"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Email"
-            android:id="@+id/EMail" />
-
-    </LinearLayout>
+            android:id="@+id/EMail"
+            android:layout_gravity="center_horizontal" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentStart="true"
-            android:layout_marginRight="20dp">
+            android:layout_height="232dp"
+            android:layout_below="@+id/linearLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="false"
+            android:layout_marginRight="20dp"
+            android:id="@+id/relativeLayout">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -113,16 +122,7 @@
                 android:layout_alignEnd="@+id/oldPassEntry" />
         </RelativeLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change Password"
-        android:id="@+id/changepass"
-        android:background="@color/red"
-        android:textColor="@color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="57dp" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -135,6 +135,18 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        android:id="@+id/changepass"
+        android:background="@color/red"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/linearLayout"
+        android:layout_alignStart="@+id/linearLayout"
+        android:layout_marginBottom="80dp" />
 
 
 </RelativeLayout>
