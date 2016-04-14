@@ -62,15 +62,17 @@ public class BasketHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         ArrayList<EachItemID> list = new ArrayList<>();
 
-        cursor.moveToFirst();
         try {
-            while (cursor.moveToNext()) {
-                EachItemID eachItem2 = new EachItemID();
-                eachItem2.setID(cursor.getInt(0));
-                eachItem2.setName(cursor.getString(1));
-                eachItem2.setPrice(cursor.getDouble(2));
-                eachItem2.setCheckBOx(true);
-                list.add(eachItem2);
+            if (cursor .moveToFirst()) {
+                while (cursor.isAfterLast() == false) {
+                    EachItemID eachItem2 = new EachItemID();
+                    eachItem2.setID(cursor.getInt(0));
+                    eachItem2.setName(cursor.getString(1));
+                    eachItem2.setPrice(cursor.getDouble(2));
+                    eachItem2.setCheckBOx(true);
+                    list.add(eachItem2);
+                    cursor.moveToNext();
+                }
             }
         } finally {
             cursor.close();

@@ -75,15 +75,17 @@ public class ReceiptHandler extends SQLiteOpenHelper{
         Cursor cursor = db.rawQuery(query, null);
         ArrayList<ReceiptHistItem> resultList = new ArrayList<>();
 
-        cursor.moveToFirst();
         try {
-            while (cursor.moveToNext()) {
-                ReceiptHistItem receipt = new ReceiptHistItem();
-                
-                receipt.setDate(cursor.getString(0));
-                receipt.setSerial(cursor.getString(1));
-                receipt.setReceiptText(cursor.getString(2));
-                resultList.add(receipt);
+            if (cursor .moveToFirst()) {
+                while (cursor.isAfterLast() == false) {
+                    ReceiptHistItem receipt = new ReceiptHistItem();
+
+                    receipt.setDate(cursor.getString(0));
+                    receipt.setSerial(cursor.getString(1));
+                    receipt.setReceiptText(cursor.getString(2));
+                    resultList.add(receipt);
+                    cursor.moveToNext();
+                }
             }
         } finally {
             cursor.close();

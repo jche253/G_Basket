@@ -33,10 +33,6 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
     CustomAdapter1 adapter;
     Context context;
     BasketHelper basketHelper = new BasketHelper(this);
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +49,6 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         final ArrayList<CreditCards> checking = carddb.getAllcards();
 
         lv = (ListView) findViewById(R.id.listView);
-
 
         //Inflation of items with the most recent item (unless it's not from itemactivity)
         items2 = new ArrayList<EachItemID>();
@@ -78,7 +73,7 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
             public void onClick(View v) {
                 if (ids.size() > 0) {
                     for (int i = 0; i < ids.size(); i++) {
-                        //Error because of lack of primary key
+                        //Fixed primary key
                         basketHelper.deleteRow(ids.get(i).getID());
                         items2.remove(ids.get(i));
                     }
@@ -91,12 +86,13 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Sum up the prices from the receipt
+                //TODO: Sum up the prices from the receipt and pass to payment
                 if (checking.size() == 0) {
                     Intent cardIntent = new Intent(getApplicationContext(), AddCardActivity.class);
                     startActivity(cardIntent);
                 }
                 else {
+                    //TODO Move this somewhere else
                     basketHelper.deletedb();
                     Intent payIntent = new Intent(getApplicationContext(), PaymentActivity.class);
                     //payIntent.putExtra("items")
