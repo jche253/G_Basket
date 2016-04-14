@@ -117,12 +117,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Add New Card"
-        android:drawableTop="@drawable/logo_mall"
         android:textSize="32dp"
         android:id="@+id/textView"
         android:textColor="@color/red"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="42dp" />
 
 </RelativeLayout>

@@ -131,13 +131,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Account Settings"
-        android:drawableTop="@drawable/logo_mall"
         android:textSize="32dp"
         android:id="@+id/accSetting"
         android:textColor="@color/red"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="42dp" />
 
     <Button
         android:layout_width="wrap_content"

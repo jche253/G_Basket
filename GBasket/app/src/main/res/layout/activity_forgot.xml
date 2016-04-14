@@ -17,7 +17,7 @@
         android:text="Forgot Your Password?"
         android:textSize="30dp"
         android:id="@+id/textView"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textColor="@color/red" />
@@ -41,7 +41,7 @@
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:background="#30816c61">
 
         <EditText
