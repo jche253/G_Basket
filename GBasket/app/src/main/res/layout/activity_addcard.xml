@@ -1,111 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    >
+    tools:context="com.example.hanzgg.myapplication.MainActivity"
+    android:background="@drawable/aaaa">
+
+    <EditText
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:hint="Name"
+        android:id="@+id/name"
+        android:layout_marginTop="101dp"
+        android:background="#b4ffffff"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
+
+    <EditText
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:ems="10"
+        android:hint="Credit Card Number"
+        android:id="@+id/ccNum"
+        android:background="#b4ffffff"
+
+        android:layout_below="@+id/name"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:layout_alignEnd="@+id/name"
+        android:layout_alignRight="@+id/name"/>
+
+    <EditText
+        android:layout_width="45dp"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:ems="10"
+        android:hint="CV"
+        android:id="@+id/CVC"
+        android:background="#b4ffffff"
+        android:layout_alignTop="@+id/ccNum"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_alignRight="@+id/textView"
+        android:layout_marginEnd="-39dp"
+        android:layout_marginRight="-39dp"/>
+
+    <EditText
+        android:layout_width="131dp"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:ems="10"
+        android:hint="Month"
+        android:id="@+id/expMonth"
+        android:layout_marginTop="20dp"
+        android:background="#b4ffffff"
+        android:layout_below="@+id/ccNum"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
+
+    <EditText
+        android:layout_width="131dp"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:ems="10"
+        android:hint="Year"
+        android:id="@+id/expYear"
+        android:background="#b4ffffff"
+        android:layout_alignTop="@+id/expMonth"
+        android:layout_alignEnd="@+id/ccNum"
+        android:layout_alignRight="@+id/ccNum"/>
+
+    <Button
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:text="Cancel"
+        android:id="@+id/btnCancel"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:background="#e12f53"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:text="Add Card"
+        android:id="@+id/btnSubmit"
+        android:background="#e12f53"
+        android:textColor="#ffffff"
+        android:layout_above="@+id/btnCancel"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="20dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Your Card"
-        android:id="@+id/addcard"
-        android:layout_gravity="center_horizontal"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="45dp"
+        android:text="Add New Card"
+        android:textSize="40dp"
+        android:id="@+id/textView"
+        android:textColor="#e12f53"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Name"
-        android:ems="10"
-        android:id="@+id/name"
-        android:contextClickable="false"
-        android:imeOptions="actionUnspecified"
-        android:maxLines="1" android:singleLine="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="180dp" />
-
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/card"
-        android:hint="Card Number"
-        android:imeOptions="actionUnspecified"
-        android:maxLines="1" android:singleLine="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/name"
-        android:layout_alignParentLeft="true" />
-
-    <EditText
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/eMonth"
-        android:hint="Month(MM)"
-        android:imeOptions="actionUnspecified"
-        android:maxLines="1" android:singleLine="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/card"
-        android:layout_alignParentLeft="true" />
-
-    <EditText
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/eYear"
-        android:hint="Year(YYYY)"
-        android:imeOptions="actionUnspecified"
-        android:maxLines="1" android:singleLine="true"
-        android:layout_alignTop="@+id/eMonth"
-        android:layout_toRightOf="@+id/eMonth"
-        android:layout_toEndOf="@+id/eMonth" />
-
-    <EditText
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/CV"
-        android:hint="CCV"
-        android:imeOptions="actionUnspecified"
-        android:maxLines="1" android:singleLine="true"
-        android:layout_alignTop="@+id/card"
-        android:layout_toRightOf="@+id/card"
-        android:layout_toEndOf="@+id/card" />
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:hint="Add Card"
-        android:id="@+id/addCard"
-        android:background="#ececde"
-        android:textColor="#e12f53"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="Cancel"
-        android:id="@+id/cancel"
-        android:background="#ebecde"
-        android:textColor="#e12f53"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

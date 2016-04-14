@@ -147,88 +147,6 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
 
-                }
-                else {
-                    Stripe stripe = null;
-                    try {
-                        stripe = new Stripe("pk_test_2dYE7FzwvBwbxWNCdWtetXTp");
-                    } catch (AuthenticationException e) {
-                        e.printStackTrace();
-                    }
-                    assert stripe != null;
-                    stripe.createToken(
-                            card,
-                            new TokenCallback() {
-                                public void onSuccess(Token token) {
-                                    // Send token to your server
-                                    Toast.makeText(
-                                            getApplicationContext(),
-                                            "Token created: " + token.getId(),
-                                            Toast.LENGTH_LONG).show();
-                                    try {
-
-                                        Map<String, Object> chargeParams = new HashMap<String, Object>();
-                                        chargeParams.put("amount", todayReceipt.getTotal() * 100); // amount in cents, again
-                                        chargeParams.put("currency", "usd");
-                                        chargeParams.put("source", token);
-                                        chargeParams.put("description", "Example charge");
-
-                                        Charge charge = Charge.create(chargeParams);
-                                        new AlertDialog.Builder(PaymentActivity.this)
-                                                .setTitle("Success")
-                                                .setMessage("yay")
-                                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                                .show();*/
-
-                                    /*} catch (CardException e) {
-                                        new AlertDialog.Builder(PaymentActivity.this)
-                                                .setTitle("Declined CardExc")
-                                                .setMessage("Failed stripe processing")
-                                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                                .show();
-                                    } catch (APIException e) {
-                                        e.printStackTrace();
-                                        new AlertDialog.Builder(PaymentActivity.this)
-                                                .setTitle("Declined APIExc")
-                                                .setMessage("Failed stripe processing")
-                                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                                .show();
-                                    } catch (AuthenticationException e) {
-                                        e.printStackTrace();
-                                        new AlertDialog.Builder(PaymentActivity.this)
-                                                .setTitle("Declined AuthExc")
-                                                .setMessage(e.getMessage())
-                                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                                .show();
-                                    } catch (InvalidRequestException e) {
-                                        e.printStackTrace();
-                                        new AlertDialog.Builder(PaymentActivity.this)
-                                                .setTitle("Declined Inval")
-                                                .setMessage("Failed stripe processing")
-                                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                                .show();
-                                    } catch (APIConnectionException e) {
-                                        e.printStackTrace();
-                                        new AlertDialog.Builder(PaymentActivity.this)
-                                                .setTitle("Declined ApiConn")
-                                                .setMessage("Failed stripe processing")
-                                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                                .show();
-                                    }
-
-                                }
-
-                                public void onError(Exception error) {
-                                    // Show localized error message
-                                    Toast.makeText(getApplicationContext(),
-                                            error.getLocalizedMessage(),
-                                            Toast.LENGTH_LONG
-                                    ).show();
-
-                                }
-                            });
-
-
                 }*/
                 Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
                 Bundle b = new Bundle();
@@ -496,6 +414,10 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         Log.i(TAG, "Connection failed: " + connectionResult.getErrorCode());
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }
 

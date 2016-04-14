@@ -1,92 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="codemeharder.gbasket.ForgotActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.hanzgg.myapplication.MainActivity"
+    android:background="@drawable/aaaaa">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Forgot Your Password?"
-        android:textSize="32dp"
-        android:id="@+id/forgotTitle"
+        android:textSize="30dp"
+        android:id="@+id/textView"
+        android:layout_marginTop="20dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/forgotfname"
-        android:text="First Name"
-        android:textSize="22dp"
-        android:layout_below="@+id/forgotTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="28dp" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#e12f53" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="157dp"
+        android:layout_height="40dp"
         android:inputType="textPersonName"
+        android:hint="First Name"
         android:ems="10"
         android:id="@+id/forgotfnameEdit"
-        android:layout_alignBottom="@+id/forgotfname"
-        android:layout_toRightOf="@+id/forgotfname"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/forgotlname"
-        android:text="Last Name"
-        android:textSize="22dp"
-        android:layout_below="@+id/forgotfname"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:background="#b4ffffff"
+        android:layout_marginTop="83dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="157dp"
+        android:layout_height="40dp"
         android:inputType="textPersonName"
+        android:hint="Last Name"
         android:ems="10"
         android:id="@+id/forgotlnameEdit"
-        android:layout_alignBottom="@+id/forgotlname"
-        android:layout_toRightOf="@+id/forgotlname"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/forgotemail"
-        android:textSize="22dp"
-        android:text="Email"
-        android:layout_below="@+id/forgotlname"
-        android:layout_alignParentLeft="true"
+        android:background="#b4ffffff"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/forgotfnameEdit"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp" />
+        android:layout_alignParentLeft="true"/>
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:inputType="textEmailAddress"
         android:ems="10"
+        android:hint = "Email"
         android:id="@+id/forgotemailEdit"
-        android:layout_alignBottom="@+id/forgotemail"
-        android:layout_toRightOf="@+id/forgotemail" />
+        android:background="#b4ffffff"
+        android:layout_below="@+id/forgotlnameEdit"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_alignRight="@+id/textView"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="30dp"
         android:text="Recover Password"
         android:id="@+id/Recover"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/forgotemailEdit"
-        android:layout_alignEnd="@+id/forgotemailEdit" />
-
+        android:layout_marginTop="20dp"
+        android:background="#e12f53"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/forgotemailEdit"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"/>
 </RelativeLayout>

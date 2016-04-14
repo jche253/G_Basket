@@ -16,6 +16,7 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static java.lang.Math.random;
 
@@ -49,6 +50,15 @@ public class ItemActivity extends Activity implements AsyncResponse {
         test.delegate = this;
         test.execute(new Triplet(getApplicationContext(), format, content));
 
+        //TODO delete for testing
+        String toaststr = "";
+        ArrayList<EachItemID> itemarr = basketHelper.queryBasket();
+        for (int j = 0; j < itemarr.size(); j++) {
+            toaststr += itemarr.get(j).getName() + itemarr.get(j).getID() + "\n";
+        }
+
+        Toast.makeText(this, toaststr, Toast.LENGTH_LONG).show();
+
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +74,8 @@ public class ItemActivity extends Activity implements AsyncResponse {
                 String price2 = price.getText().toString();
                 double price3 = Double.parseDouble(price2);
                 String Pname = name.getText().toString();
-                boolean isInserted = basketHelper.insertData(Pname, price3);
+                int ID = new GenerateRandomID().getID();
+                boolean isInserted = basketHelper.insertData(ID, Pname, price3);
                 if (isInserted) {
                     Toast.makeText(ItemActivity.this, Pname + " was successfully added.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), YourBasketActivity.class);

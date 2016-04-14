@@ -27,8 +27,8 @@ import java.util.ArrayList;
 public class YourBasketActivity extends Activity implements View.OnClickListener {
     ListView lv;
     //ArrayList<EachItem> items;
-    ArrayList<EachItem> items2;
-    ArrayList<EachItem> ids = new ArrayList<EachItem>();
+    ArrayList<EachItemID> items2;
+    ArrayList<EachItemID> ids = new ArrayList<EachItemID>();
     Button add, pay, remove;
     CustomAdapter1 adapter;
     Context context;
@@ -44,19 +44,25 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         setContentView(R.layout.activity_yourbucket);
         context = this;
         Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
-        Double price = intent.getDoubleExtra("price", 0);
+        String name = "";
+        Double price = 0.0;
+        name = intent.getStringExtra("name");
+        price = intent.getDoubleExtra("price", 0);
 
         CardHelper carddb = new CardHelper(this, null, null, 1);
         final ArrayList<CreditCards> checking = carddb.getAllcards();
 
         lv = (ListView) findViewById(R.id.listView);
 
-        //Sample inflation of items
-        items2 = new ArrayList<EachItem>();
+
+        //Inflation of items with the most recent item (unless it's not from itemactivity)
+        items2 = new ArrayList<EachItemID>();
         items2 = basketHelper.queryBasket();
-        EachItem newItem = new EachItem(name, price, true);
-        items2.add(newItem);
+
+        /*if (price != 0.0 || name != null) {
+            EachItem newItem = new EachItem(new GenerateRandomID().getID, name, price, true);
+            items2.add(newItem);
+        }*/
 
         adapter = new CustomAdapter1(this, R.layout.row, items2);
         lv.setAdapter(adapter);
@@ -72,7 +78,8 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
             public void onClick(View v) {
                 if (ids.size() > 0) {
                     for (int i = 0; i < ids.size(); i++) {
-                        basketHelper.deleteRow(ids.get(i).getName());
+                        //Error because of lack of primary key
+                        basketHelper.deleteRow(ids.get(i).getID());
                         items2.remove(ids.get(i));
                     }
                     adapter.notifyDataSetChanged();
@@ -85,12 +92,12 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 //TODO: Sum up the prices from the receipt
-                basketHelper.deletedb();
                 if (checking.size() == 0) {
                     Intent cardIntent = new Intent(getApplicationContext(), AddCardActivity.class);
                     startActivity(cardIntent);
                 }
                 else {
+                    basketHelper.deletedb();
                     Intent payIntent = new Intent(getApplicationContext(), PaymentActivity.class);
                     //payIntent.putExtra("items")
                     startActivity(payIntent);
@@ -157,11 +164,11 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
     }
 
     public class CustomAdapter1 extends ArrayAdapter {
-        ArrayList<EachItem> items = null;
+        ArrayList<EachItemID> items = null;
         Context context;
         int resourceID;
 
-        public CustomAdapter1(Context context, int layoutresourceID, ArrayList<EachItem> resource) {
+        public CustomAdapter1(Context context, int layoutresourceID, ArrayList<EachItemID> resource) {
             super(context, R.layout.row, resource);
             this.resourceID = layoutresourceID;
             this.context = context;

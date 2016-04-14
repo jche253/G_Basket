@@ -35,7 +35,6 @@ public class HistoryActivity extends Activity {
         historyList = (ListView) findViewById(R.id.historyLV);
         System.gc();
 
-        exit = (Button) findViewById(R.id.exit);
         back = (Button) findViewById(R.id.back);
         //populate adapter with sqlite database elements
         ReceiptArray = getAllTuples();
@@ -56,15 +55,6 @@ public class HistoryActivity extends Activity {
                 // Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_LONG).show();
                 //TODO Fix this to query instead of pulling a default receipt
                 findReceipt(adapter.receipts.get(position).getSerial());
-            }
-        });
-
-        exit.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                basketHelper.deletedb();
-                finish();
-                System.exit(0);
             }
         });
 
