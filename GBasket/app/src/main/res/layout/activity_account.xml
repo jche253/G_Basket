@@ -10,52 +10,43 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/linearLayout"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="34dp"
         android:layout_below="@+id/accSetting"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_centerHorizontal="true">
 
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:id="@+id/FnameInput"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="First Name"
-            android:ems="10"
-            android:textColor="@color/brown" />
-
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:id="@+id/LnameInput"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Name"
+            android:id="@+id/FName" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Last Name"
-            android:ems="10"
-            android:textColor="@color/brown" />
+            android:id="@+id/LName" />
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Email"
-            android:ems="10"
-            android:id="@+id/EmailInput"
-            android:textColor="@color/brown" />
+            android:id="@+id/EMail" />
 
     </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout"
-            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="false"
             android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:layout_marginRight="20dp">
 
             <TextView
