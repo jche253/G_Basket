@@ -11,8 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Grocery List"
+        android:drawableTop="@drawable/logo_mall"
         android:textSize="32dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/red"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -44,7 +45,7 @@
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/listView"
         android:layout_alignStart="@+id/listView"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="33dp"
         android:layout_toLeftOf="@+id/btAdd"
         android:layout_toStartOf="@+id/btAdd" />
 

@@ -14,13 +14,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#30816c61"
-        android:layout_below="@+id/textView"
+        android:layout_marginTop="15dp"
+        android:id="@+id/relativeLayout2"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="8dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="2dp"
-        android:id="@+id/relativeLayout2">
+        android:layout_below="@+id/textView"
+        android:layout_marginRight="1dp">
         <EditText
             android:layout_width="280dp"
             android:layout_height="40dp"
@@ -116,11 +117,12 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Add New Card"
-        android:textSize="40dp"
+        android:drawableTop="@drawable/logo_mall"
+        android:textSize="32dp"
         android:id="@+id/textView"
         android:textColor="@color/red"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp" />
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>
