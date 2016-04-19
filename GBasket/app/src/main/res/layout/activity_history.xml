@@ -2,38 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@drawable/aaaaa">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Shopping History"
         android:id="@+id/historyTV"
-        android:layout_gravity="center_horizontal"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="42dp"
+        android:textSize="40dp"
+        android:textColor="@color/red"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
 
-    <ListView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:id="@+id/historyLV"
-        android:layout_gravity="center_horizontal"
-        android:descendantFocusability="blocksDescendants"
-        android:layout_weight="0.30"
-        android:layout_below="@+id/historyTV"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:foregroundGravity="bottom"
+        android:gravity="center_horizontal|bottom"
+        android:id="@+id/linearLayout2">
+
+        <ListView
+            android:layout_width="320dp"
+            android:layout_height="307dp"
+            android:id="@+id/historyLV"
+            android:descendantFocusability="blocksDescendants"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:foregroundGravity="bottom" />
+
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Screen"
+        android:text="Home"
         android:id="@+id/back"
-        android:layout_below="@+id/historyLV"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:background="@color/red" />
 
 
 </RelativeLayout>

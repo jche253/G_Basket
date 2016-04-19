@@ -7,11 +7,11 @@
     tools:context=".MainActivity" >
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/QuantityItems"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Grocery List"
-        android:textSize="32dp"
+        android:textSize="40dp"
         android:layout_marginTop="55dp"
         android:textColor="@color/red"
         android:layout_alignParentTop="true"
@@ -33,15 +33,15 @@
         android:layout_alignEnd="@+id/ToBuyList"
         android:layout_alignBottom="@+id/txtInput"
         android:tint="@color/white"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_toRightOf="@+id/QuantityItems"
+        android:layout_toEndOf="@+id/QuantityItems" />
 
     <EditText
         android:id="@+id/txtInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="New item"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/QuantityItems"
         android:layout_alignLeft="@+id/ToBuyList"
         android:layout_alignStart="@+id/ToBuyList"
         android:layout_marginTop="33dp"

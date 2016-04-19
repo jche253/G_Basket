@@ -10,7 +10,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Choose A Card"
         android:textSize="42dp"
-        android:id="@+id/textView3"
+        android:id="@+id/ItemName"
         android:layout_gravity="center_horizontal" />
 
     <ListView
