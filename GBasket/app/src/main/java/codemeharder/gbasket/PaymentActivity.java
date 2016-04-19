@@ -70,12 +70,17 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
 
     CardHelper carddb = new CardHelper(this, null, null, 1);
     ArrayList<CreditCards> items;
+    ArrayList<EachItemID> items2;
     CardAdapter1 adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+
+        Intent i = getIntent();
+        Bundle bundle = i.getBundleExtra("bundle");
+        items2 = bundle.getParcelableArrayList("items2");
 
         CardList = (ListView) findViewById(R.id.CardListView);
         Paywcard = (Button) findViewById(R.id.ButtonPaywcard);
@@ -113,17 +118,11 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                     Toast.makeText(getApplicationContext(), "Please select a card", Toast.LENGTH_LONG).show();
                     return;
                 }
-                //TODO select card as item and initialize variables
 
-                String CreditCardNum = "4242424242424242";
-                int expMonth = 7;
-                int expYear = 2017;
-                String CVC = "123";
-                //Parameters: string credit card number, int exp month, int exp year, string cvc
-                Card card = new Card(CreditCardNum, expMonth, expYear, CVC);
+                String CreditCardNum = ids.get(0).realCardNum;
+                Card card = carddb.findCardStripe(CreditCardNum);
+
                 //TODO Test receipt case
-
-                Date date = new Date();
                 ArrayList<EachItem> items =  new ArrayList<EachItem>();
                 ArrayList<Double> orig = new ArrayList<Double>();
                 ArrayList<Double> discount = new ArrayList<Double>();

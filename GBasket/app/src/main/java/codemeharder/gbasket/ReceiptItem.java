@@ -9,6 +9,13 @@ public class ReceiptItem {
     private double origPrice;
     private double discount;
 
+    public ReceiptItem (String name, double itemCost) {
+        this.itemName = name;
+        this.itemPrice = itemCost;
+        this.origPrice = 0;
+        this.discount = 0;
+    }
+
     public ReceiptItem(String name, double itemCost, double origCost, double aDiscount) {
         super();
         this.itemName = name;

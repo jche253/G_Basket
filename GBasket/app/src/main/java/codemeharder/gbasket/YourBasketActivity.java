@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,6 @@ import java.util.ArrayList;
  */
 public class YourBasketActivity extends Activity implements View.OnClickListener {
     ListView lv;
-    //ArrayList<EachItem> items;
     ArrayList<EachItemID> items2;
     ArrayList<EachItemID> ids = new ArrayList<EachItemID>();
     Button add, pay, remove;
@@ -44,9 +44,6 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         Double price = 0.0;
         name = intent.getStringExtra("name");
         price = intent.getDoubleExtra("price", 0);
-
-        CardHelper carddb = new CardHelper(this, null, null, 1);
-        final ArrayList<CreditCards> checking = carddb.getAllcards();
 
         lv = (ListView) findViewById(R.id.ToBuyList);
 
@@ -84,20 +81,15 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
                     Toast.makeText(getApplicationContext(), "Please scan items first", Toast.LENGTH_LONG).show();
                     return;
                 }
-                //TODO: Sum up the prices from the receipt and pass to payment
-                if (checking.size() == 0) {
-                    Intent cardIntent = new Intent(getApplicationContext(), AddCardActivity.class);
-                    startActivity(cardIntent);
-                }
-                else {
-                    //TODO Move this somewhere else
-                    basketHelper.deletedb();
 
-                    Intent payIntent = new Intent(getApplicationContext(), PaymentActivity.class);
-                    //payIntent.putExtra("items")
-                    startActivity(payIntent);
-                }
+                //TODO Move this somewhere else
+                basketHelper.deletedb();
 
+                Intent payIntent = new Intent(getApplicationContext(), PaymentActivity.class);
+                Bundle b = new Bundle();
+                b.putParcelableArrayList("items2", items2);
+                payIntent.putExtra("bundle", b);
+                startActivity(payIntent);
             }
         });
     }

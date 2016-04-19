@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.stripe.android.model.Card;
+
 import java.util.ArrayList;
 
 /**
@@ -74,6 +76,34 @@ public class CardHelper extends SQLiteOpenHelper {
         }
         db.close();
         return result;
+    }
+
+    public Card findCardStripe (String Cardnum) {
+        String query = "Select * FROM " + TABLE_CARDS + " WHERE " + COLUMN_card + " =  \"" + Cardnum + "\" ";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        Card result;
+
+        if (cursor.moveToFirst()) {
+            cursor.moveToFirst();
+            String cardNum = cursor.getString(cursor.getColumnIndex(COLUMN_card));
+            String eMonth = cursor.getString(cursor.getColumnIndex(COLUMN_eMonth));
+            int ieMonth = Integer.parseInt(eMonth);
+            String eYear = cursor.getString(cursor.getColumnIndex(COLUMN_eYear));
+            int ieYear = Integer.parseInt(eYear);
+            String cvc = cursor.getString(cursor.getColumnIndex(COLUMN_cvc));
+            result = new Card(cardNum,ieMonth, ieYear, cvc);
+            cursor.close();
+        } else {
+            result = null;
+            cursor.close();
+        }
+        db.close();
+        return result;
+
     }
 
     public ArrayList<CreditCards> getAllcards() {
