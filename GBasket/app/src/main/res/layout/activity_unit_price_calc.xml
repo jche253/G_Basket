@@ -7,17 +7,20 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.hanzgg.calculator.MainActivity">
+    tools:context="codemeharder.gbasket.UnitPriceCalc"
+    android:background="@drawable/aaaa">
 
-    <EditText
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/item1"
-        android:layout_below="@+id/textView"
-        android:layout_toEndOf="@+id/textView2"
-        android:layout_toRightOf="@+id/textView2"/>
+        android:layout_height="325dp"
+        android:background="#30816c61"
+        android:layout_marginTop="100dp"
+        android:id="@+id/relativeLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="1dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,6 +41,15 @@
         android:layout_alignBottom="@+id/item1"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/item1"
+        android:layout_below="@+id/textView"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -79,6 +91,7 @@
         android:layout_toEndOf="@+id/textView2"
         android:layout_toRightOf="@+id/textView2"/>
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,6 +101,8 @@
         android:layout_below="@+id/cost1"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"/>
+
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -99,7 +114,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"/>
 
-    <EditText
+
+
+
+        <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
@@ -169,6 +187,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginTop="33dp" />
 
+    </RelativeLayout>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -179,5 +198,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Unit Price Calcuator"
+        android:textSize="32dp"
+        android:id="@+id/textView"
+        android:textColor="@color/red"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp" />
+
 
 </RelativeLayout>
