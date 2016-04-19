@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Sign Up"
-        android:id="@+id/QuantityItems"
+        android:id="@+id/PriceID"
         android:textSize="40dp"
         android:textColor="@color/red"
         android:layout_marginTop="40dp"
@@ -28,7 +28,7 @@
         android:ems="10"
         android:id="@+id/User_FName"
         android:layout_marginTop="46dp"
-        android:layout_below="@+id/QuantityItems"
+        android:layout_below="@+id/PriceID"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:backgroundTint="@color/brown" />

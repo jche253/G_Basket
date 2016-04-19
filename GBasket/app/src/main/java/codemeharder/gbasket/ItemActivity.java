@@ -53,11 +53,11 @@ public class ItemActivity extends Activity implements AsyncResponse {
         //TODO delete for testing
         String toaststr = "";
         ArrayList<EachItemID> itemarr = basketHelper.queryBasket();
-        for (int j = 0; j < itemarr.size(); j++) {
+        /*for (int j = 0; j < itemarr.size(); j++) {
             toaststr += itemarr.get(j).getName() + itemarr.get(j).getID() + "\n";
-        }
+        }*/
 
-        Toast.makeText(this, toaststr, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, toaststr, Toast.LENGTH_LONG).show();
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +77,7 @@ public class ItemActivity extends Activity implements AsyncResponse {
                 int ID = new GenerateRandomID().getID();
                 boolean isInserted = basketHelper.insertData(ID, Pname, price3);
                 if (isInserted) {
-                    Toast.makeText(ItemActivity.this, Pname + " was successfully added.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ItemActivity.this, Pname + " added.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), YourBasketActivity.class);
                     intent.putExtra("name", Pname);
                     intent.putExtra("price", price3);

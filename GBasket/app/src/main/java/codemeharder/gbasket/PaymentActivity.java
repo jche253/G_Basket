@@ -122,33 +122,25 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                 String CreditCardNum = ids.get(0).realCardNum;
                 Card card = carddb.findCardStripe(CreditCardNum);
 
+
                 //TODO Test receipt case
                 ArrayList<EachItem> items =  new ArrayList<EachItem>();
                 ArrayList<Double> orig = new ArrayList<Double>();
                 ArrayList<Double> discount = new ArrayList<Double>();
-                //Test cases
-                orig.add(3.44);
+
+                for (int i = 0; i < items2.size(); i++) {
+                    items.add(new EachItem(items2.get(i).getName(), items2.get(i).getPrice(), false));
+                    orig.add(items2.get(i).getPrice());
+                    //Discount will be omitted for the purposes of this store, but the database has an option to add this
+                    discount.add(0.00);
+                }
+                //Example of a discount
+                /*orig.add(3.44);
                 discount.add(0.00);
-                items.add(new EachItem("pizza", setDiscountPrice(orig.get(0), discount.get(0)), false));
-
-                orig.add(2.00);
-                discount.add(1.00);
-                items.add(new EachItem("burger", setDiscountPrice(orig.get(1), discount.get(1)), false));
-
-                orig.add(1.00);
-                discount.add(0.00);
-                items.add(new EachItem("olives", setDiscountPrice(orig.get(2), discount.get(2)), false));
-
-                orig.add(12.90);
-                discount.add(3.00);
-                items.add(new EachItem("steak", setDiscountPrice(orig.get(3), discount.get(3)), false));
-
-                orig.add(8.76);
-                discount.add(1.00);
-                items.add(new EachItem("fish",  setDiscountPrice(orig.get(4), discount.get(4)), false));
+                items.add(new EachItem("pizza", setDiscountPrice(orig.get(0), discount.get(0)), false));*/
 
                 //Simple serial for now
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date now = new Date();
                 String toBarcode = sdf.format(now);
                 final Receipt todayReceipt = new Receipt(toBarcode, card, items, orig, discount, loc_Tax, toBarcode);

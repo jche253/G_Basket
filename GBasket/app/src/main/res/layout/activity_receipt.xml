@@ -65,7 +65,7 @@
             android:id="@+id/scrollView"
             android:layout_alignRight="@+id/history"
             android:layout_alignEnd="@+id/history"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="10dp"
             android:fadeScrollbars="false"
             android:scrollbarFadeDuration="0"
             android:layout_above="@+id/save"

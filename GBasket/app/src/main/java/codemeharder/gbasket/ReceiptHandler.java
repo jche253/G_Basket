@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Created by Jimmy Chen on 3/29/2016.
  */
 public class ReceiptHandler extends SQLiteOpenHelper{
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "receiptDB.db";
     private static final String TABLE_RECEIPTS = "receipt";
 

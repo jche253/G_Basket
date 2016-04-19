@@ -8,27 +8,33 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Shopping History"
+        android:text="   Shopping History  "
         android:id="@+id/historyTV"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="40dp"
         android:textColor="@color/red"
+        android:layout_marginTop="44dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <LinearLayout
         android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
         android:foregroundGravity="bottom"
         android:gravity="center_horizontal|bottom"
-        android:id="@+id/linearLayout2">
+        android:id="@+id/linearLayout2"
+        android:layout_above="@+id/back"
+        android:layout_below="@+id/historyTV"
+        android:layout_alignRight="@+id/historyTV"
+        android:layout_alignEnd="@+id/historyTV">
 
         <ListView
-            android:layout_width="320dp"
-            android:layout_height="307dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/historyLV"
             android:descendantFocusability="blocksDescendants"
             android:layout_alignParentLeft="true"

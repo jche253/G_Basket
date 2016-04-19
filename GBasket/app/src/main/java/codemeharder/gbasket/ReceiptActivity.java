@@ -111,7 +111,7 @@ public class ReceiptActivity extends Activity  {
             ReceiptItem test = new ReceiptItem(temp.getName(), temp.getPrice(), receipt.getOrigPrice().get(i),
                     receipt.getPriceOff().get(i));
             toWrite += (test.getItemName() + "\t\t$" + test.getItemPrice() + "\n");
-            if (test.getDiscount() != 0) {
+            if (test.getDiscount() != 0.00) {
                 toWrite += ("    Original Price: $" + test.getItemOrigPrice() + "\n");
                 toWrite += ("    Discount: $-" + test.getDiscount() + "\n");
             }
