@@ -12,16 +12,22 @@ import java.util.ArrayList;
  */
 public class CreditCards implements Parcelable {
         String cardnum;
+        String realCardNum;
         boolean selected = false;
 
         public CreditCards () {
 
         }
 
-        public CreditCards(String cnum, boolean selected) {
+        public CreditCards(String cnum, String real, boolean selected) {
             this.cardnum = cnum;
+            this.realCardNum = real;
             this.selected = selected;
         }
+
+        public String getRealCardNum() {return this.realCardNum;}
+
+        public void setRealCardNum(String real) { this.realCardNum = real; }
 
         public String getCardnum() {
             return cardnum;

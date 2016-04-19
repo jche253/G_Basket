@@ -48,17 +48,11 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         CardHelper carddb = new CardHelper(this, null, null, 1);
         final ArrayList<CreditCards> checking = carddb.getAllcards();
 
-        lv = (ListView) findViewById(R.id.listView);
+        lv = (ListView) findViewById(R.id.ToBuyList);
 
         //Inflation of items with the most recent item (unless it's not from itemactivity)
         items2 = new ArrayList<EachItemID>();
         items2 = basketHelper.queryBasket();
-
-        /*if (price != 0.0 || name != null) {
-            EachItem newItem = new EachItem(new GenerateRandomID().getID, name, price, true);
-            items2.add(newItem);
-        }*/
-
         adapter = new CustomAdapter1(this, R.layout.row, items2);
         lv.setAdapter(adapter);
 
@@ -86,6 +80,10 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (items2.size() == 0) {
+                    Toast.makeText(getApplicationContext(), "Please scan items first", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 //TODO: Sum up the prices from the receipt and pass to payment
                 if (checking.size() == 0) {
                     Intent cardIntent = new Intent(getApplicationContext(), AddCardActivity.class);
@@ -94,6 +92,7 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
                 else {
                     //TODO Move this somewhere else
                     basketHelper.deletedb();
+
                     Intent payIntent = new Intent(getApplicationContext(), PaymentActivity.class);
                     //payIntent.putExtra("items")
                     startActivity(payIntent);

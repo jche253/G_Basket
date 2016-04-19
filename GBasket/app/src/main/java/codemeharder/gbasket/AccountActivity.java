@@ -30,9 +30,9 @@ public class AccountActivity extends Activity {
         loginHelper = new LoginHelper(this, null, null, 1);
         userData = loginHelper.getAllData();
 
-        fname = (TextView) findViewById(R.id.FnameInput);
-        lname = (TextView) findViewById(R.id.LnameInput);
-        email = (TextView) findViewById(R.id.EmailInput);
+        fname = (TextView) findViewById(R.id.FName);
+        lname = (TextView) findViewById(R.id.LName);
+        email = (TextView) findViewById(R.id.EMail);
         oldpass = (EditText) findViewById(R.id.oldPassEntry);
         newpass = (EditText) findViewById(R.id.newPassEntry);
         confirmpass = (EditText) findViewById(R.id.confirmEntry);

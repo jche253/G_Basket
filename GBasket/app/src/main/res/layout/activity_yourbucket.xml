@@ -24,7 +24,7 @@
     <ListView
         android:layout_width="335dp"
         android:layout_height="320dp"
-        android:id="@+id/listView"
+        android:id="@+id/ToBuyList"
         android:layout_below="@+id/textView2"
 
         android:layout_marginTop="70dp"
@@ -42,8 +42,8 @@
         android:background="#e12f53"
         android:textColor="#ffffff"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/listView"
-        android:layout_alignRight="@+id/listView"/>
+        android:layout_alignEnd="@+id/ToBuyList"
+        android:layout_alignRight="@+id/ToBuyList"/>
 
     <Button
         android:layout_width="90dp"

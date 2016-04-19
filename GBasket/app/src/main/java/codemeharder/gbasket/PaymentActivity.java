@@ -1,14 +1,19 @@
 package codemeharder.gbasket;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
 import com.stripe.android.model.Card;
@@ -20,6 +25,7 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import android.widget.TextView;
 import android.widget.Toast;
 /*
 import com.paypal.android.sdk.payments.PayPalConfiguration;
@@ -42,7 +48,7 @@ import java.util.Locale;
 public class PaymentActivity extends Activity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
-    Button Paywcard, Addcard;
+    Button Paywcard, Addcard, remove;
     ListView CardList;
 
     private static final String TAG = ReceiptActivity.class.getSimpleName();
@@ -59,27 +65,26 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
     private static int FATEST_INTERVAL = 5000;
     private static int DISPLACEMENT = 10;
 
+    ArrayList<CreditCards> ids = new ArrayList<CreditCards>();
     double loc_Tax = 0;
+
+    CardHelper carddb = new CardHelper(this, null, null, 1);
+    ArrayList<CreditCards> items;
+    CardAdapter1 adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-        CardHelper carddb = new CardHelper(this, null, null, 1);
-        ArrayList<CreditCards> items = carddb.getAllcards();
-
         CardList = (ListView) findViewById(R.id.CardListView);
         Paywcard = (Button) findViewById(R.id.ButtonPaywcard);
         Addcard = (Button) findViewById(R.id.ButtonAddcard);
+        remove = (Button) findViewById(R.id.removeCard);
 
-        if(items.size()>0) // check if list contains items.
-        {
-
-            CardAdapter adapter = new CardAdapter(this, R.layout.card_row, items);
-            CardList.setAdapter(adapter);
-
-        }
+        items = carddb.getAllcards();
+        adapter = new CardAdapter1(this, R.layout.card_row, items);
+        CardList.setAdapter(adapter);
 
 
         if (checkPlayServices()) {
@@ -87,11 +92,29 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
             createLocationRequest();
         }
 
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ids.size() > 0) {
+                    for (int i = 0; i < ids.size(); i++) {
+                        //Fixed primary key
+                        carddb.deleteRow(ids.get(i).getRealCardNum());
+                        items.remove(ids.get(i));
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+
         Paywcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (CardList.getAdapter().getCount() == 0) {
+                    Toast.makeText(getApplicationContext(), "Please select a card", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 //TODO select card as item and initialize variables
-               // Toast.makeText(getApplicationContext(), loc_Tax + " ", Toast.LENGTH_LONG).show();
+
                 String CreditCardNum = "4242424242424242";
                 int expMonth = 7;
                 int expYear = 2017;
@@ -99,8 +122,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                 //Parameters: string credit card number, int exp month, int exp year, string cvc
                 Card card = new Card(CreditCardNum, expMonth, expYear, CVC);
                 //TODO Test receipt case
-                // Receipt(Date CurDate, Card card, ArrayList<EachItem> yourItems, ArrayList<Double> DisOrigPrice,
-                //ArrayList<Double> discounts, String serial)
+
                 Date date = new Date();
                 ArrayList<EachItem> items =  new ArrayList<EachItem>();
                 ArrayList<Double> orig = new ArrayList<Double>();
@@ -132,22 +154,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                 String toBarcode = sdf.format(now);
                 final Receipt todayReceipt = new Receipt(toBarcode, card, items, orig, discount, loc_Tax, toBarcode);
 
-                //TODO add payment
-                //TODO commented this out for now so I could test receipt
-                /*if (!card.validateCard()) {
-                    //Errors
-                    new AlertDialog.Builder(PaymentActivity.this)
-                            .setTitle("Invalid Card")
-                            .setMessage("Please enter a valid card")
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //TODO delete card from list
-                                }
-                            })
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();
-
-                }*/
+                //TODO add payment for charging card
                 Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
                 Bundle b = new Bundle();
                 b.putParcelable("Receipt", todayReceipt);
@@ -160,7 +167,6 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
             @Override
             public void onClick(View v) {
                 Intent addIntent = new Intent(getApplicationContext(), AddCardActivity.class);
-                //TODO need to add return to add to listView inSQLite
                 startActivity(addIntent);
             }
         });
@@ -418,6 +424,89 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
 
     @Override
     public void onBackPressed() {
+    }
+
+    class CardAdapter1 extends ArrayAdapter {
+        ArrayList<CreditCards> items = null;
+        Context context;
+        int resourceID;
+        int selected_pos=-1;
+        int count = 0;
+
+        public CardAdapter1(Context context,int layoutresourceID, ArrayList<CreditCards> resource) {
+            super(context, R.layout.card_row, resource);
+            this.resourceID = layoutresourceID;
+            this.context = context;
+            this.items = resource;
+        }
+
+        @Override
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            //LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+            View row = convertView;
+            ViewHolder holder = null;
+            if (row == null) {
+                LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+
+                holder = new ViewHolder();
+                convertView = inflater.inflate(resourceID, null);
+                holder.name = (TextView) convertView.findViewById(R.id.Card);
+                holder.select = (CheckBox) convertView.findViewById(R.id.checkBox);
+                convertView.setTag(holder);
+
+                holder.select.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+
+                        if (((CheckBox) view).isChecked())
+                        {
+                            ids.add(items.get(position));
+                            selected_pos= position;
+                            count++;
+                        }
+                        else
+                        {
+                            if (ids.contains(items.get(position))) {
+                                ids.remove(items.get(position));
+                            }
+                            selected_pos=-1;
+                            count--;
+                        }
+
+                        notifyDataSetChanged();
+
+                    }
+                });
+
+            }
+            else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            if(selected_pos==position)
+            {
+                holder.select.setChecked(true);
+            }
+            else
+            {
+                holder.select.setChecked(false);
+            }
+            String cnum = items.get(position).getCardnum();
+            holder.name.setText(cnum);
+            holder.select.setTag(items.get(position));
+
+            return convertView;
+        }
+
+        public double getCountChecked() {
+            return this.count;
+        }
+
+        public class ViewHolder {
+            TextView name;
+            CheckBox select;
+        }
     }
 }
 

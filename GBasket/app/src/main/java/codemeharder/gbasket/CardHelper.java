@@ -86,10 +86,11 @@ public class CardHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
+                CreditCards credcards = new CreditCards();
                 result = cursor.getString(cursor.getColumnIndex(COLUMN_card));
+                credcards.setRealCardNum(result);
                 temp = result.substring(result.length() - 4);
                 result = "••••" + temp;
-                CreditCards credcards = new CreditCards();
                 credcards.setCardnum(result);
                 resList.add(credcards);
             } while (cursor.moveToNext());
@@ -99,5 +100,9 @@ public class CardHelper extends SQLiteOpenHelper {
         return resList;
     }
 
+    public void deleteRow(String ident){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_CARDS, COLUMN_card + " = " + ident, null);
+    }
 
 }

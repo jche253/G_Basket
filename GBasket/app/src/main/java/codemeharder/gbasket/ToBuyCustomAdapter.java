@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ public class ToBuyCustomAdapter extends ArrayAdapter<ToBuyItem> {
             row = inflater.inflate(layoutResourceId, parent, false);
             holder = new UserHolder();
             holder.textName = (TextView) row.findViewById(R.id.itemName);
-            holder.btnDelete = (Button) row.findViewById(R.id.delete);
+            holder.btnDelete = (ImageButton) row.findViewById(R.id.delete);
             row.setTag(holder);
         } else {
             holder = (UserHolder) row.getTag();
@@ -68,7 +69,7 @@ public class ToBuyCustomAdapter extends ArrayAdapter<ToBuyItem> {
 
     static class UserHolder {
         TextView textName;
-        Button btnDelete;
+        ImageButton btnDelete;
     }
 }
 

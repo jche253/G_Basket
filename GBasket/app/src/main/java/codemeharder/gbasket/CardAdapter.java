@@ -75,7 +75,6 @@ public class CardAdapter extends ArrayAdapter {
         {
             holder.select.setChecked(false);
         }
-
         String cnum = items.get(position).getCardnum();
         holder.name.setText(cnum);
         holder.select.setTag(items.get(position));
@@ -87,6 +86,4 @@ public class CardAdapter extends ArrayAdapter {
         TextView name;
         CheckBox select;
     }
-
-
 }

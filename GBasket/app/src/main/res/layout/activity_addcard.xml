@@ -65,6 +65,7 @@
             android:layout_width="131dp"
             android:layout_height="40dp"
             android:inputType="number"
+            android:maxLength="2"
             android:ems="10"
             android:hint="Month"
             android:id="@+id/expMonth"
@@ -72,8 +73,7 @@
             android:layout_below="@+id/ccNum"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:backgroundTint="@color/tan"
-            android:textColor="@color/tan" />
+            android:backgroundTint="@color/tan" />
 
         <EditText
             android:layout_width="131dp"
@@ -81,6 +81,7 @@
             android:inputType="number"
             android:ems="10"
             android:hint="Year"
+            android:maxLength="4"
             android:id="@+id/expYear"
             android:layout_alignTop="@+id/expMonth"
             android:layout_alignEnd="@+id/ccNum"
