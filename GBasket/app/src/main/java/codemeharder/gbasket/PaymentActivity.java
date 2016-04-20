@@ -2,11 +2,13 @@ package codemeharder.gbasket;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
+import com.stripe.android.Stripe;
+import com.stripe.android.TokenCallback;
 import com.stripe.android.model.Card;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -24,6 +28,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.stripe.android.model.Token;
 
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,8 +42,10 @@ import com.paypal.android.sdk.payments.PaymentConfirmation;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /*
  * Created by Jimmy Chen on 2/18/2016.
@@ -64,6 +71,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
     private static int UPDATE_INTERVAL = 10000;
     private static int FATEST_INTERVAL = 5000;
     private static int DISPLACEMENT = 10;
+    private final static String STRIPE_KEY = "pk_test_sYYQzY9tF9dsFoQ9ZgoF3VyW";
 
     ArrayList<CreditCards> ids = new ArrayList<CreditCards>();
     double loc_Tax = 0;
@@ -147,11 +155,84 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                 discount.add(1.00);
                 items.add(new EachItem("fish",  setDiscountPrice(orig.get(4), discount.get(4)), false));
 
+                //TODO select card as item and initialize variables
+                // Toast.makeText(getApplicationContext(), loc_Tax + " ", Toast.LENGTH_LONG).show();
+
+                //Parameters: string credit card number, int exp month, int exp year, string cvc
+
+                //TODO Test receipt case
+                // Receipt(Date CurDate, Card card, ArrayList<EachItem> yourItems, ArrayList<Double> DisOrigPrice,
+                //ArrayList<Double> discounts, String serial)
+
+
+                //TODO add payment
+                //TODO commented this out for now so I could test receipt
+
+                Stripe stripe = new Stripe();
+
+
+                if (!card.validateCard()) {
+                    //Errors
+                    new AlertDialog.Builder(PaymentActivity.this)
+                            .setTitle("Invalid Card")
+                            .setMessage("Please enter a valid card")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //TODO delete card from list
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+
+                }
+
+                else if (card.validateCard()) {
+                    new Stripe().createToken(
+                            card,
+                            STRIPE_KEY,
+                            new TokenCallback() {
+
+                                @Override
+                                public void onSuccess(final Token token) {
+
+                                    // getTokenList().addToList(token);
+                                    Log.e("Token Json", "27th March::-" + token);
+                                    final Map<String, Object> chargeParams = new HashMap<String, Object>();
+                                    chargeParams.put("amount", 999);
+                                    chargeParams.put("currency", "usd");
+                                    chargeParams.put("card", token.getId());
+                                    // chargeParams.put("captured", false);
+                                    com.stripe.Stripe.apiKey = "sk_test_i9V6baInFfFuKOMq8JYjaA2i";
+                                    // Charge charge = Charge.create(chargeParams);
+                                    // Charge ch = Charge.retrieve(charge.getId());
+                                    // // Used it here for demonstration
+                                    // ch.capture();
+                                    // Charge.create(chargeParams);
+
+                                    new Thread() {
+                                        public void run() {
+                                            TokenAsyncTask post = new TokenAsyncTask();
+                                            post.execute(chargeParams);
+                                        }
+                                    }.start();
+
+
+
+                                }
+
+                                public void onError(Exception error) {
+
+                                }
+                            });
+
+                }
+
                 //Simple serial for now
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
                 Date now = new Date();
                 String toBarcode = sdf.format(now);
                 final Receipt todayReceipt = new Receipt(toBarcode, card, items, orig, discount, loc_Tax, toBarcode);
+
 
                 //TODO add payment for charging card
                 Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);
