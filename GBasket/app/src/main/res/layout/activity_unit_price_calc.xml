@@ -26,13 +26,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Option 1"
-<<<<<<< HEAD
         android:id="@+id/PriceID"
-=======
         android:textStyle="bold"
         android:textSize="20dp"
-        android:id="@+id/QuantityItems"
->>>>>>> origin/master
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"/>
@@ -52,15 +48,10 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/item1"
-<<<<<<< HEAD
         android:layout_below="@+id/PriceID"
         android:layout_toEndOf="@+id/NameID"
         android:layout_toRightOf="@+id/NameID"/>
-=======
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/PriceLabel"
-        android:layout_toEndOf="@+id/PriceLabel" />
->>>>>>> origin/master
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -78,9 +69,9 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/unit1"
-        android:layout_below="@+id/PriceLabel"
-        android:layout_toRightOf="@+id/PriceLabel"
-        android:layout_toEndOf="@+id/PriceLabel" />
+        android:layout_above="@+id/NameID"
+        android:layout_alignLeft="@+id/item1"
+        android:layout_alignStart="@+id/item1" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,9 +79,9 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Total Cost"
         android:id="@+id/textView4"
-        android:layout_alignBottom="@+id/cost1"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
+        android:layout_below="@+id/cost1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -102,10 +93,6 @@
 <<<<<<< HEAD
         android:layout_toEndOf="@+id/NameID"
         android:layout_toRightOf="@+id/NameID"/>
-=======
-        android:layout_alignLeft="@+id/unit1"
-        android:layout_alignStart="@+id/unit1" />
->>>>>>> origin/master
 
 
     <TextView
@@ -141,15 +128,9 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/item2"
-<<<<<<< HEAD
         android:layout_below="@+id/textView6"
         android:layout_toEndOf="@+id/NameID"
         android:layout_toRightOf="@+id/NameID"/>
-=======
-            android:layout_alignTop="@+id/textView6"
-            android:layout_toRightOf="@+id/textView7"
-            android:layout_toEndOf="@+id/textView7" />
->>>>>>> origin/master
 
     <TextView
         android:layout_width="wrap_content"
