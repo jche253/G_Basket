@@ -8,18 +8,19 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="codemeharder.gbasket.UnitPriceCalc"
-    android:background="@drawable/aaaa">
+    android:background="#ececdf">
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="325dp"
+        android:layout_height="wrap_content"
         android:background="#30816c61"
         android:id="@+id/relativeLayout2"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:layout_below="@+id/Quantity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,10 +49,16 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/item1"
+<<<<<<< HEAD
         android:layout_below="@+id/PriceID"
         android:layout_toEndOf="@+id/NameID"
         android:layout_toRightOf="@+id/NameID"/>
 
+=======
+        android:layout_below="@+id/QuantityItems"
+        android:layout_toRightOf="@+id/PriceLabel"
+        android:layout_toEndOf="@+id/PriceLabel" />
+>>>>>>> origin/master
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,9 +76,15 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/unit1"
+<<<<<<< HEAD
         android:layout_above="@+id/NameID"
         android:layout_alignLeft="@+id/item1"
         android:layout_alignStart="@+id/item1" />
+=======
+        android:layout_below="@+id/item1"
+        android:layout_toRightOf="@+id/ItemName"
+        android:layout_toEndOf="@+id/ItemName" />
+>>>>>>> origin/master
 
     <TextView
         android:layout_width="wrap_content"
@@ -89,11 +102,17 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/cost1"
+<<<<<<< HEAD
         android:layout_alignBottom="@+id/textView4"
         android:layout_below="@+id/unit1"
         android:layout_toEndOf="@+id/NameID"
         android:layout_toRightOf="@+id/NameID"/>
 
+=======
+        android:layout_below="@+id/ItemName"
+        android:layout_toRightOf="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4" />
+>>>>>>> origin/master
 
 
     <TextView
@@ -129,9 +148,15 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/item2"
+<<<<<<< HEAD
         android:layout_below="@+id/textView6"
         android:layout_toEndOf="@+id/NameID"
         android:layout_toRightOf="@+id/NameID"/>
+=======
+            android:layout_below="@+id/textView6"
+            android:layout_toRightOf="@+id/textView7"
+            android:layout_toEndOf="@+id/textView7" />
+>>>>>>> origin/master
 
     <TextView
         android:layout_width="wrap_content"
@@ -149,9 +174,9 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/unit2"
-        android:layout_below="@+id/item2"
-        android:layout_toRightOf="@+id/textView7"
-        android:layout_toEndOf="@+id/textView7" />
+        android:layout_below="@+id/textView7"
+        android:layout_toRightOf="@+id/textView8"
+        android:layout_toEndOf="@+id/textView8" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -160,8 +185,8 @@
         android:ems="10"
         android:id="@+id/cost2"
         android:layout_below="@+id/unit2"
-        android:layout_alignLeft="@+id/unit2"
-        android:layout_alignStart="@+id/unit2" />
+        android:layout_toRightOf="@+id/textView9"
+        android:layout_toEndOf="@+id/textView9" />
 
     <TextView
         android:layout_width="wrap_content"
