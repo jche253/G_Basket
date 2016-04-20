@@ -77,6 +77,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
     double loc_Tax = 0;
 
     CardHelper carddb = new CardHelper(this, null, null, 1);
+    BasketHelper basketHelper = new BasketHelper(this);
     ArrayList<CreditCards> items;
     ArrayList<EachItemID> items2;
     CardAdapter1 adapter;
@@ -122,6 +123,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
         Paywcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (CardList.getAdapter().getCount() == 0) {
                     Toast.makeText(getApplicationContext(), "Please select a card", Toast.LENGTH_LONG).show();
                     return;
@@ -129,6 +131,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
 
                 String CreditCardNum = ids.get(0).realCardNum;
                 Card card = carddb.findCardStripe(CreditCardNum);
+                //Toast.makeText(getApplicationContext(), card.getCVC(), Toast.LENGTH_LONG);
 
 
                 //TODO Test receipt case
@@ -144,24 +147,28 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                 }
                 //Example of a discount
                 /*orig.add(3.44);
-                discount.add(0.00);
+                discount.add(1.00);
                 items.add(new EachItem("pizza", setDiscountPrice(orig.get(0), discount.get(0)), false));*/
 
-                //TODO select card as item and initialize variables
-                // Toast.makeText(getApplicationContext(), loc_Tax + " ", Toast.LENGTH_LONG).show();
+                //Simple serial for now
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date now = new Date();
+                String toBarcode = sdf.format(now);
+                final Receipt todayReceipt = new Receipt(toBarcode, card, items, orig, discount, loc_Tax, toBarcode);
 
+                Double doublechargeamt = (todayReceipt.getTotal() * 100);
+                final int chargeAmt = doublechargeamt.intValue();
+                Toast.makeText(getApplicationContext(), "Your card has been charged: " + chargeAmt + " cents", Toast.LENGTH_LONG).show();
                 //Parameters: string credit card number, int exp month, int exp year, string cvc
 
                 //TODO Test receipt case
                 // Receipt(Date CurDate, Card card, ArrayList<EachItem> yourItems, ArrayList<Double> DisOrigPrice,
                 //ArrayList<Double> discounts, String serial)
 
-
                 //TODO add payment
                 //TODO commented this out for now so I could test receipt
 
                 Stripe stripe = new Stripe();
-
 
                 if (!card.validateCard()) {
                     //Errors
@@ -186,11 +193,11 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
 
                                 @Override
                                 public void onSuccess(final Token token) {
-
+                                    basketHelper.deletedb();
                                     // getTokenList().addToList(token);
-                                    Log.e("Token Json", "27th March::-" + token);
+                                    //Log.e("Token Json", "27th March::-" + token);
                                     final Map<String, Object> chargeParams = new HashMap<String, Object>();
-                                    chargeParams.put("amount", 999);
+                                    chargeParams.put("amount", chargeAmt);
                                     chargeParams.put("currency", "usd");
                                     chargeParams.put("card", token.getId());
                                     // chargeParams.put("captured", false);
@@ -208,23 +215,14 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
                                         }
                                     }.start();
 
-
-
                                 }
 
                                 public void onError(Exception error) {
-
+                                    Toast.makeText(getApplicationContext(), error + "", Toast.LENGTH_LONG).show();
                                 }
                             });
 
                 }
-
-                //Simple serial for now
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                Date now = new Date();
-                String toBarcode = sdf.format(now);
-                final Receipt todayReceipt = new Receipt(toBarcode, card, items, orig, discount, loc_Tax, toBarcode);
-
 
                 //TODO add payment for charging card
                 Intent receiptIntent = new Intent(getApplicationContext(), ReceiptActivity.class);

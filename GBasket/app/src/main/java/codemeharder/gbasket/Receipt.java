@@ -36,10 +36,10 @@ public class Receipt implements Parcelable {
         this.PriceOff = discounts;
         for (int i = 0; i < this.itemPrice.size(); i++)
             this.payment_amount += this.itemPrice.get(i).getPrice();
-        //TODO Add tax once you get location
         this.tax = tax;
         this.total = this.payment_amount + (this.payment_amount * this.tax/100);
-        //TODO find ways to get tax location
+        this.total = Math.round(this.total * 100.0)/100.0;
+
     }
 
     public String getDate() {

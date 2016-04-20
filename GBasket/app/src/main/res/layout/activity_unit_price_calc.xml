@@ -212,7 +212,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Unit Price Calculator"
-        android:textSize="37dp"
+        android:textSize="35dp"
         android:textStyle="bold"
         android:id="@+id/Quantity"
         android:textColor="@color/red"

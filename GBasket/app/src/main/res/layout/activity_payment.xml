@@ -30,8 +30,6 @@
         android:layout_marginTop="35dp"
         android:id="@+id/CardListView"
         android:background="#30816c61"
-        android:backgroundTint="@color/tan"
-        android:backgroundTintMode="src_over"
         android:layout_gravity="center_horizontal"
         android:divider="#000000"
         android:dividerHeight="1px"
@@ -79,14 +77,6 @@
             android:id="@+id/removeCard"
             android:layout_alignTop="@+id/ButtonPaywcard"
             android:layout_centerHorizontal="true" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageButton"
-        android:layout_alignTop="@+id/ButtonPaywcard"
-        android:layout_toLeftOf="@+id/removeCard"
-        android:layout_toStartOf="@+id/removeCard" />
 
 
 </RelativeLayout>

@@ -82,9 +82,6 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
                     return;
                 }
 
-                //TODO Move this somewhere else
-                basketHelper.deletedb();
-
                 Intent payIntent = new Intent(getApplicationContext(), PaymentActivity.class);
                 Bundle b = new Bundle();
                 b.putParcelableArrayList("items2", items2);
