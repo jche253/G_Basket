@@ -5,11 +5,18 @@ Contributors:Jimmy Chen, Hansi Chen, Janay DeVillasee, Seoyoung Kyung, Alfred Wo
 
 # Features:
   -Barcode scanner
+  -Location for taxes
+  -Server (Database and token processing)
+  -SQLite Databases
 
-# Special thanks to:
+# Technologies Used:
   -Zxing-android-embedded (https://github.com/journeyapps/zxing-android-embedded)
-  
   -Stripe payment
+  -Google location services
+  -Google Cloud
+  -Google Cloud SQL API
+  -MySQL
+  -Github
 
 # License
 Apache License 2.0
