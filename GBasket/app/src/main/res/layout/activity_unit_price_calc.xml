@@ -89,10 +89,11 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/cost1"
+        android:layout_alignBottom="@+id/textView4"
         android:layout_below="@+id/unit1"
-<<<<<<< HEAD
         android:layout_toEndOf="@+id/NameID"
         android:layout_toRightOf="@+id/NameID"/>
+
 
 
     <TextView
