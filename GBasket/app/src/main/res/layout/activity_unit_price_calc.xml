@@ -22,201 +22,174 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/Quantity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Option 1"
-        android:id="@+id/PriceID"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Option 1"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:id="@+id/QuantityItems"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Item Purchased"
-        android:id="@+id/NameID"
-        android:layout_alignBottom="@+id/item1"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/item1"
-<<<<<<< HEAD
-        android:layout_below="@+id/PriceID"
-        android:layout_toEndOf="@+id/NameID"
-        android:layout_toRightOf="@+id/NameID"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Item Purchased"
+            android:id="@+id/PriceLabel"
+            android:layout_alignBottom="@+id/item1"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/item1"
+            android:layout_below="@+id/QuantityItems"
+            android:layout_toRightOf="@+id/PriceLabel"
+            android:layout_toEndOf="@+id/PriceLabel" />
 
-=======
-        android:layout_below="@+id/QuantityItems"
-        android:layout_toRightOf="@+id/PriceLabel"
-        android:layout_toEndOf="@+id/PriceLabel" />
->>>>>>> origin/master
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Units Per Item"
+            android:id="@+id/ItemName"
+            android:layout_alignBottom="@+id/unit1"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Units Per Item"
-        android:id="@+id/ItemName"
-        android:layout_alignBottom="@+id/unit1"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/unit1"
+            android:layout_below="@+id/item1"
+            android:layout_toRightOf="@+id/ItemName"
+            android:layout_toEndOf="@+id/ItemName" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/unit1"
-<<<<<<< HEAD
-        android:layout_above="@+id/NameID"
-        android:layout_alignLeft="@+id/item1"
-        android:layout_alignStart="@+id/item1" />
-=======
-        android:layout_below="@+id/item1"
-        android:layout_toRightOf="@+id/ItemName"
-        android:layout_toEndOf="@+id/ItemName" />
->>>>>>> origin/master
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Total Cost"
+            android:id="@+id/textView4"
+            android:layout_alignBottom="@+id/cost1"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Total Cost"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/cost1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/cost1"
-<<<<<<< HEAD
-        android:layout_alignBottom="@+id/textView4"
-        android:layout_below="@+id/unit1"
-        android:layout_toEndOf="@+id/NameID"
-        android:layout_toRightOf="@+id/NameID"/>
-
-=======
-        android:layout_below="@+id/ItemName"
-        android:layout_toRightOf="@+id/textView4"
-        android:layout_toEndOf="@+id/textView4" />
->>>>>>> origin/master
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/cost1"
+            android:layout_below="@+id/ItemName"
+            android:layout_toRightOf="@+id/textView4"
+            android:layout_toEndOf="@+id/textView4" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/results1"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/cost1"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/results1"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/cost1"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"/>
 
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Option 2"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:id="@+id/textView6"
-        android:layout_below="@+id/results1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Option 2"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:id="@+id/textView6"
+            android:layout_below="@+id/results1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
 
 
 
         <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/item2"
-<<<<<<< HEAD
-        android:layout_below="@+id/textView6"
-        android:layout_toEndOf="@+id/NameID"
-        android:layout_toRightOf="@+id/NameID"/>
-=======
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/item2"
             android:layout_below="@+id/textView6"
             android:layout_toRightOf="@+id/textView7"
             android:layout_toEndOf="@+id/textView7" />
->>>>>>> origin/master
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Item Purchased"
-        android:id="@+id/textView7"
-        android:layout_alignBottom="@+id/item2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Item Purchased"
+            android:id="@+id/textView7"
+            android:layout_alignBottom="@+id/item2"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/unit2"
-        android:layout_below="@+id/textView7"
-        android:layout_toRightOf="@+id/textView8"
-        android:layout_toEndOf="@+id/textView8" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/unit2"
+            android:layout_below="@+id/textView7"
+            android:layout_toRightOf="@+id/textView8"
+            android:layout_toEndOf="@+id/textView8" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/cost2"
-        android:layout_below="@+id/unit2"
-        android:layout_toRightOf="@+id/textView9"
-        android:layout_toEndOf="@+id/textView9" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/cost2"
+            android:layout_below="@+id/unit2"
+            android:layout_toRightOf="@+id/textView9"
+            android:layout_toEndOf="@+id/textView9" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Units Per Item"
-        android:id="@+id/textView8"
-        android:layout_above="@+id/cost2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Units Per Item"
+            android:id="@+id/textView8"
+            android:layout_above="@+id/cost2"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Total Cost"
-        android:id="@+id/textView9"
-        android:layout_alignBottom="@+id/cost2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Total Cost"
+            android:id="@+id/textView9"
+            android:layout_alignBottom="@+id/cost2"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/results2"
-        android:layout_below="@+id/cost2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="33dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/results2"
+            android:layout_below="@+id/cost2"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="33dp" />
 
     </RelativeLayout>
     <Button
