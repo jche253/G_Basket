@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
 /**
  * Created by seoyoung kyung on 2/24/16.
  * Edited by Jimmy Chen 4/4/16.
@@ -42,7 +45,9 @@ public class SignUpActivity extends Activity {
                 String lname = editlname.getText().toString();
                 String pass1 = editpass.getText().toString();
                 String pass2 = confirmpass.getText().toString();
-                if (email.matches("") || fname.matches("") || lname.matches("")) {
+                if (!isValidEmailAddress(email))
+                    Toast.makeText(getApplicationContext(), "Please enter a valid email", Toast.LENGTH_LONG).show();
+                else if (email.matches("") || fname.matches("") || lname.matches("")) {
                     Toast.makeText(SignUpActivity.this, "Please fill in your first and last name and email", Toast.LENGTH_LONG).show();
                 }
                 else if (pass1.length() < 8 || !isAcceptablePassword(pass1)) {
@@ -112,6 +117,17 @@ public class SignUpActivity extends Activity {
         else {
             return false;
         }
+    }
+
+    public static boolean isValidEmailAddress(String email) {
+        boolean result = true;
+        try {
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            result = false;
+        }
+        return result;
     }
 }
 

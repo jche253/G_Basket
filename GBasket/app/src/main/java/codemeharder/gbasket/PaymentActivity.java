@@ -131,10 +131,8 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
 
                 String CreditCardNum = ids.get(0).realCardNum;
                 Card card = carddb.findCardStripe(CreditCardNum);
-                //Toast.makeText(getApplicationContext(), card.getCVC(), Toast.LENGTH_LONG);
 
-
-                //TODO Test receipt case
+                //Arrays to add to receipt object
                 ArrayList<EachItem> items =  new ArrayList<EachItem>();
                 ArrayList<Double> orig = new ArrayList<Double>();
                 ArrayList<Double> discount = new ArrayList<Double>();
@@ -158,15 +156,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
 
                 Double doublechargeamt = (todayReceipt.getTotal() * 100);
                 final int chargeAmt = doublechargeamt.intValue();
-                Toast.makeText(getApplicationContext(), "Your card has been charged: " + chargeAmt + " cents", Toast.LENGTH_LONG).show();
-                //Parameters: string credit card number, int exp month, int exp year, string cvc
-
-                //TODO Test receipt case
-                // Receipt(Date CurDate, Card card, ArrayList<EachItem> yourItems, ArrayList<Double> DisOrigPrice,
-                //ArrayList<Double> discounts, String serial)
-
-                //TODO add payment
-                //TODO commented this out for now so I could test receipt
+                Toast.makeText(getApplicationContext(), "Your card has been charged: $" + todayReceipt.getTotal(), Toast.LENGTH_LONG).show();
 
                 Stripe stripe = new Stripe();
 

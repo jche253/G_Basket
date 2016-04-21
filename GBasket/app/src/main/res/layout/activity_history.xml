@@ -1,58 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1"
-    android:background="@drawable/aaaaa">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.hanzgg.myapplication.MainActivity"
+    android:background="#ececdf">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="   Shopping History  "
-        android:id="@+id/historyTV"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="40dp"
-        android:textColor="@color/red"
-        android:layout_marginTop="44dp"
+        android:text="Shopping History"
+        android:id="@+id/textView"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#e12f53"
+        android:textSize="40dp" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="370dp"
+        android:id="@+id/historyLV"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:background="#b4ffffff"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:foregroundGravity="bottom"
-        android:gravity="center_horizontal|bottom"
-        android:id="@+id/linearLayout2"
-        android:layout_above="@+id/back"
-        android:layout_below="@+id/historyTV"
-        android:layout_alignRight="@+id/historyTV"
-        android:layout_alignEnd="@+id/historyTV">
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/historyLV"
-            android:background="#30816c61"
-            android:descendantFocusability="blocksDescendants"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:foregroundGravity="bottom" />
-
-    </LinearLayout>
+        android:layout_above="@+id/back" />
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:text="Home"
         android:id="@+id/back"
+        android:background="#e12f53"
+        android:textColor="#ffffff"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
-        android:background="@color/red" />
-
-
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"/>
 </RelativeLayout>

@@ -50,15 +50,6 @@ public class ItemActivity extends Activity implements AsyncResponse {
         test.delegate = this;
         test.execute(new Triplet(getApplicationContext(), format, content));
 
-        //TODO delete for testing
-        String toaststr = "";
-        ArrayList<EachItemID> itemarr = basketHelper.queryBasket();
-        /*for (int j = 0; j < itemarr.size(); j++) {
-            toaststr += itemarr.get(j).getName() + itemarr.get(j).getID() + "\n";
-        }*/
-
-        //Toast.makeText(this, toaststr, Toast.LENGTH_LONG).show();
-
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,27 +63,31 @@ public class ItemActivity extends Activity implements AsyncResponse {
             public void onClick(View v) {
                 //Translate the format/content through database query for the item
                 String price2 = price.getText().toString();
-                double price3 = Double.parseDouble(price2);
-                String Pname = name.getText().toString();
-                int ID = new GenerateRandomID().getID();
-                boolean isInserted = basketHelper.insertData(ID, Pname, price3);
-                if (isInserted) {
-                    Toast.makeText(ItemActivity.this, Pname + " added.", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(), YourBasketActivity.class);
-                    intent.putExtra("name", Pname);
-                    intent.putExtra("price", price3);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(ItemActivity.this, "Item was not successfully added.", Toast.LENGTH_LONG).show();
+                if (price2.equals("") || price2.equals(null)) {
+                    Toast.makeText(getApplicationContext(), "Error: Please rescan item", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else {
+                    double price3 = Double.parseDouble(price2);
+                    String Pname = name.getText().toString();
+                    int ID = new GenerateRandomID().getID();
+                    boolean isInserted = basketHelper.insertData(ID, Pname, price3);
+                    if (isInserted) {
+                        Toast.makeText(ItemActivity.this, Pname + " added.", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), YourBasketActivity.class);
+                        intent.putExtra("name", Pname);
+                        intent.putExtra("price", price3);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(ItemActivity.this, "Item was not successfully added.", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
-
     }
 
     @Override
     public void processFinish(String output) {
-        //Toast.makeText(this, output, Toast.LENGTH_LONG).show();
         price.setText(output.substring(0, output.indexOf(' ')));
         name.setText(output.substring(output.indexOf(' ') + 1));
     }
