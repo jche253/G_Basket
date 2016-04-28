@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         login = (Button) findViewById(R.id.email_sign_in_button);
         forgot = (TextView) findViewById(R.id.forgotTextView);
 
-        //TODO If you ever forget your test login/pass, just uncomment this toast
-        Toast.makeText(MainActivity.this, dbHelper.seeUser(), Toast.LENGTH_LONG).show();
+        //If you ever forget your test login/pass, just uncomment this toast
+        //Toast.makeText(MainActivity.this, dbHelper.seeUser(), Toast.LENGTH_LONG).show();
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

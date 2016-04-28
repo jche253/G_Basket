@@ -91,6 +91,7 @@ public class PaymentActivity extends Activity implements GoogleApiClient.Connect
         Bundle bundle = i.getBundleExtra("bundle");
         items2 = bundle.getParcelableArrayList("items2");
 
+
         CardList = (ListView) findViewById(R.id.CardListView);
         Paywcard = (Button) findViewById(R.id.ButtonPaywcard);
         Addcard = (Button) findViewById(R.id.ButtonAddcard);

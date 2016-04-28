@@ -137,7 +137,7 @@ public class MyEndpoint {
             Statement stmt = conn.createStatement();
             try {
                 rs = stmt.executeQuery
-                        ("SELECT pname, price FROM product WHERE format = '" +format+ "' AND content = '" + content + "'");
+                        ("SELECT pname, price FROM product WHERE format = '" +format+ "' AND pname = '" + content + "'");
                 if (rs.next()) {
                     String pn = rs.getString(1);
                     double pr = rs.getDouble(2);

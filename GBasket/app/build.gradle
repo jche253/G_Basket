@@ -39,5 +39,6 @@ dependencies {
     compile 'com.google.appengine:appengine-api-1.0-sdk:1.9.18'
     compile 'com.android.support:support-v4:23.2.1'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+
 }
 

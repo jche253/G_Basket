@@ -23,7 +23,7 @@ public class MyBean {
         return myData;
     }
 
-    public String getDataPQuery() { return price + " " + pname;}
+    public String getDataPQuery() { return price + "+" + pname;}
 
     public void setData(String data) {
         myData = data;

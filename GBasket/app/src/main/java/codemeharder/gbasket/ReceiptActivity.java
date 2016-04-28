@@ -238,4 +238,8 @@ public class ReceiptActivity extends Activity  {
         ReceiptHandler dbHandler = new ReceiptHandler(this, null, null, 3);
         dbHandler.addReceipt(receipt, toWrite);
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

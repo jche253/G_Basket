@@ -93,8 +93,6 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        this.finish();
     }
 
     @Override
@@ -216,6 +214,8 @@ public class YourBasketActivity extends Activity implements View.OnClickListener
             TextView price;
         }
     }
+
+
 }
 
 

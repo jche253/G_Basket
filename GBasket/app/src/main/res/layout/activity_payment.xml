@@ -44,10 +44,9 @@
         android:layout_alignParentLeft="true"/>
 
     <Button
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="30dp"
         android:text="Pay Now"
-        android:layout_marginLeft="5dp"
         android:id="@+id/ButtonPaywcard"
         android:background="#e12f53"
         android:textColor="#ffffff"
@@ -63,5 +62,5 @@
         android:background="#e12f53"
         android:textColor="#ffffff"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="117dp"  />
+        android:layout_marginLeft="113dp"  />
 </RelativeLayout>
